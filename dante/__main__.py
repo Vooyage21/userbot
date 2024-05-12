@@ -59,7 +59,7 @@ def main():
 
     suc_msg = """
   -------------------------------------------------------
-                      Reza-Userbot
+                      dante-Userbot
   -------------------------------------------------------
     """
 
@@ -86,7 +86,7 @@ def main():
         pass
 
     LOGS.info(
-        f"Took {time_formatter((time.time() - start_time)*1000)} to start Reza-Userbot"
+        f"Took {time_formatter((time.time() - start_time)*1000)} to start dante-Userbot"
     )
     LOGS.info(suc_msg)
 
