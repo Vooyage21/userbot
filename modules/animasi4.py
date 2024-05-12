@@ -1,15 +1,14 @@
-# @mrismanaziz
-# t.me/sharinguserbot
+
 """
 ✘ **Bantuan Untuk Animasi 4**
 
-๏ **Perintah:** `sadboy` | `pantau`
+๏ **Perintah:** `sad` | `lihat`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `punten ` | `strump`
+๏ **Perintah:** `misi ` | `rum`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `frog` | `dfrog`
+๏ **Perintah:** `ceek` | `dceek`
 ◉ **Keterangan:** Coba sendiri.
 
 ๏ **Perintah:** `scina` | `awk`
@@ -18,7 +17,7 @@
 ๏ **Perintah:** `sthink` | `gta`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `wlcm`
+๏ **Perintah:** `slmt`
 ◉ **Keterangan:** Coba sendiri.
 """
 from time import sleep
@@ -26,7 +25,7 @@ from time import sleep
 from . import *
 
 
-@ayra_cmd(pattern="sadboy(?: |$)(.*)")
+@dante_cmd(pattern="sad(?: |$)(.*)")
 async def _(event):
     xx = await eor(event, "`Pertama-tama kamu cantik`")
     sleep(2)
@@ -35,7 +34,7 @@ async def _(event):
     await xx.edit("`Dan yang terakhir adalah kamu bukan jodohku`")
 
 
-@ayra_cmd(pattern="punten(?: |$)(.*)")
+@dante_cmd(pattern="misi(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -46,11 +45,11 @@ async def _(event):
         "`\n┻┳|￣  )`"
         "`\n┳ﾐ(￣ ／`"
         "`\n┻┳T￣|`"
-        "\n**Punten**",
+        "\n**misi**",
     )
 
 
-@ayra_cmd(pattern="pantau(?: |$)(.*)")
+@dante_cmd(pattern="lihat(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -61,11 +60,11 @@ async def _(event):
         "`\n┻┳|￣  )`"
         "`\n┳ﾐ(￣ ／`"
         "`\n┻┳T￣|`"
-        "\n**Masih Gua Pantau**",
+        "\n**Masih Gua lihat**",
     )
 
 
-@ayra_cmd(pattern="frog(?: |$)(.*)")
+@dante_cmd(pattern="ceek(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -87,7 +86,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="dfrog(?: |$)(.*)")
+@dante_cmd(pattern="dceek(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -109,7 +108,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="strump(?: |$)(.*)")
+@dante_cmd(pattern="rum(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -131,7 +130,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="scina(?: |$)(.*)")
+@dante_cmd(pattern="scina(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -154,7 +153,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="wlcm(?: |$)(.*)")
+@dante_cmd(pattern="slmt(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -171,7 +170,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="gta(?: |$)(.*)")
+@dante_cmd(pattern="gta(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -189,7 +188,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="sthink(?: |$)(.*)")
+@dante_cmd(pattern="sthink(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
