@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 from importlib import util
 from sys import modules
@@ -15,11 +9,11 @@ def load_addons(plugin_name):
     base_name = plugin_name.split("/")[-1].split("\\")[-1].replace(".py", "")
     if base_name.startswith("__"):
         return
-    from .. import HNDLR, LOGS, asst, udB, ayra_bot
+    from .. import HNDLR, LOGS, asst, udB, dante_bot
     from .._misc import _supporter as xxx
-    from ayra import fns
+    from dante import fns
     from .._misc._assistant import asst_cmd, callback, in_pattern
-    from .._misc._decorators import ayra_cmd
+    from .._misc._decorators import dante_cmd
     from .._misc._supporter import Config, admin_cmd, sudo_cmd
     from .._misc._wrappers import eod, eor
     from ..configs import Var
@@ -32,14 +26,14 @@ def load_addons(plugin_name):
     mod.udB = udB
     mod.asst = asst
     mod.tgbot = asst
-    mod.ayra_bot = ayra_bot
-    mod.ub = ayra_bot
-    mod.bot = ayra_bot
-    mod.ayra = ayra_bot
-    mod.borg = ayra_bot
-    mod.telebot = ayra_bot
-    mod.jarvis = ayra_bot
-    mod.friday = ayra_bot
+    mod.dante_bot = dante_bot
+    mod.ub = dante_bot
+    mod.bot = dante_bot
+    mod.dante = dante_bot
+    mod.borg = dante_bot
+    mod.telebot = dante_bot
+    mod.jarvis = dante_bot
+    mod.friday = dante_bot
     mod.eod = eod
     mod.edit_delete = eod
     mod.LOGS = LOGS
@@ -53,8 +47,8 @@ def load_addons(plugin_name):
     mod.eor = eor
     mod.edit_or_reply = eor
     mod.asst_cmd = asst_cmd
-    mod.ayra_cmd = ayra_cmd
-    mod.on_cmd = ayra_cmd
+    mod.dante_cmd = dante_cmd
+    mod.on_cmd = dante_cmd
     mod.callback = callback
     mod.Redis = udB.get_key
     mod.admin_cmd = admin_cmd
@@ -75,7 +69,7 @@ def load_addons(plugin_name):
     modules["fridaybot.utils"] = xxx
     modules["fridaybot.Config"] = xxx
     modules["userbot.uniborgConfig"] = xxx
-    modules["ayra.functions"] = fns
+    modules["dante.functions"] = fns
     spec.loader.exec_module(mod)
     modules[name] = mod
     doc = modules[name].__doc__.format(i=HNDLR) if modules[name].__doc__ else ""
