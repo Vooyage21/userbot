@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 # https://github.com/xditya/TeleBot/blob/master/telebot/plugins/mybot/pmbot/incoming.py
 
@@ -11,9 +11,9 @@
 
 import os
 
-from Ayra.dB.asst_fns import *
-from Ayra.dB.botchat_db import *
-from Ayra.fns.helper import inline_mention
+from dante.dB.asst_fns import *
+from dante.dB.botchat_db import *
+from dante.fns.helper import inline_mention
 from telethon.errors.rpcerrorlist import UserNotParticipantError
 from telethon.tl.custom import Button
 from telethon.tl.functions.channels import GetFullChannelRequest
