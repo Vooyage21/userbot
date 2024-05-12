@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 
 import asyncio
@@ -24,22 +18,22 @@ from urllib.request import urlretrieve
 import aiofiles
 import aiohttp
 import requests
-from Ayra import *
-from Ayra._misc import owner_and_sudos, sudoers
-from Ayra._misc._assistant import asst_cmd, callback, in_pattern
-from Ayra._misc._decorators import ayra_cmd, compile_pattern
-from Ayra._misc._wrappers import eod, eor
-from Ayra.configs import Var
-from Ayra.dB import AYRA_IMAGES, DEVS
-from Ayra.fns.admins import admin_check
-from Ayra.fns.helper import *
-from Ayra.fns.info import *
-from Ayra.fns.misc import *
-from Ayra.fns.tools import *
-from Ayra.fns.ytdl import get_videos_link
-from Ayra.kynan import *
-from Ayra.version import __version__ as AyraVer
-from Ayra.version import ayra_version
+from dante import *
+from dante._misc import owner_and_sudos, sudoers
+from dante._misc._assistant import asst_cmd, callback, in_pattern
+from dante._misc._decorators import dante_cmd, compile_pattern
+from dante._misc._wrappers import eod, eor
+from dante.configs import Var
+from dante.dB import dante_IMAGES, DEVS
+from dante.fns.admins import admin_check
+from dante.fns.helper import *
+from dante.fns.info import *
+from dante.fns.misc import *
+from dante.fns.tools import *
+from dante.fns.ytdl import get_videos_link
+from dante.kynan import *
+from dante.version import __version__ as danteVer
+from dante.version import dante_version
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 from requests import get
@@ -54,8 +48,8 @@ from .database.strg import Storage
 Redis = udB.get_key
 con = TgConverter
 quotly = Quotly()
-OWNER_NAME = ayra_bot.full_name
-OWNER_ID = ayra_bot.uid
+OWNER_NAME = dante_bot.full_name
+OWNER_ID = dante_bot.uid
 
 LOG_CHANNEL = udB.get_key("LOG_CHANNEL")
 
@@ -68,7 +62,7 @@ def STORAGE(n):
 def inline_pic():
     INLINE_PIC = udB.get_key("INLINE_PIC")
     if INLINE_PIC is None:
-        INLINE_PIC = choice(AYRA_IMAGES)
+        INLINE_PIC = choice(dante_IMAGES)
     elif INLINE_PIC == False:
         INLINE_PIC = None
     return INLINE_PIC
@@ -80,7 +74,7 @@ List = []
 Dict = {}
 InlinePlugin = {}
 N = 0
-cmd = ayra_cmd
+cmd = dante_cmd
 STUFF = {}
 
 # Chats, which needs to be ignore for some cases
