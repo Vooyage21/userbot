@@ -2,19 +2,19 @@
 """
 ✘ **Bantuan Untuk Animasi 3**
 
-๏ **Perintah:** `gabut` | `dino`
+๏ **Perintah:** `cape` | `gaje`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `gombal ` | `cinta`
+๏ **Perintah:** `bal` | `cinta`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `tembak` | `bundir`
+๏ **Perintah:** `nembak` | `mati`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `bernyanyi` | `awk`
+๏ **Perintah:** `suara` | `ketawa`
 ◉ **Keterangan:** Coba sendiri.
 
-๏ **Perintah:** `helikopter` | `tank`
+๏ **Perintah:** `heli` | `tank`
 ◉ **Keterangan:** Coba sendiri.
 
 ๏ **Perintah:** `bulan` | `hati`
@@ -112,11 +112,11 @@ async def _(event):
     await e.edit("SAYANG KAMU💞")
 
 
-@dante_cmd(pattern=r"dino(?: |$)(.*)")
+@dante_cmd(pattern=r"gaje(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "`DIN DINNN.....`")
     #sleep(1)
-    await typew.edit("`DINOOOOSAURUSSSSS!!`")
+    await typew.edit("`gajeOOOSAURUSSSSS!!`")
     #sleep(1)
     await typew.edit("`🏃                        🦖`")
     await typew.edit("`🏃                       🦖`")
@@ -169,7 +169,7 @@ async def _(event):
     await typew.edit("`-TAMAT-`")
 
 
-@dante_cmd(pattern="gabut$")
+@dante_cmd(pattern="cape$")
 async def _(event):
     e = await eor(event, "`PERNAAHHHHH KAHHH KAUUU MENGIRA`")
     await e.edit("`SEPEEERTIIIII APAAAA BENTUKKKKKKK CINTAAAA`")
@@ -179,7 +179,7 @@ async def _(event):
     await e.edit("`WALAAUUUU TAK TERLALU TINGGI`")
     await e.edit("`GW GABUUTTTT`")
     await e.edit("`EMMMM BACOTNYA`")
-    await e.edit("`GABUTTTT WOI GABUT`")
+    await e.edit("`capeTTT WOI cape`")
     await e.edit("🙈🙈🙈🙈")
     await e.edit("🙉🙉🙉🙉")
     await e.edit("🙈🙈🙈🙈")
@@ -422,7 +422,7 @@ async def _(event):
     await e.edit("🚶                              🐢")
     await e.edit("🚶                               🐢")
     await e.edit("🚶                                🐢")
-    await e.edit("`GABUT`")
+    await e.edit("`cape`")
 
 
 @dante_cmd(pattern=r"terkadang(?: |$)(.*)")
@@ -475,7 +475,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@dante_cmd(pattern=r"gombal(?: |$)(.*)")
+@dante_cmd(pattern=r"bal(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "`Hai, I LOVE YOU 💞`")
     sleep(1)
@@ -501,7 +501,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@dante_cmd(pattern="helikopter(?: |$)(.*)")
+@dante_cmd(pattern="heli(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -524,7 +524,7 @@ async def _(event):
     )
 
 
-@dante_cmd(pattern="tembak(?: |$)(.*)")
+@dante_cmd(pattern="nembak(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -532,7 +532,7 @@ async def _(event):
     )
 
 
-@dante_cmd(pattern="bundir(?: |$)(.*)")
+@dante_cmd(pattern="mati(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -553,7 +553,7 @@ async def _(event):
     )
 
 
-@dante_cmd(pattern="awk(?: |$)(.*)")
+@dante_cmd(pattern="ketawa(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -561,7 +561,7 @@ async def _(event):
         "──▄▀█▄▄▄─────▄▀█▄▄▄\n"
         "▄▀──█▄▄──────█─█▄▄\n"
         "─▄▄▄▀──▀▄───▄▄▄▀──▀▄\n"
-        "─▀───────▀▀─▀───────▀▀\n`Awkwokwokwok..`",
+        "─▀───────▀▀─▀───────▀▀\n`ketawawokwokwok..`",
     )
 
 
@@ -716,9 +716,9 @@ async def _(event):
     )
 
 
-@dante_cmd(pattern=r"bernyanyi(?: |$)(.*)")
+@dante_cmd(pattern=r"suara(?: |$)(.*)")
 async def _(event):
-    typew = await eor(event, "**Ganteng Doang Gak Bernyanyi (ง˙o˙)ว**")
+    typew = await eor(event, "**Ganteng Doang Gak suara (ง˙o˙)ว**")
     sleep(2)
     await typew.edit("**♪┗ ( ･o･) ┓♪┏ (・o･) ┛♪**")
     sleep(1)
