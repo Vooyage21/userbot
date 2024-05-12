@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 """
 ✘ **Bantuan Untuk Animasi**
 
@@ -23,7 +18,7 @@
 from . import *
 
 
-@ayra_cmd(pattern="skull(?: |$)(.*)")
+@dante_cmd(pattern="skull(?: |$)(.*)")
 async def _(event):
     await event.edit(
         "███████████████████████████\n"
@@ -48,7 +43,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="wlc(?: |$)(.*)")
+@dante_cmd(pattern="wlc(?: |$)(.*)")
 async def _(event):
     await event.edit(
         "█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█\n"
@@ -59,7 +54,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="klb(?: |$)(.*)")
+@dante_cmd(pattern="klb(?: |$)(.*)")
 async def _(event):
     await event.edit(
         "   ╚⊙ ⊙╝..\n"
@@ -86,7 +81,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="fucek(?: |$)(.*)")
+@dante_cmd(pattern="fucek(?: |$)(.*)")
 async def _(event):
     await event.edit(
         "░░░░░░░░░░░░░░░▄▄░░░░░░░░░░░\n"
