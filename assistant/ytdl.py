@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 
 import os
@@ -13,9 +13,9 @@ try:
     from PIL import Image
 except ImportError:
     Image = None
-from Ayra.fns.helper import (bash, fast_download, humanbytes, numerize,
+from dante.fns.helper import (bash, fast_download, humanbytes, numerize,
                              time_formatter)
-from Ayra.fns.ytdl import dler, get_buttons, get_formats
+from dante.fns.ytdl import dler, get_buttons, get_formats
 from telethon import Button
 from telethon.errors.rpcerrorlist import (FilePartLengthInvalidError,
                                           MediaEmptyError)
