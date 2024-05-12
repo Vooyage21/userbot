@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 """
 ✘ **Bantuan Untuk Animasi 3**
 
@@ -44,7 +39,7 @@ from time import sleep
 from . import *
 
 
-@ayra_cmd(pattern="bulan$")
+@dante_cmd(pattern="bulan$")
 async def _(event):
     event = await eor(event, "bulan.")
     animation_interval = 0.2
@@ -89,7 +84,7 @@ async def _(event):
         await event.edit(animation_chars[i % 32])
 
 
-@ayra_cmd(pattern="sayang$")
+@dante_cmd(pattern="sayang$")
 async def _(event):
     e = await eor(event, "I LOVEE YOUUU 💕")
     await e.edit("💝💘💓💗")
@@ -117,7 +112,7 @@ async def _(event):
     await e.edit("SAYANG KAMU💞")
 
 
-@ayra_cmd(pattern=r"dino(?: |$)(.*)")
+@dante_cmd(pattern=r"dino(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "`DIN DINNN.....`")
     #sleep(1)
@@ -174,7 +169,7 @@ async def _(event):
     await typew.edit("`-TAMAT-`")
 
 
-@ayra_cmd(pattern="gabut$")
+@dante_cmd(pattern="gabut$")
 async def _(event):
     e = await eor(event, "`PERNAAHHHHH KAHHH KAUUU MENGIRA`")
     await e.edit("`SEPEEERTIIIII APAAAA BENTUKKKKKKK CINTAAAA`")
@@ -430,7 +425,7 @@ async def _(event):
     await e.edit("`GABUT`")
 
 
-@ayra_cmd(pattern=r"terkadang(?: |$)(.*)")
+@dante_cmd(pattern=r"terkadang(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "`Terkadang`")
     sleep(1)
@@ -448,12 +443,12 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(pattern=r"mf$")
+@dante_cmd(pattern=r"mf$")
 async def _(event):
     await eor(event, "`mf g dl` **ミ(ノ;_ _)ノ=3** ")
 
 
-@ayra_cmd(pattern=r"(.*)")
+@dante_cmd(pattern=r"(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -480,7 +475,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@ayra_cmd(pattern=r"gombal(?: |$)(.*)")
+@dante_cmd(pattern=r"gombal(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "`Hai, I LOVE YOU 💞`")
     sleep(1)
@@ -506,7 +501,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(pattern="helikopter(?: |$)(.*)")
+@dante_cmd(pattern="helikopter(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -529,7 +524,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="tembak(?: |$)(.*)")
+@dante_cmd(pattern="tembak(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -537,7 +532,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="bundir(?: |$)(.*)")
+@dante_cmd(pattern="bundir(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -558,7 +553,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="awk(?: |$)(.*)")
+@dante_cmd(pattern="awk(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -570,7 +565,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="ular(?: |$)(.*)")
+@dante_cmd(pattern="ular(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -662,7 +657,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="y(?: |$)(.*)")
+@dante_cmd(pattern="y(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -682,7 +677,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="tank(?: |$)(.*)")
+@dante_cmd(pattern="tank(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -693,7 +688,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="babi(?: |$)(.*)")
+@dante_cmd(pattern="babi(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -708,7 +703,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="ajg(?: |$)(.*)")
+@dante_cmd(pattern="ajg(?: |$)(.*)")
 async def _(event):
     await eor(
         event,
@@ -721,7 +716,7 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern=r"bernyanyi(?: |$)(.*)")
+@dante_cmd(pattern=r"bernyanyi(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "**Ganteng Doang Gak Bernyanyi (ง˙o˙)ว**")
     sleep(2)
@@ -756,7 +751,7 @@ async def _(event):
     await typew.edit("**♪┗ ( ･o･) ┓♪┏ (・o･) ┛♪**")
 
 
-@ayra_cmd(pattern="santet(?: |$)(.*)")
+@dante_cmd(pattern="santet(?: |$)(.*)")
 async def _(event):
     typew = await eor(event, "`Mengaktifkan Perintah Santet Online....`")
     sleep(2)
