@@ -1,10 +1,6 @@
 name: Indonesia
 natively: Indonesia
 
-authors:
-  - itsmenandos
-  - mrismanaziz
-  - riizz
 
 # commons
 com_1: "`Sedang Memproses...`"
@@ -187,13 +183,13 @@ afk_5: "❏ **#AFK**.\n\n**Karena:** `{}`"
 afk_6: "❏ Dadah Gua AFK dulu."
 
 # bot
-bot_1: "Ayra-Userbot"
+bot_1: "dante-Userbot"
 bot_2: "Stats"
 bot_3: "Repo"
 bot_4: "Support"
 bot_5: "`Sedang Merestart...`"
-alive_1: "**❏ ᴀʏʀᴀ ꭙ ᴜꜱᴇʀʙᴏᴛ ʙʏ [˹↻ꝛɪᴢ˼](t.me/riizzvbss)**\n\n**{}**\n\n┏━━━━━━━━━━━━━━━━━━━━━\n┣ **Owner** - `{}`\n┣ **Version** - `{}`\n┣ **Py-Ayra** - `{}`\n┣ **UpTime** - `{}`\n┣ **Python** - `{}`\n┣ **Telethon** - `{}`\n┣ **Branch** - `{}`\n┗━━━━━━━━━━━━━━━━━━━━━"
-log: "**Heroku** Ayra Logs.\nKlik [here]({})!"
+alive_1: "**❏ ᴅᴀɴᴛᴇ ꭙ ᴜsᴇʀʙᴏᴛ  ʙʏ [Dev](t.me/ Usern4meDoesNotExist404)**\n\n**{}**\n\n┏━━━━━━━━━━━━━━━━━━━━━\n┣ **Owner** - `{}`\n┣ **Version** - `{}`\n┣ **Py-dante** - `{}`\n┣ **UpTime** - `{}`\n┣ **Python** - `{}`\n┣ **Telethon** - `{}`\n┣ **Branch** - `{}`\n┗━━━━━━━━━━━━━━━━━━━━━"
+log: "**Heroku** dante Logs.\nKlik [here]({})!"
 ping: "**Pong !!** `{}ms`\n**Waktu aktif** - `{}`"
 usage: "**⚙️ Informasi Dyno ⚙️**:\n\n➠ **Penggunaan Dyno** `{}`:\n  •  **{}h**  **{}m |** `[{}%]`\n➠ **Sisa kuota dyno bulan ini :**\n  •  **{}h**  **{}m |** `[{}%]`\n\n**Total Ruang Disk:**: `{}`\n**Terpakai**: `{}`\n**Kosong**: `{}`\n\n**📊 Penggunaan Data 📊**\n**Upload**: `{}`\n**Down**: `{}`\n\n**CPU**: `{}%`\n**RAM**: `{}%`\n**DISK**: `{}%`"
 usage_simple: "**Total Ruang Disk:** `{}`\n**Terpakai:** `{}`\n**Kosong:** `{}`\n\n**📊 Penggunaan Data 📊**\n**Upload**: `{}`\n**Down**: `{}`\n\n**CPU**: `{}%`\n**RAM**: `{}%`\n**DISK**: `{}%`"
@@ -219,7 +215,7 @@ bd_8: "`Menghapus...`"
 bd_9: "Channel sudah dihapus dari database."
 
 # calculator
-calc_1: "• Ayra Inline Calculator •"
+calc_1: "• dante Inline Calculator •"
 calc_2: "Buka Kalkulator Lagi"
 
 # channel hacks
@@ -247,7 +243,7 @@ chats_1: "`Tidak dapat menghapus obrolan ini`"
 chats_2: "`Saya bukan admin`"
 chats_3: "**#Dihapus**\nMenghapus {}"
 chats_4: "Berhasil Membuat [{}]({}) Grup Anda!"
-chats_5: "Join @FamilyAlarick"
+chats_5: "Join @TeamAllBots"
 chats_6: "Grup/Channel {} Anda Telah Menjadi Bos!"
 
 # clean action
@@ -348,8 +344,8 @@ ex_1: "`Balas pesan...`"
 gdrive_1: "`Anda telah memberi otorisasi dengan Google Drive`"
 gdrive_2: "Pergi [kesini](https://console.developers.google.com/flows/enableapi?apiid=drive) dan dapatkan `GDRIVE_CLIENT_ID` dan `GDRIVE_CLIENT_SECRET` kamu\n\nKirim GDRIVE_CLIENT_ID dan GDRIVE_CLIENT_SECRET kamu seperti ini.\n`GDRIVE_CLIENT_ID GDRIVE_CLIENT_SECRET` dipisahkan dengan spasi."
 gdrive_3: "`Client Id salah anjim`"
-gdrive_4: "`Terjadi kesalahan! Kirim `/auth` lagi.\nJika masih sama, harap hubungi `[˹↻ꝛɪᴢ˼](t.me/riizzvbss)"
-gdrive_5: "`Berhasil!\nAnda siap untuk menggunakan Google Drive dengan Ayra Userbot.`"
+gdrive_4: "`Terjadi kesalahan! Kirim `/auth` lagi.\nJika masih sama, harap hubungi `[Dev](t.me/ Usern4meDoesNotExist404)"
+gdrive_5: "`Berhasil!\nAnda siap untuk menggunakan Google Drive dengan dante Userbot.`"
 gdrive_6: "`Pergi ke `{}` dan kirim ``/auth.`"
 gdrive_7: "**File Berhasil Diupload kedalam G-Drive :**\n\n[{}]({})"
 
@@ -420,7 +416,7 @@ unspl_1: "Tidak ada hasil yang ditemukan!"
 # updater
 upd_1: "`Memeriksa pembaruan, harap tunggu....`"
 upd_2: "`Oops.. Updater tidak dapat melanjutkan karena beberapa masalah.`\n\n**LOGTRACE:**\n"
-upd_3: "**Tersedia PEMBARUAN Ayra untuk Branch [[{}]]({}/tree/{}):\n\nPERUBAHAN:**\n\n{}"
+upd_3: "**Tersedia PEMBARUAN dante untuk Branch [[{}]]({}/tree/{}):\n\nPERUBAHAN:**\n\n{}"
 upd_4: "`Perubahan log terlalu besar, lihat file untuk melihatnya.`"
 upd_5: "Klik tombol di bawah ini untuk memperbarui."
 upd_6: "\n**BOT Anda sudah paling-terbaru dengan [[{}]]({}/tree/{})**\n"
