@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 import os
 import platform
@@ -40,8 +35,8 @@ if run_as_module:
     from telethon import __version__
     from telethon.tl.alltlobjects import LAYER
 
-    from ..version import __version__ as __Ayra__
-    from ..version import ayra_version
+    from ..version import __version__ as __dante__
+    from ..version import dante_version
 
     file = f"naya{sys.argv[6]}.log" if len(sys.argv) > 6 else "naya.log"
 
@@ -89,9 +84,9 @@ if run_as_module:
     )
 
     LOGS.info(f"Python version - {platform.python_version()}")
-    LOGS.info(f"Reza Version - {__Ayra__}")
+    LOGS.info(f"dante Version - {__dante__}")
     LOGS.info(f"Telethon Version - {__version__} [Layer: {LAYER}]")
-    LOGS.info(f"Reza-userbot Version - {ayra_version} [{HOSTED_ON}]")
+    LOGS.info(f"dante-userbot Version - {dante_version} [{HOSTED_ON}]")
 
     try:
         from safety.tools import *
