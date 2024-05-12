@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-"""Userbot module for managing events. One of the main components of the userayra_bot."""
+"""Userbot module for managing events. One of the main components of the userdante_bot."""
 
 import inspect
 import re
@@ -16,9 +16,9 @@ from traceback import format_exc
 
 from telethon import events
 
-from Ayra import ayra_bot
-from Ayra.dB import DEVS, DEFAULT
-from Ayra._misc._supporter import CMD_HNDLR, CMD_LIST
+from dante import dante_bot
+from dante.dB import DEVS, DEFAULT
+from dante._misc._supporter import CMD_HNDLR, CMD_LIST
 
 
 def kynan_cmd(pattern=None, command=None, **args):
@@ -123,8 +123,8 @@ def command(**args):
                 return
 
         if allow_edited_updates:
-            ayra_bot.add_event_handler(func, events.MessageEdited(**args))
-        ayra_bot.add_event_handler(func, events.NewMessage(**args))
+            dante_bot.add_event_handler(func, events.MessageEdited(**args))
+        dante_bot.add_event_handler(func, events.NewMessage(**args))
 
     return decorator
 
@@ -208,7 +208,7 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**✘ AYRA-USERBOT ERROR REPORT ✘**\n\n"
+                    text = "**✘ dante-USERBOT ERROR REPORT ✘**\n\n"
                     link = "[Group Support](https://t.me/kazusupportgrp)"
                     text += "Jika mau, Anda bisa melaporkan error ini, "
                     text += f"Cukup forward saja pesan ini ke {link}.\n\n"
@@ -248,10 +248,10 @@ def register(**args):
                     with open("error.log", "w+") as file:
                         file.write(ftext)
 
-        if ayra_bot:
+        if dante_bot:
             if not disable_edited:
-                ayra_bot.add_event_handler(wrapper, events.MessageEdited(**args))
-            ayra_bot.add_event_handler(wrapper, events.NewMessage(**args))
+                dante_bot.add_event_handler(wrapper, events.MessageEdited(**args))
+            dante_bot.add_event_handler(wrapper, events.NewMessage(**args))
         return wrapper
 
     return decorator
