@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 import json
 import math
@@ -508,18 +503,18 @@ def telegraph_client():
     if TELEGRAPH:
         return TELEGRAPH[0]
 
-    from .. import udB, ayra_bot
+    from .. import udB, dante_bot
 
     token = udB.get_key("_TELEGRAPH_TOKEN")
     TelegraphClient = Telegraph(token)
     if token:
         TELEGRAPH.append(TelegraphClient)
         return TelegraphClient
-    gd_name = ayra_bot.full_name
+    gd_name = dante_bot.full_name
     short_name = gd_name[:30]
     profile_url = (
-        f"https://t.me/{ayra_bot.me.username}"
-        if ayra_bot.me.username
+        f"https://t.me/{dante_bot.me.username}"
+        if dante_bot.me.username
         else "https://t.me/kynansupport"
     )
     try:
@@ -529,7 +524,7 @@ def telegraph_client():
     except Exception as er:
         if "SHORT_NAME_TOO_LONG" in str(er):
             TelegraphClient.create_account(
-                short_name="ayrauser", author_name=gd_name, author_url=profile_url
+                short_name="danteuser", author_name=gd_name, author_url=profile_url
             )
         else:
             LOGS.exception(er)
@@ -552,7 +547,7 @@ def make_html_telegraph(title, html=""):
 async def Carbon(
     code,
     base_url="https://carbonara.vercel.app/api/cook",
-    file_name="ayra",
+    file_name="dante",
     download=False,
     rayso=False,
     **kwargs,
@@ -562,7 +557,7 @@ async def Carbon(
         kwargs["text"] = code
         kwargs["theme"] = kwargs.get("theme", "breeze")
         kwargs["darkMode"] = kwargs.get("darkMode", True)
-        kwargs["title"] = kwargs.get("title", "Ayra")
+        kwargs["title"] = kwargs.get("title", "dante")
     else:
         kwargs["code"] = code
     con = await async_searcher(base_url, post=True, json=kwargs, re_content=True)
