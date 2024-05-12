@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 """
 ✘ **Bantuan Untuk Carbon**
@@ -19,7 +13,7 @@ from secrets import choice
 from telethon.tl import types
 from telethon.utils import get_display_name
 
-from . import ayra_cmd, eor, get_string
+from . import dante_cmd, eor, get_string
 from .anu import *
 
 
@@ -197,7 +191,7 @@ def vcmention(user):
     return f"[{full_name}](tg://user?id={user.id})"
 
 
-@ayra_cmd(pattern="(rc|c)arbon")
+@dante_cmd(pattern="(rc|c)arbon")
 async def crbn(event):
     from_user = vcmention(event.sender)
     xxxx = await eor(event, get_string("com_1"))
