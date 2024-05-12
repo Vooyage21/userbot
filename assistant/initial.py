@@ -1,35 +1,35 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 import re
 
 from . import *
 
 STRINGS = {
-    1: """ **Terima Kasih Telah Deploy Reza-userbot!**
+    1: """ **Terima Kasih Telah Deploy dante-userbot!**
 
 Beberapa Bantuan Untuk Kamu Pelajari.""",
-    2: """🎉** Tentang reza-userbot **
+    2: """🎉** Tentang dante-userbot **
 
- rezauserbot adalah repo userbot yang dibuat untuk pengguna telegram, userbot ini memiliki beberapa fitur kamu bisa melihat nya dihalaman 4.""",
+ danteuserbot adalah repo userbot yang dibuat untuk pengguna telegram, userbot ini memiliki beberapa fitur kamu bisa melihat nya dihalaman 4.""",
     3: """
 
 -> Kamu bisa memutar musik melalui userbot ini.
 -> Kamu bisa menggunakan chatgpt atau openai.
 -> Kamu bisa merubah teks menjadi beberapa gaya font.
 -> Kamu convert foto kamu menjadi anime.
--> Kamu bisa membalas seseorang dari reza-userbot Logs ketika kamu di tag oleh seseorang digrup lain.
+-> Kamu bisa membalas seseorang dari dante-userbot Logs ketika kamu di tag oleh seseorang digrup lain.
 -> Kamu bisa menggunakan fitur joinvc untuk menaikkan bot ke dalam obrolan suara
 -> Userbot ini memliki fitur pmpermit inline
 -> Kamu bisa menyimpan catatan apapun dengan media gambar serta button.
 -> Kamu dapat berinteraksi dengan seseorang melali fitur chatbot
 
 **• To Know About Updates**
-  - Join @zasupport.""",
+  - Bantu Support!""",
     4: f"""**• Bantuan yang mungkin kamu ingin lihat •**
 
   - `{HNDLR}help`
