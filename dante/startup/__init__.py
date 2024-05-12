@@ -38,7 +38,7 @@ if run_as_module:
     from ..version import __version__ as __dante__
     from ..version import dante_version
 
-    file = f"naya{sys.argv[6]}.log" if len(sys.argv) > 6 else "naya.log"
+    file = f"dante{sys.argv[6]}.log" if len(sys.argv) > 6 else "dante.log"
 
     if os.path.exists(file):
         os.remove(file)
