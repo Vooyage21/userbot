@@ -3,7 +3,7 @@
 from . import LOG_CHANNEL, Button, asst, dante_cmd, eor, get_string
 
 REPOMSG = """
-K E P O
+Nyari apa bg?
 """
 
 RP_BUTTONS = [
