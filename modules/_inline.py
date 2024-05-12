@@ -5,10 +5,10 @@ import time
 from datetime import datetime
 from os import remove
 
-from Ayra._misc._assistant import callback, in_pattern
-from Ayra.dB._core import HELP, LIST
-from Ayra.fns.helper import gen_chlog, time_formatter, updater
-from Ayra.fns.misc import split_list
+from dante._misc._assistant import callback, in_pattern
+from dante.dB._core import HELP, LIST
+from dante.fns.helper import gen_chlog, time_formatter, updater
+from dante.fns.misc import split_list
 from git import Repo
 from telethon import Button
 from telethon.tl.types import InputWebDocument, Message
@@ -20,7 +20,7 @@ from ._help import _main_help_menu
 
 # ================================================#
 
-riz = get_string("riz_1")
+dan = get_string("dan_1")
 
 helps = get_string("inline_1")
 
@@ -44,7 +44,7 @@ SUP_BUTTONS = [
 # --------------------BUTTONS--------------------#
 
 
-@in_pattern("ayra", owner=False)
+in_pattern("dante", owner=False)
 async def inline_handler(event):
     z = []
     for x in LIST.values():
@@ -55,12 +55,12 @@ async def inline_handler(event):
         len(z),
     )
     result = await event.builder.article(
-        title="Naya Help Menu", text=text, buttons=_main_help_menu
+        title="dante Help Menu", text=text, buttons=_main_help_menu
     )
     await event.answer([result], private=False, cache_time=300, gallery=False)
 
 
-@in_pattern("pasta", owner=False)
+in_pattern("pasta", owner=False)
 async def _(event):
     ok = event.text.split("-")[1]
     link = f"https://spaceb.in/{ok}"
@@ -78,7 +78,7 @@ async def _(event):
     await event.answer([result])
 
 
-@callback("ownr", owner=False)
+callback("ownr", owner=False)
 async def setting(event):
     z = []
     for x in LIST.values():
@@ -107,21 +107,21 @@ async def setting(event):
 _strings = {"Official": helps, "Addons": zhelps, "VCBot": get_string("inline_6")}
 
 
-@callback(re.compile("uh_(.*)"), owner=False)
-async def help_func(ayra):
-    key, count = ayra.data_match.group(1).decode("utf-8").split("_")
+callback(re.compile("uh_(.*)"), owner=False)
+async def help_func(dante):
+    key, count = dante.data_match.group(1).decode("utf-8").split("_")
     if key == "VCBot" and HELP.get("VCBot") is None:
-        return await ayra.answer(get_string("help_12"), alert=True)
+        return await dante.answer(get_string("help_12"), alert=True)
     elif key == "Addons" and HELP.get("Addons") is None:
-        return await ayra.answer(get_string("help_13").format(HNDLR), alert=True)
+        return await dante.answer(get_string("help_13").format(HNDLR), alert=True)
     if "|" in count:
         _, count = count.split("|")
     count = int(count) if count else 0
     text = _strings.get(key, "").format(OWNER_NAME, HNDLR, len(HELP.get(key)))
-    await ayra.edit(text, buttons=page_num(count, key), link_preview=False)
+    await dante.edit(text, buttons=page_num(count, key), link_preview=False)
 
 
-@callback(re.compile("uplugin_(.*)"), owner=False)
+callback(re.compile("uplugin_(.*)"), owner=False)
 async def uptd_plugin(event):
     key, file = event.data_match.group(1).decode("utf-8").split("_")
     index = None
@@ -141,7 +141,7 @@ async def uptd_plugin(event):
                 help_ += "\n"
     if not help_:
         help_ = f"{file} has no Detailed Help!"
-    help_ += "\n© @reza"
+    help_ += "\n© dante"
     data = f"uh_{key}_"
     if index is not None:
         data += f"|{index}"
@@ -154,7 +154,7 @@ async def uptd_plugin(event):
         await event.edit(help, buttons=buttons)
 
 
-@callback(data="doupdate", owner=False)
+callback(data="doupdate", owner=False)
 async def _(event):
     if not await updater():
         return await event.answer(get_string("inline_9"), cache_time=0, alert=True)
@@ -165,17 +165,17 @@ async def _(event):
     changelog_str = changelog + "\n\n" + get_string("inline_8")
     if len(changelog_str) > 1024:
         await event.edit(get_string("upd_4"))
-        with open("ayra_updates.txt", "w+") as file:
+        with open("dante_updates.txt", "w+") as file:
             file.write(tl_chnglog)
         await event.edit(
             get_string("upd_5"),
-            file="ayra_updates.txt",
+            file="dante_updates.txt",
             buttons=[
                 [Button.inline("Update Sekarang", data="updatenow")],
                 [Button.inline("❮", data="ownr")],
             ],
         )
-        remove("ayra_updates.txt")
+        remove("dante_updates.txt")
     else:
         await event.edit(
             changelog_str,
@@ -187,7 +187,7 @@ async def _(event):
         )
 
 
-@callback(data="pkng", owner=False)
+callback(data="pkng", owner=False)
 async def _(event):
     start = datetime.now()
     end = datetime.now()
@@ -196,14 +196,14 @@ async def _(event):
     await event.answer(pin, cache_time=0, alert=True)
 
 
-@callback(data="upp", owner=False)
+callback(data="upp", owner=False)
 async def _(event):
     uptime = time_formatter((time.time() - start_time) * 1000)
     pin = f"🙋Uᴘᴛɪᴍᴇ = {uptime}"
     await event.answer(pin, cache_time=0, alert=True)
 
 
-@callback(data="inlone", owner=False)
+callback(data="inlone", owner=False)
 async def _(e):
     _InButtons = [
         Button.switch_inline(_, query=InlinePlugin[_], same_peer=True)
@@ -220,7 +220,7 @@ async def _(e):
     await e.edit(buttons=button, link_preview=False)
 
 
-@callback(data="open", owner=False)
+callback(data="open", owner=False)
 async def opner(event):
     z = []
     for x in LIST.values():
@@ -235,7 +235,7 @@ async def opner(event):
     )
 
 
-@callback(data="close", owner=False)
+callback(data="close", owner=False)
 async def on_plug_in_callback_query_handler(event):
     await event.edit(
         get_string("inline_5"),
@@ -283,7 +283,7 @@ def page_num(index, key):
 STUFF = {}
 
 
-@in_pattern("stf(.*)", owner=False)
+in_pattern("stf(.*)", owner=False)
 async def ibuild(e):
     n = e.pattern_match.group(1).strip()
     builder = e.builder
@@ -322,9 +322,9 @@ async def ibuild(e):
                     results = [
                         await builder.document(
                             _pic,
-                            title="Ayra Op",
+                            title="dante Op",
                             text=txt,
-                            description="@Riizzvbss",
+                            description="Riizzvbss",
                             buttons=btn,
                             link_preview=False,
                         )
@@ -337,10 +337,10 @@ async def ibuild(e):
                     cont = InputWebDocument(pic, 0, mime_type, [])
                 results = [
                     await builder.article(
-                        title="Ayra Op",
+                        title="dante Op",
                         type=_type,
                         text=txt,
-                        description="@Riizzvbss",
+                        description="Riizzvbss",
                         include_media=include_media,
                         buttons=btn,
                         thumb=cont,
@@ -352,7 +352,7 @@ async def ibuild(e):
         except Exception as er:
             LOGS.exception(er)
     result = [
-        await builder.article("Ayra Op", text=txt, link_preview=False, buttons=btn)
+        await builder.article("dante Op", text=txt, link_preview=False, buttons=btn)
     ]
     await e.answer(result)
 
