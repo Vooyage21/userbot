@@ -1,13 +1,6 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
-from .. import *  # ignore: pylint
+from .. import *
 
-# https://github.com/bisoncorps/search-engine-parser/blob/ede1355a1f63398d9217b8e502fbd6c52b53bf09/search_engine_parser/core/utils.py#L11
 
 some_random_headers = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:11.0) Gecko/20100101 Firefox/11.0",
