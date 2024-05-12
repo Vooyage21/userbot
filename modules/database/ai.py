@@ -4,7 +4,7 @@ from .. import async_searcher, udB
 
 
 async def get_chatbot_reply(message):
-    chatbot_base = "https://kora-api.vercel.app/chatbot/2d94e37d-937f-4d28-9196-bd5552cac68b/{ayra_bot}/envparse/message={}"
+    chatbot_base = "https://kora-api.vercel.app/chatbot/2d94e37d-937f-4d28-9196-bd5552cac68b/{dante_bot}/envparse/message={}"
     req_link = chatbot_base.format(
         message,
     )
