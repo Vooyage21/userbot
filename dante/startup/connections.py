@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 import base64
 import ipaddress
@@ -15,7 +9,7 @@ from telethon.sessions.string import _STRUCT_PREFORMAT, CURRENT_VERSION, StringS
 
 from ..configs import Var
 from . import *
-from .BaseClient import AyraClient
+from .BaseClient import danteClient
 
 _PYRO_FORM = {351: ">B?256sI?", 356: ">B?256sQ?", 362: ">BI?256sQ?"}
 
@@ -73,13 +67,13 @@ def validate_session(session, logger=LOGS, _exit=True):
         sys.exit()
 
 
-def vc_connection(udB, ayra_bot):
+def vc_connection(udB, dante_bot):
     from strings import get_string
     VC_SESSION = Var.VC_SESSION or udB.get_key("VC_SESSION")
     if VC_SESSION and VC_SESSION != Var.SESSION:
         LOGS.info("Memulai VcClient.")
         try:
-            return AyraClient(
+            return danteClient(
                 validate_session(VC_SESSION, _exit=False),
                 log_attempt=False,
                 exit_on_error=False
@@ -90,4 +84,4 @@ def vc_connection(udB, ayra_bot):
         except Exception as er:
             LOGS.info("Saat membuat Klien untuk VC.")
             LOGS.exception(er)
-    return ayra_bot
+    return dante_bot
