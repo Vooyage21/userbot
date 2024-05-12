@@ -1,10 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
-
 
 import os
 import sys
@@ -55,7 +48,7 @@ alive_txt = """
 ◈ ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ
 
   ◈ Version - {}
-  ◈ Reza - {}
+  ◈ dante - {}
   ◈ Telethon - {}
 """
 
@@ -71,23 +64,23 @@ async def kynanabsen(nande):
     await nande.reply(choice(absen))
 
 
-@register(incoming=True, from_users=DEVS, pattern=r"^Reza")
-async def naya(naya):
-    await naya.reply("**Reza Ganteng**🤩")
+@register(incoming=True, from_users=DEVS, pattern=r"^dante")
+async def dante(dante):
+    await dante.reply("**aaa tuan dante aaaaa love u**🤩")
 
 
 
-@ayra_cmd(pattern=r"^[aA][lL][iI][vV][eE](?: |$)(.*)")
+@dante_cmd(pattern=r"^[aA][lL][iI][vV][eE](?: |$)(.*)")
 async def lol(
-    ayra: NewMessage.Event,
+    dante: NewMessage.Event,
 ):
-    match = ayra.pattern_match.group(1).strip()
+    match = dante.pattern_match.group(1).strip()
     inline = True
     private_chats = 0
     groups = 0
     remaining_days = None
     dialog: Dialog
-    async for dialog in ayra.client.iter_dialogs():
+    async for dialog in dante.client.iter_dialogs():
         entity = dialog.entity
         if isinstance(entity, User):
             private_chats += 1
@@ -95,15 +88,15 @@ async def lol(
             entity, Chat
         ):
             groups += 1
-    status1 = "<b>[ᴘᴇᴍɪʟɪᴋ]</b>" if ayra.sender_id in DEVS else "<b>[ʙᴜʏᴇʀ]</b>"
+    status1 = "<b>[ᴘᴇᴍɪʟɪᴋ]</b>" if dante.sender_id in DEVS else "<b>[ʙᴜʏᴇʀ]</b>"
     remaining_days = None
     start = time.time()
-    await ayra.client(PingRequest(ping_id=0))
+    await dante.client(PingRequest(ping_id=0))
     ping = round((time.time() - start) * 1000)
     if match not in ["n", "no_inline"]:
         try:
-            res = await ayra.client.inline_query(asst.me.username, "alive")
-            return await res[0].click(ayra.chat_id)
+            res = await dante.client.inline_query(asst.me.username, "alive")
+            return await res[0].click(dante.chat_id)
         except BotMethodInvalidError:
             pass
         except BaseException as er:
@@ -123,8 +116,8 @@ async def lol(
             private_chats,
             groups,
             ping,
-            f"{ayra_version} [{HOSTED_ON}]",
-            AyraVer,
+            f"{dante_version} [{HOSTED_ON}]",
+            danteVer,
             uptime,
         )
 
@@ -134,8 +127,8 @@ async def lol(
         parse = "md"
         als = (get_string("alive_1")).format(
             header,
-            f"{ayra_version} [{HOSTED_ON}]",
-            AyraVer,
+            f"{dante_version} [{HOSTED_ON}]",
+            danteVer,
             uptime,
             pyver(),
             __version__,
@@ -146,31 +139,31 @@ async def lol(
             als = als.replace("", a)
     if pic:
         try:
-            await ayra.reply(
+            await dante.reply(
                 als,
                 file=pic,
                 parse_mode=parse,
                 link_preview=False,
                 buttons=buttons if inline else None,
             )
-            return await ayra.try_delete()
+            return await dante.try_delete()
         except ChatSendMediaForbiddenError:
             pass
         except BaseException as er:
             LOGS.exception(er)
             try:
-                await ayra.reply(file=pic)
-                await ayra.reply(
+                await dante.reply(file=pic)
+                await dante.reply(
                     als,
                     parse_mode=parse,
                     buttons=buttons if inline else None,
                     link_preview=False,
                 )
-                return await ayra.try_delete()
+                return await dante.try_delete()
             except BaseException as er:
                 LOGS.exception(er)
     await eor(
-        ayra,
+        dante,
         als,
         parse_mode=parse,
         link_preview=False,
@@ -178,7 +171,7 @@ async def lol(
     )
 
 
-@ayra_cmd(pattern="ping$", chats=[], type=["official", "assistant"])
+@dante_cmd(pattern="ping$", chats=[], type=["official", "assistant"])
 @register(incoming=True, from_users=DEVS, pattern=r"^Cping$")
 async def _(event):
     start = time.time()
@@ -213,7 +206,7 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="cmds$",
 )
 async def cmds(event):
@@ -224,7 +217,7 @@ heroku_api = Var.HEROKU_API
 restart_counter = 0
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="restart$",
     fullsudo=False,
 )
@@ -233,24 +226,24 @@ async def restart(e):
     ok = await e.eor("`Processing...`")
     await bash("git pull")
     await e.eor("Done.")
-    os.execl(sys.executable, sys.executable, "-m", "Ayra")
+    os.execl(sys.executable, sys.executable, "-m", "dante")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(s|S)hutdown$",
     fullsudo=False,
 )
-async def shutdownbot(ayra):
-    await shutdown(ayra)
+async def shutdownbot(dante):
+    await shutdown(dante)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(l|L)ogs( (.*)|$)",
     chats=[],
 )
 async def _(event):
     opt = event.pattern_match.group(1).strip()
-    file = f"ayra{sys.argv[-1]}.log" if len(sys.argv) > 1 else "ayra.log"
+    file = f"dante{sys.argv[-1]}.log" if len(sys.argv) > 1 else "dante.log"
     if opt == "heroku":
         await heroku_logs(event)
     elif opt == "carbon" and Carbon:
@@ -258,13 +251,13 @@ async def _(event):
         with open(file, "r") as f:
             code = f.read()[-2500:]
         file = await Carbon(
-            file_name="naya-logs",
+            file_name="dante-logs",
             code=code,
             backgroundColor=choice(ATRA_COL),
         )
         await event.reply("**Key Logs.**", file=file)
     elif opt == "open":
-        with open("ayra.log", "r") as f:
+        with open("dante.log", "r") as f:
             file = f.read()[-4000:]
         return await event.eor(f"`{file}`")
     else:
@@ -290,10 +283,10 @@ async def inline_alive(
         status,
         status1,
         remaining_days,
-        ayra_bot.dc_id,
+        dante_bot.dc_id,
         ping,
-        f"{ayra_version} [{HOSTED_ON}]",
-        AyraVer,
+        f"{dante_version} [{HOSTED_ON}]",
+        danteVer,
         uptime,
     )
 
@@ -334,7 +327,7 @@ async def inline_alive(
     await event.answer(result)
 
 
-@ayra_cmd(pattern=r"^[uU][pP][dD][aA][tT][eE](?: |$)(.*)")
+@dante_cmd(pattern=r"^[uU][pP][dD][aA][tT][eE](?: |$)(.*)")
 async def _(e):
     xx = await e.eor(get_string("upd_1"))
     if e.pattern_match.group(1).strip() and (
@@ -344,7 +337,7 @@ async def _(e):
         await bash("git pull -f && pip3 install -r requirements.txt")
         # call_back()
         await xx.edit(get_string("upd_7"))
-        os.execl(sys.executable, "python3", "-m", "Ayra")
+        os.execl(sys.executable, "python3", "-m", "dante")
         return
     m = await updater()
     branch = (Repo.init()).active_branch
@@ -364,7 +357,7 @@ async def _(e):
         )
     else:
         await xx.edit(
-            f'<code>Your BOT is </code><strong>up-to-date</strong><code> with </code><strong><a href="https://github.com/naya1503/Naya-Userbot/tree/{branch}">[{branch}]</a></strong>',
+            f'<code>Your BOT is </code><strong>up-to-date</strong><code> with </code><strong><a href="https://github.com/dante1503/dante-Userbot/tree/{branch}">[{branch}]</a></strong>',
             parse_mode="html",
             link_preview=False,
         )
