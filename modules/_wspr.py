@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 import re
 
@@ -14,13 +8,13 @@ from telethon.errors.rpcerrorlist import (BotInlineDisabledError,
 from telethon.tl import types
 from telethon.tl.functions.users import GetFullUserRequest as gu
 
-from . import (HNDLR, LOGS, asst, ayra_bot, ayra_cmd, callback, get_string,
+from . import (HNDLR, LOGS, asst, dante_bot, dante_cmd, callback, get_string,
                in_pattern, inline_mention)
 
 buddhhu = {}
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="wspr( (.*)|$)",
 )
 async def _(e):
@@ -51,7 +45,7 @@ async def _(e):
         query = zzz[1]
         if query.isdigit():
             query = int(query)
-        logi = await ayra_bot.get_entity(query)
+        logi = await dante_bot.get_entity(query)
         if not isinstance(logi, types.User):
             raise ValueError("**Username tidak ditemukan.")
     except IndexError:
@@ -97,7 +91,7 @@ async def _(e):
         query = zzz[1]
         if query.isdigit():
             query = int(query)
-        logi = await ayra_bot(gu(id=query))
+        logi = await dante_bot(gu(id=query))
         user = logi.users[0]
         mention = inline_mention(user)
         x = user.status
