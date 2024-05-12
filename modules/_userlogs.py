@@ -1,14 +1,8 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 import os
 import re
 
-from Ayra.dB.botchat_db import tag_add, who_tag
+from dante.dB.botchat_db import tag_add, who_tag
 from telethon.errors.rpcerrorlist import (ChannelPrivateError,
                                           ChatWriteForbiddenError,
                                           MediaCaptionTooLongError,
@@ -19,14 +13,14 @@ from telethon.tl.types import (MessageEntityMention, MessageEntityMentionName,
                                User)
 from telethon.utils import get_display_name
 
-from . import (LOG_CHANNEL, LOGS, Button, asst, ayra_bot, callback, events,
+from . import (LOG_CHANNEL, LOGS, Button, asst, dante_bot, callback, events,
                get_string, inline_mention, udB)
 
 CACHE_SPAM = {}
 TAG_EDITS = {}
 
 
-@ayra_bot.on(
+@dante_bot.on(
     events.NewMessage(
         incoming=True,
         func=lambda e: (e.mentioned),
@@ -101,7 +95,7 @@ async def all_messages_catcher(e):
 
 if udB.get_key("TAG_LOG"):
 
-    @ayra_bot.on(events.MessageEdited(func=lambda x: not x.out))
+    @dante_bot.on(events.MessageEdited(func=lambda x: not x.out))
     async def upd_edits(event):
         x = event.sender
         if isinstance(x, User) and (x.bot or x.verified):
@@ -172,7 +166,7 @@ if udB.get_key("TAG_LOG"):
         except Exception as er:
             LOGS.exception(er)
 
-    @ayra_bot.on(
+    @dante_bot.on(
         events.NewMessage(
             outgoing=True,
             chats=[udB.get_key("TAG_LOG")],
@@ -184,7 +178,7 @@ if udB.get_key("TAG_LOG"):
         chat, msg = who_tag(id)
         if chat and msg:
             try:
-                await ayra_bot.send_message(chat, e.message, reply_to=msg)
+                await dante_bot.send_message(chat, e.message, reply_to=msg)
             except BaseException as er:
                 LOGS.exception(er)
 
@@ -218,18 +212,18 @@ async def when_added_or_joined(event):
 asst.add_event_handler(
     when_added_or_joined, events.ChatAction(func=lambda x: x.user_added)
 )
-ayra_bot.add_event_handler(
+dante_bot.add_event_handler(
     when_added_or_joined,
     events.ChatAction(func=lambda x: x.user_added or x.user_joined),
 )
-_client = {"bot": asst, "user": ayra_bot}
+_client = {"bot": asst, "user": dante_bot}
 
 
 @callback(
     re.compile(
         "leave_ch_(.*)",
     ),
-    from_users=[ayra_bot.uid],
+    from_users=[dante_bot.uid],
 )
 async def leave_ch_at(event):
     cht = event.data_match.group(1).decode("UTF-8")
