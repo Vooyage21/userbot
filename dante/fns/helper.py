@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 import asyncio
 import math
@@ -15,10 +10,10 @@ from traceback import format_exc
 from urllib.parse import unquote
 from urllib.request import urlretrieve
 
-from Ayra import run_as_module
+from dante import run_as_module
 
 if run_as_module:
-    from Ayra.configs import Var
+    from dante.configs import Var
     
 try:
     import aiohttp
@@ -58,7 +53,7 @@ from . import *
 if run_as_module:
     from ..dB._core import ADDONS, HELP, LIST, LOADED
 
-from ..version import ayra_version
+from ..version import dante_version
 from .FastTelethon import download_file as downloadable
 from .FastTelethon import upload_file as uploadable
 
@@ -100,11 +95,11 @@ def inline_mention(user, custom=None, html=False):
 
 
 def un_plug(shortname):
-    from .. import asst, ayra_bot
+    from .. import asst, dante_bot
 
     try:
         all_func = LOADED[shortname]
-        for client in [ayra_bot, asst]:
+        for client in [dante_bot, asst]:
             for x, _ in client.list_event_handlers():
                 if x in all_func:
                     client.remove_event_handler(x)
@@ -113,7 +108,7 @@ def un_plug(shortname):
         ADDONS.remove(shortname)
     except (ValueError, KeyError):
         name = f"addons.{shortname}"
-        for client in [ayra_bot, asst]:
+        for client in [dante_bot, asst]:
             for i in reversed(range(len(client._event_builders))):
                 ev, cb = client._event_builders[i]
                 if cb.__module__ == name:
@@ -237,8 +232,8 @@ if run_as_module:
         )
         ac_br = repo.active_branch.name
         ch_log = tldr_log = ""
-        ch = f"<b>Naya-Userbot {ayra_version} updates for <a href={UPSTREAM_REPO_URL}/tree/{ac_br}>[{ac_br}]</a>:</b>"
-        ch_tl = f"Naya-Userbot {ayra_version} updates for {ac_br}:"
+        ch = f"<b>Naya-Userbot {dante_version} updates for <a href={UPSTREAM_REPO_URL}/tree/{ac_br}>[{ac_br}]</a>:</b>"
+        ch_tl = f"Naya-Userbot {dante_version} updates for {ac_br}:"
         d_form = "%d/%m/%y || %H:%M"
         for c in repo.iter_commits(diff):
             ch_log += f"\n\n💬 <b>{c.count()}</b> 🗓 <b>[{c.committed_datetime.strftime(d_form)}]</b>\n<b><a href={UPSTREAM_REPO_URL.rstrip('/')}/commit/{c}>[{c.summary}]</a></b> 👨‍💻 <code>{c.author}</code>"
@@ -541,13 +536,13 @@ async def restart(ay=None):
             LOGS.exception(er)
     else:
         if len(sys.argv) == 1:
-            os.execl(sys.executable, sys.executable, "-m", "Ayra")
+            os.execl(sys.executable, sys.executable, "-m", "dante")
         else:
             os.execl(
                 sys.executable,
                 sys.executable,
                 "-m",
-                "Ayra",
+                "dante",
                 sys.argv[1],
                 sys.argv[2],
                 sys.argv[3],
