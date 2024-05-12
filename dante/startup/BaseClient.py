@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 import inspect
 import sys
@@ -23,7 +17,7 @@ from ..configs import Var
 from . import *
 
 
-class AyraClient(TelegramClient):
+class danteClient(TelegramClient):
     def __init__(
         self,
         session,
@@ -54,7 +48,7 @@ class AyraClient(TelegramClient):
         self.dc_id = self.session.dc_id
 
     def __repr__(self):
-        return "<Ayra.Client :\n self: {}\n bot: {}\n>".format(
+        return "<dante.Client :\n self: {}\n bot: {}\n>".format(
             self.full_name, self._bot
         )
 
@@ -133,8 +127,8 @@ class AyraClient(TelegramClient):
                         except FileNotFoundError:
                             pass
                     return files["raw_file"], time.time() - start_time
-        from Ayra.fns.FastTelethon import upload_file
-        from Ayra.fns.helper import progress
+        from dante.fns.FastTelethon import upload_file
+        from dante.fns.helper import progress
 
         raw_file = None
         while not raw_file:
@@ -183,8 +177,8 @@ class AyraClient(TelegramClient):
 
         from telethon.tl.types import DocumentAttributeFilename
 
-        from Ayra.fns.FastTelethon import download_file
-        from Ayra.fns.helper import progress
+        from dante.fns.FastTelethon import download_file
+        from dante.fns.helper import progress
 
         start_time = time.time()
         # Auto-generate Filename
