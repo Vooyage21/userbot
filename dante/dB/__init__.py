@@ -19,7 +19,6 @@ DEFAULT = list(map(int, b64decode("MTA1NDI5NTY2NA==").split()))
 dante_IMAGES = [""]
 
 stickers = [
-    "CAADAQADeAIAAm_BZBQh8owdViocCAI",
     "CAADAQADegIAAm_BZBQ6j8GpKtnrSgI",
     "CAADAQADfAIAAm_BZBQpqC84n9JNXgI",
     "CAADAQADfgIAAm_BZBSxLmTyuHvlzgI",
