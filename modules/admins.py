@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 """
 ✘ **Bantuan Untuk Afk**
@@ -55,8 +50,8 @@
 """
 
 
-from Ayra.dB import DEVS
-from Ayra.kynan import register
+from dante.dB import DEVS
+from dante.bot import register
 from telethon.errors import BadRequestError
 from telethon.errors.rpcerrorlist import UserIdInvalidError
 from telethon.tl.functions.channels import *
@@ -65,16 +60,16 @@ from telethon.tl.functions.messages import *
 from . import *
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="promote( (.*)|$)",
     admins_only=True,
     manager=True,
     require="add_admins",
     fullsudo=False,
 )
-async def prmte(ayra):
-    xx = await ayra.eor(get_string("com_1"))
-    user, rank = await get_uinfo(ayra)
+async def prmte(dante):
+    xx = await dante.eor(get_string("com_1"))
+    user, rank = await get_uinfo(dante)
     rank = rank or "Admin"
     FullRight = False
     if not user:
@@ -87,12 +82,12 @@ async def prmte(ayra):
         FullRight = True
     try:
         if FullRight:
-            await ayra.client(
-                EditAdminRequest(ayra.chat_id, user.id, ayra.chat.admin_rights, rank)
+            await dante.client(
+                EditAdminRequest(dante.chat_id, user.id, dante.chat.admin_rights, rank)
             )
         else:
-            await ayra.client.edit_admin(
-                ayra.chat_id,
+            await dante.client.edit_admin(
+                dante.chat_id,
                 user.id,
                 invite_users=True,
                 ban_users=True,
@@ -102,29 +97,29 @@ async def prmte(ayra):
                 title=rank,
             )
         await eod(
-            xx, get_string("pro_2").format(inline_mention(user), ayra.chat.title, rank)
+            xx, get_string("pro_2").format(inline_mention(user), dante.chat.title, rank)
         )
     except Exception as ex:
         return await xx.edit(f"`{ex}`")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="demote( (.*)|$)",
     admins_only=True,
     manager=True,
     require="add_admins",
     fullsudo=False,
 )
-async def dmote(ayra):
-    xx = await ayra.eor(get_string("com_1"))
-    user, rank = await get_uinfo(ayra)
+async def dmote(dante):
+    xx = await dante.eor(get_string("com_1"))
+    user, rank = await get_uinfo(dante)
     if not rank:
         rank = "Not Admin"
     if not user:
         return await xx.edit(get_string("de_1"))
     try:
-        await ayra.client.edit_admin(
-            ayra.chat_id,
+        await dante.client.edit_admin(
+            dante.chat_id,
             user.id,
             invite_users=None,
             ban_users=None,
@@ -133,85 +128,85 @@ async def dmote(ayra):
             manage_call=None,
             title=rank,
         )
-        await eod(xx, get_string("de_2").format(inline_mention(user), ayra.chat.title))
+        await eod(xx, get_string("de_2").format(inline_mention(user), dante.chat.title))
     except Exception as ex:
         return await xx.edit(f"`{ex}`")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="ban( (.*)|$)",
     admins_only=True,
     manager=True,
     require="ban_users",
     fullsudo=False,
 )
-async def bban(ayra):
-    something = await get_uinfo(ayra)
+async def bban(dante):
+    something = await get_uinfo(dante)
     if not something:
         return
     user, reason = something
     if not user:
-        return await eod(ayra, get_string("ban_1"))
+        return await eod(dante, get_string("ban_1"))
     if user.id in DEVS:
-        return await eod(ayra, get_string("ban_2"))
+        return await eod(dante, get_string("ban_2"))
     try:
-        await ayra.client.edit_permissions(ayra.chat_id, user.id, view_messages=False)
+        await dante.client.edit_permissions(dante.chat_id, user.id, view_messages=False)
     except UserIdInvalidError:
-        return await eod(ayra, get_string("adm_1"))
+        return await eod(dante, get_string("adm_1"))
     except BadRequestError:
-        return await eod(ayra, get_string("ban_3"))
-    senderme = inline_mention(await ayra.get_sender())
+        return await eod(dante, get_string("ban_3"))
+    senderme = inline_mention(await dante.get_sender())
     userme = inline_mention(user)
-    text = get_string("ban_4").format(userme, senderme, ayra.chat.title)
+    text = get_string("ban_4").format(userme, senderme, dante.chat.title)
     if reason:
         text += get_string("ban_5").format(reason)
-    await eod(ayra, text)
+    await eod(dante, text)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="unban( (.*)|$)",
     admins_only=True,
     manager=True,
     require="ban_users",
     fullsudo=False,
 )
-async def uunban(ayra):
-    xx = await ayra.eor(get_string("com_1"))
-    if ayra.text[1:].startswith("unbanall"):
+async def uunban(dante):
+    xx = await dante.eor(get_string("com_1"))
+    if dante.text[1:].startswith("unbanall"):
         return
-    something = await get_uinfo(ayra)
+    something = await get_uinfo(dante)
     if not something:
         return
     user, reason = something
     if not user:
         return await xx.edit(get_string("unban_1"))
     try:
-        await ayra.client.edit_permissions(ayra.chat_id, user.id, view_messages=True)
+        await dante.client.edit_permissions(dante.chat_id, user.id, view_messages=True)
     except UserIdInvalidError:
-        return await eod(ayra, get_string("adm_1"))
+        return await eod(dante, get_string("adm_1"))
     except BadRequestError:
         return await xx.edit(get_string("adm_2"))
-    sender = inline_mention(await ayra.get_sender())
-    text = get_string("unban_3").format(inline_mention(user), sender, ayra.chat.title)
+    sender = inline_mention(await dante.get_sender())
+    text = get_string("unban_3").format(inline_mention(user), sender, dante.chat.title)
     if reason:
         text += get_string("ban_5").format(reason)
     await xx.edit(text)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="kick( (.*)|$)",
     manager=True,
     require="ban_users",
     fullsudo=False,
 )
-async def kck(ayra):
-    if "kickme" in ayra.text:
+async def kck(dante):
+    if "kickme" in dante.text:
         return
-    if ayra.is_private:
-        return await ayra.eor("`Gunakan ini di Grup.`", time=5)
-    ml = ayra.text.split(" ", maxsplit=1)[0]
-    xx = await ayra.eor(get_string("com_1"))
-    something = await get_uinfo(ayra)
+    if dante.is_private:
+        return await dante.eor("`Gunakan ini di Grup.`", time=5)
+    ml = dante.text.split(" ", maxsplit=1)[0]
+    xx = await dante.eor(get_string("com_1"))
+    something = await get_uinfo(dante)
     if not something:
         return
     user, reason = something
@@ -222,7 +217,7 @@ async def kck(ayra):
     if getattr(user, "is_self", False):
         return await xx.edit(get_string("kick_3"))
     try:
-        await ayra.client.kick_participant(ayra.chat_id, user.id)
+        await dante.client.kick_participant(dante.chat_id, user.id)
     except BadRequestError as er:
         LOGS.info(er)
         return await xx.edit(get_string("kick_1"))
@@ -230,14 +225,14 @@ async def kck(ayra):
         LOGS.exception(e)
         return
     text = get_string("kick_4").format(
-        inline_mention(user), inline_mention(await ayra.get_sender()), ayra.chat.title
+        inline_mention(user), inline_mention(await dante.get_sender()), dante.chat.title
     )
     if reason:
         text += get_string("ban_5").format(reason)
     await xx.edit(text)
 
 
-@ayra_cmd(pattern="pin$", manager=True, require="pin_messages", fullsudo=True)
+@dante_cmd(pattern="pin$", manager=True, require="pin_messages", fullsudo=True)
 async def pin(msg):
     if not msg.is_reply:
         return await eor(msg, get_string("pin_1"))
@@ -255,22 +250,22 @@ async def pin(msg):
     await eor(msg, text)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="unpin($| (.*))",
     manager=True,
     require="pin_messages",
     fullsudo=False,
 )
-async def unp(ayra):
-    xx = await ayra.eor(get_string("com_1"))
-    ch = (ayra.pattern_match.group(1).strip()).strip()
+async def unp(dante):
+    xx = await dante.eor(get_string("com_1"))
+    ch = (dante.pattern_match.group(1).strip()).strip()
     msg = None
-    if ayra.is_reply:
-        msg = ayra.reply_to_msg_id
+    if dante.is_reply:
+        msg = dante.reply_to_msg_id
     elif ch != "all":
         return await xx.edit(get_string("unpin_1").format(HNDLR))
     try:
-        await ayra.client.unpin_message(ayra.chat_id, msg)
+        await dante.client.unpin_message(dante.chat_id, msg)
     except BadRequestError:
         return await xx.edit(get_string("adm_2"))
     except Exception as e:
@@ -278,7 +273,7 @@ async def unp(ayra):
     await xx.edit("`Pesan Berhasil Dihapus Dari Sematan !`")
 
 
-@ayra_cmd(pattern="purge( (.*)|$)", manager=True, require="delete_messages")
+@dante_cmd(pattern="purge( (.*)|$)", manager=True, require="delete_messages")
 async def fastpurger(purg):
     match = purg.pattern_match.group(1).strip()
     try:
@@ -312,7 +307,7 @@ async def fastpurger(purg):
     await purg.eor("__Fast purge complete!__", time=5)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="purgeme( (.*)|$)",
 )
 @register(incoming=True, pattern=r"^\.cpurgeme( (.*)|$)", from_users=DEVS)
@@ -355,7 +350,7 @@ async def fastpurgerme(purg):
     )
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="purgeall",
 )
 async def _(e):
@@ -374,30 +369,30 @@ async def _(e):
         return await e.eor(str(er), time=5)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="setgpic( (.*)|$)",
     admins_only=True,
     manager=True,
     require="change_info",
 )
-async def _(ayra):
-    if not ayra.is_reply:
-        return await ayra.eor("`Balas ke Media..`", time=5)
-    match = ayra.pattern_match.group(1).strip()
-    if not ayra.client._bot and match:
+async def _(dante):
+    if not dante.is_reply:
+        return await dante.eor("`Balas ke Media..`", time=5)
+    match = dante.pattern_match.group(1).strip()
+    if not dante.client._bot and match:
         try:
-            chat = await ayra.client.parse_id(match)
+            chat = await dante.client.parse_id(match)
         except Exception as ok:
-            return await ayra.eor(str(ok))
+            return await dante.eor(str(ok))
     else:
-        chat = ayra.chat_id
-    reply = await ayra.get_reply_message()
+        chat = dante.chat_id
+    reply = await dante.get_reply_message()
     if reply.photo or reply.sticker or reply.video:
         replfile = await reply.download_media()
     elif reply.document and reply.document.thumbs:
         replfile = await reply.download_media(thumb=-1)
     else:
-        return await ayra.eor("Membalas Foto atau Video..")
+        return await dante.eor("Membalas Foto atau Video..")
     mediain = mediainfo(reply.media)
     if "animated" in mediain:
         replfile = await con.convert(replfile, convert_to="mp4")
@@ -405,35 +400,35 @@ async def _(ayra):
         replfile = await con.convert(
             replfile, outname="chatphoto", allowed_formats=["jpg", "png", "mp4"]
         )
-    file = await ayra.client.upload_file(replfile)
+    file = await dante.client.upload_file(replfile)
     try:
         if "pic" not in mediain:
             file = types.InputChatUploadedPhoto(video=file)
-        await ayra.client(EditPhotoRequest(chat, file))
-        await ayra.eor("`Foto Grup Berhasil Diubah !`", time=5)
+        await dante.client(EditPhotoRequest(chat, file))
+        await dante.eor("`Foto Grup Berhasil Diubah !`", time=5)
     except Exception as ex:
-        await ayra.eor(f"Terjadi kesalahan.\n`{str(ex)}`", time=5)
+        await dante.eor(f"Terjadi kesalahan.\n`{str(ex)}`", time=5)
     os.remove(replfile)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="delgpic( (.*)|$)",
     admins_only=True,
     manager=True,
     require="change_info",
 )
-async def _(ayra):
-    match = ayra.pattern_match.group(1).strip()
-    chat = match if not ayra.client._bot and match else ayra.chat_id
+async def _(dante):
+    match = dante.pattern_match.group(1).strip()
+    chat = match if not dante.client._bot and match else dante.chat_id
     try:
-        await ayra.client(EditPhotoRequest(chat, types.InputChatPhotoEmpty()))
+        await dante.client(EditPhotoRequest(chat, types.InputChatPhotoEmpty()))
         text = "`Foto Obrolan Dihapus..`"
     except Exception as E:
         text = str(E)
-    return await ayra.eor(text, time=5)
+    return await dante.eor(text, time=5)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="del",
     manager=True,
 )
@@ -445,7 +440,7 @@ async def delete_it(delme):
     await delme.try_delete()
 
 
-@ayra_cmd(pattern="kickme", fullsudo=False)
-async def leave(ayra):
-    await ayra.eor(f"`{ayra.client.me.first_name} has left this group, bye!!.`")
-    await ayra.client(LeaveChannelRequest(ayra.chat_id))
+@dante_cmd(pattern="kickme", fullsudo=False)
+async def leave(dante):
+    await dante.eor(f"`{dante.client.me.first_name} has left this group, bye!!.`")
+    await dante.client(LeaveChannelRequest(dante.chat_id))
