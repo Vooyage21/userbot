@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 import ast
 import os
@@ -99,13 +94,13 @@ class _BaseDatabase:
 
 
 class MongoDB(_BaseDatabase):
-    def __init__(self, key, dbname="AyraDB"):
+    def __init__(self, key, dbname="danteDB"):
         self.dB = MongoClient(key, serverSelectionTimeoutMS=5000)
         self.db = self.dB[dbname]
         super().__init__()
 
     def __repr__(self):
-        return f"<Ayra.MonGoDB\n -total_keys: {len(self.keys())}\n>"
+        return f"<dante.MonGoDB\n -total_keys: {len(self.keys())}\n>"
 
     @property
     def name(self):
@@ -138,7 +133,7 @@ class MongoDB(_BaseDatabase):
             return x["value"]
 
     def flushall(self):
-        self.dB.drop_database("AyraDB")
+        self.dB.drop_database("danteDB")
         self._cache.clear()
         return True
 
@@ -205,17 +200,17 @@ class RedisDB(_BaseDatabase):
 
 class LocalDB(_BaseDatabase):
     def __init__(self):
-        self.db = Database("ayra")
+        self.db = Database("dante")
         super().__init__()
 
     def keys(self):
         return self._cache.keys()
 
     def __repr__(self):
-        return f"<Ayra.LocalDB\n -total_keys: {len(self.keys())}\n>"
+        return f"<dante.LocalDB\n -total_keys: {len(self.keys())}\n>"
 
 
-def AyraDB():
+def danteDB():
     _er = False
     from .. import HOSTED_ON
     try:
