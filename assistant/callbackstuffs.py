@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 
 import asyncio
@@ -14,11 +14,11 @@ from os import execl, remove
 from random import choice
 
 try:
-    from Ayra.fns.gDrive import GDriveManager
+    from dante.fns.gDrive import GDriveManager
 except ImportError:
     GDriveManager = None
-from Ayra.fns.tools import Carbon, get_paste, telegraph_client
-from Ayra.startup.loader import Loader
+from dante.fns.tools import Carbon, get_paste, telegraph_client
+from dante.startup.loader import Loader
 from telegraph import upload_file as upl
 from telethon import Button, events
 from telethon.tl.types import MessageMediaWebPage
@@ -243,7 +243,7 @@ async def update(eve):
         await eve.edit(get_string("clst_1"))
         # call_back()
         await bash("git pull && pip3 install -r requirements.txt")
-        execl(sys.executable, sys.executable, "-m", "Ayra")
+        execl(sys.executable, sys.executable, "-m", "dante")
 
 
 @callback(re.compile("changes(.*)"), owner=True)
