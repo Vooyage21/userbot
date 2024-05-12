@@ -1,4 +1,3 @@
-
 from dante.dB._core import HELP, LIST
 from dante.fns.tools import cmd_regex_replace
 from telethon.errors.rpcerrorlist import (BotInlineDisabledError,
