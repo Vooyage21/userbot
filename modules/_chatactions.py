@@ -1,19 +1,19 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 import asyncio
 
-from Ayra.dB import stickers
-from Ayra.dB.forcesub_db import get_forcesetting
-from Ayra.dB.gban_mute_db import is_gbanned
-from Ayra.dB.greetings_db import get_goodbye, get_welcome, must_thank
-from Ayra.dB.nsfw_db import is_profan
-from Ayra.fns.helper import inline_mention
-from Ayra.fns.tools import async_searcher, create_tl_btn, get_chatbot_reply
+from dante.dB import stickers
+from dante.dB.forcesub_db import get_forcesetting
+from dante.dB.gban_mute_db import is_gbanned
+from dante.dB.greetings_db import get_goodbye, get_welcome, must_thank
+from dante.dB.nsfw_db import is_profan
+from dante.fns.helper import inline_mention
+from dante.fns.tools import async_searcher, create_tl_btn, get_chatbot_reply
 from telethon import events
 from telethon.errors.rpcerrorlist import UserNotParticipantError
 from telethon.tl.functions.channels import GetParticipantRequest
@@ -23,11 +23,11 @@ try:
     from ProfanityDetector import detector
 except ImportError:
     detector = None
-from . import LOG_CHANNEL, LOGS, asst, ayra_bot, get_string, types, udB
+from . import LOG_CHANNEL, LOGS, asst, dante_bot, get_string, types, udB
 from ._inline import something
 
 
-@ayra_bot.on(events.ChatAction())
+@dante_bot.on(events.ChatAction())
 async def Function(event):
     try:
         await DummyHandler(event)
@@ -35,63 +35,63 @@ async def Function(event):
         LOGS.exception(er)
 
 
-async def DummyHandler(ayra):
+async def DummyHandler(dante):
     # clean chat actions
     key = udB.get_key("CLEANCHAT") or []
-    if ayra.chat_id in key:
+    if dante.chat_id in key:
         try:
-            await ayra.delete()
+            await dante.delete()
         except BaseException:
             pass
 
     # thank members
-    if must_thank(ayra.chat_id):
-        chat_count = (await ayra.client.get_participants(ayra.chat_id, limit=0)).total
+    if must_thank(dante.chat_id):
+        chat_count = (await dante.client.get_participants(dante.chat_id, limit=0)).total
         if chat_count % 100 == 0:
             stik_id = chat_count / 100 - 1
             sticker = stickers[stik_id]
-            await ayra.respond(file=sticker)
+            await dante.respond(file=sticker)
     # force subscribe
     if (
         udB.get_key("FORCESUB")
-        and ((ayra.user_joined or ayra.user_added))
-        and get_forcesetting(ayra.chat_id)
+        and ((dante.user_joined or dante.user_added))
+        and get_forcesetting(dante.chat_id)
     ):
-        user = await ayra.get_user()
+        user = await dante.get_user()
         if not user.bot:
-            joinchat = get_forcesetting(ayra.chat_id)
+            joinchat = get_forcesetting(dante.chat_id)
             try:
-                await ayra_bot(GetParticipantRequest(int(joinchat), user.id))
+                await dante_bot(GetParticipantRequest(int(joinchat), user.id))
             except UserNotParticipantError:
-                await ayra_bot.edit_permissions(
-                    ayra.chat_id, user.id, send_messages=False
+                await dante_bot.edit_permissions(
+                    dante.chat_id, user.id, send_messages=False
                 )
-                res = await ayra_bot.inline_query(
+                res = await dante_bot.inline_query(
                     asst.me.username, f"fsub {user.id}_{joinchat}"
                 )
-                await res[0].click(ayra.chat_id, reply_to=ayra.action_message.id)
+                await res[0].click(dante.chat_id, reply_to=dante.action_message.id)
 
-    if ayra.user_joined or ayra.added_by:
-        user = await ayra.get_user()
-        chat = await ayra.get_chat()
-        # gbans and @Ayra checks
-        if udB.get_key("ayra_BANS"):
+    if dante.user_joined or dante.added_by:
+        user = await dante.get_user()
+        chat = await dante.get_chat()
+        # gbans and @dante checks
+        if udB.get_key("dante_BANS"):
             try:
                 is_banned = await async_searcher(
-                    "https://bans.ayra/api/status",
+                    "https://bans.dante/api/status",
                     json={"userId": user.id},
                     post=True,
                     re_json=True,
                 )
                 if is_banned["is_banned"]:
-                    await ayra.client.edit_permissions(
+                    await dante.client.edit_permissions(
                         chat.id,
                         user.id,
                         view_messages=False,
                     )
-                    await ayra.client.send_message(
+                    await dante.client.send_message(
                         chat.id,
-                        f'**@AyraBans:** Banned user detected and banned!\n`{str(is_banned)}`.\nBan reason: {is_banned["reason"]}',
+                        f'**@danteBans:** Banned user detected and banned!\n`{str(is_banned)}`.\nBan reason: {is_banned["reason"]}',
                     )
 
             except BaseException:
@@ -99,30 +99,30 @@ async def DummyHandler(ayra):
         reason = is_gbanned(user.id)
         if reason and chat.admin_rights:
             try:
-                await ayra.client.edit_permissions(
+                await dante.client.edit_permissions(
                     chat.id,
                     user.id,
                     view_messages=False,
                 )
                 gban_watch = get_string("can_1").format(inline_mention(user), reason)
-                await ayra.reply(gban_watch)
+                await dante.reply(gban_watch)
             except Exception as er:
                 LOGS.exception(er)
 
-        elif get_welcome(ayra.chat_id):
-            user = await ayra.get_user()
-            chat = await ayra.get_chat()
+        elif get_welcome(dante.chat_id):
+            user = await dante.get_user()
+            chat = await dante.get_chat()
             title = chat.title or "this chat"
             count = (
                 chat.participants_count
-                or (await ayra.client.get_participants(chat, limit=0)).total
+                or (await dante.client.get_participants(chat, limit=0)).total
             )
             mention = inline_mention(user)
             name = user.first_name
             fullname = get_display_name(user)
             uu = user.username
             username = f"@{uu}" if uu else mention
-            wel = get_welcome(ayra.chat_id)
+            wel = get_welcome(dante.chat_id)
             med = wel["media"] or None
             userid = user.id
             msg = None
@@ -138,30 +138,30 @@ async def DummyHandler(ayra):
                 )
             if wel.get("button"):
                 btn = create_tl_btn(wel["button"])
-                await something(ayra, msg, med, btn)
+                await something(dante, msg, med, btn)
             elif msg:
-                send = await ayra.reply(
+                send = await dante.reply(
                     msg,
                     file=med,
                 )
                 await asyncio.sleep(150)
                 await send.delete()
             else:
-                await ayra.reply(file=med)
-    elif (ayra.user_left or ayra.user_kicked) and get_goodbye(ayra.chat_id):
-        user = await ayra.get_user()
-        chat = await ayra.get_chat()
+                await dante.reply(file=med)
+    elif (dante.user_left or dante.user_kicked) and get_goodbye(dante.chat_id):
+        user = await dante.get_user()
+        chat = await dante.get_chat()
         title = chat.title or "this chat"
         count = (
             chat.participants_count
-            or (await ayra.client.get_participants(chat, limit=0)).total
+            or (await dante.client.get_participants(chat, limit=0)).total
         )
         mention = inline_mention(user)
         name = user.first_name
         fullname = get_display_name(user)
         uu = user.username
         username = f"@{uu}" if uu else mention
-        wel = get_goodbye(ayra.chat_id)
+        wel = get_goodbye(dante.chat_id)
         med = wel["media"]
         userid = user.id
         msg = None
@@ -177,19 +177,19 @@ async def DummyHandler(ayra):
             )
         if wel.get("button"):
             btn = create_tl_btn(wel["button"])
-            await something(ayra, msg, med, btn)
+            await something(dante, msg, med, btn)
         elif msg:
-            send = await ayra.reply(
+            send = await dante.reply(
                 msg,
                 file=med,
             )
             await asyncio.sleep(150)
             await send.delete()
         else:
-            await ayra.reply(file=med)
+            await dante.reply(file=med)
 
 
-@ayra_bot.on(events.NewMessage(incoming=True))
+@dante_bot.on(events.NewMessage(incoming=True))
 async def chatBot_replies(e):
     sender = await e.get_sender()
     if not isinstance(sender, types.User):
@@ -214,7 +214,7 @@ async def chatBot_replies(e):
             await e.delete()
 
 
-@ayra_bot.on(events.Raw(types.UpdateUserName))
+@dante_bot.on(events.Raw(types.UpdateUserName))
 async def uname_change(e):
     await uname_stuff(e.user_id, e.username, e.first_name)
 
