@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 """
 ✘ **Bantuan Untuk Chatbot**
 
@@ -14,11 +9,11 @@
 ◉ **Keterangan:** Mencari gambar menggunakan ai.
 """
 
-from . import LOGS, ayra_cmd, eod, inline_mention, udB
+from . import LOGS, dante_cmd, eod, inline_mention, udB
 from .database.ai import OpenAi, get_chatbot_reply
 
 
-@ayra_cmd(pattern="ai( (.*)|$)")
+@dante_cmd(pattern="ai( (.*)|$)")
 async def openai(event):
     question = event.pattern_match.group(2)
     if not question:
@@ -32,7 +27,7 @@ async def openai(event):
         await msg.eor(f"**Q:** {question}\n\n**A:** `Error: {e}`")
 
 
-@ayra_cmd(pattern="img( (.*)|$)")
+@dante_cmd(pattern="img( (.*)|$)")
 async def imge(event):
     question = event.pattern_match.group(2)
     if not question:
@@ -49,7 +44,7 @@ async def imge(event):
         await event.eor(str(error))
 
 
-@ayra_cmd(pattern="repai")
+@dante_cmd(pattern="repai")
 async def im_lonely_chat_with_me(event):
     if event.reply_to:
         message = (await event.get_reply_message()).message
@@ -64,17 +59,17 @@ async def im_lonely_chat_with_me(event):
     await event.eor(reply_)
 
 
-@ayra_cmd(pattern="addai")
+@dante_cmd(pattern="addai")
 async def add_chatBot(event):
     await chat_bot_fn(event, type_="add")
 
 
-@ayra_cmd(pattern="remai")
+@dante_cmd(pattern="remai")
 async def rem_chatBot(event):
     await chat_bot_fn(event, type_="remov")
 
 
-@ayra_cmd(pattern="listai")
+@dante_cmd(pattern="listai")
 async def lister(event):
     key = udB.get_key("CHATBOT_USERS") or {}
     users = key.get(event.chat_id, [])
