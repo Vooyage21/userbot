@@ -3,13 +3,13 @@ import os
 from time import time
 from traceback import format_exc
 
-from Ayra import HNDLR, LOGS, asst, udB, vcClient
-from Ayra._misc import owner_and_sudos
-from Ayra._misc._decorators import compile_pattern
-from Ayra.fns.admins import admin_check
-from Ayra.fns.helper import bash, downloader, time_formatter
-from Ayra.fns.ytdl import get_videos_link
-from Ayra.version import __version__ as AyVer
+from dante import HNDLR, LOGS, asst, udB, vcClient
+from dante._misc import owner_and_sudos
+from dante._misc._decorators import compile_pattern
+from dante.fns.admins import admin_check
+from dante.fns.helper import bash, downloader, time_formatter
+from dante.fns.ytdl import get_videos_link
+from dante.version import __version__ as AyVer
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 from telethon import events
@@ -60,7 +60,7 @@ class Player:
         try:
             await vcClient(
                 functions.phone.CreateGroupCallRequest(
-                    self._chat, title="🎧 Ayra Music 🎶"
+                    self._chat, title="🎧 dante Music 🎶"
                 )
             )
         except Exception as e:
