@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 import asyncio
 import os, shutil
@@ -48,22 +42,22 @@ db_url = 0
 
 async def ajg():
     import sys
-    from .. import ayra_bot
+    from .. import dante_bot
     from telethon.errors import rpcerrorlist
     try:
-        await ayra_bot(JoinChannelRequest("xCodee1"))
-        await ayra_bot(JoinChannelRequest("zasupport"))
+        await dante_bot(JoinChannelRequest("MusicStreamMp3"))
+        await dante_bot(JoinChannelRequest("StreamSupportMp3"))
         
     except rpcerrorlist.ChannelPrivateError:
-        print("Lu Di Ban Di @zasupport Jadi Ga Bisa Pake Bot Ini ! Minta Unban Dulu @rezadgank.")
+        print("Lu Di Ban Di @StreamSupportMp3 Jadi Ga Bisa Pake Bot Ini ! Minta Unban Dulu .")
         sys.exit(1)
       
 async def autoupdate_local_database():
-    from .. import asst, udB, ayra_bot, Var
+    from .. import asst, udB, dante_bot, Var
 
     global db_url
     db_url = (
-        udB.get_key("TGDB_URL") or Var.TGDB_URL or ayra_bot._cache.get("TGDB_URL")
+        udB.get_key("TGDB_URL") or Var.TGDB_URL or dante_bot._cache.get("TGDB_URL")
     )
     if db_url:
         _split = db_url.split("/")
@@ -154,25 +148,25 @@ async def startup_stuff():
 
 
 async def autobot():
-    from .. import udB, ayra_bot
+    from .. import udB, dante_bot
 
     if udB.get_key("BOT_TOKEN"):
         return
-    await ayra_bot.start()
+    await dante_bot.start()
     LOGS.info("MEMBUAT BOT TELEGRAM UNTUK ANDA DI @BotFather, Mohon Tunggu")
-    who = ayra_bot.me
-    name = who.first_name + " Reza"
+    who = dante_bot.me
+    name = who.first_name + " dante"
     if who.username:
         username = who.username + "_userbot"
     else:
-        username = "reza_" + (str(who.id))[5:] + "_userbot"
+        username = "dante_" + (str(who.id))[5:] + "_userbot"
     bf = "@BotFather"
-    await ayra_bot(UnblockRequest(bf))
-    await ayra_bot.send_message(bf, "/cancel")
+    await dante_bot(UnblockRequest(bf))
+    await dante_bot.send_message(bf, "/cancel")
     await asyncio.sleep(1)
-    await ayra_bot.send_message(bf, "/newbot")
+    await dante_bot.send_message(bf, "/newbot")
     await asyncio.sleep(1)
-    isdone = (await ayra_bot.get_messages(bf, limit=1))[0].text
+    isdone = (await dante_bot.get_messages(bf, limit=1))[0].text
     if isdone.startswith("That I cannot do.") or "20 bots" in isdone:
         LOGS.critical(
             "Tolong buat Bot dari @BotFather dan tambahkan tokennya di BOT_TOKEN, sebagai env var dan mulai ulang saya."
@@ -180,13 +174,13 @@ async def autobot():
         import sys
 
         sys.exit(1)
-    await ayra_bot.send_message(bf, name)
+    await dante_bot.send_message(bf, name)
     await asyncio.sleep(1)
-    isdone = (await ayra_bot.get_messages(bf, limit=1))[0].text
+    isdone = (await dante_bot.get_messages(bf, limit=1))[0].text
     if not isdone.startswith("Good."):
-        await ayra_bot.send_message(bf, "My Assistant Bot")
+        await dante_bot.send_message(bf, "My Assistant Bot")
         await asyncio.sleep(1)
-        isdone = (await ayra_bot.get_messages(bf, limit=1))[0].text
+        isdone = (await dante_bot.get_messages(bf, limit=1))[0].text
         if not isdone.startswith("Good."):
             LOGS.critical(
                 "Tolong buat Bot dari @BotFather dan tambahkan tokennya di BOT_TOKEN, sebagai env var dan mulai ulang saya."
@@ -194,20 +188,20 @@ async def autobot():
             import sys
 
             sys.exit(1)
-    await ayra_bot.send_message(bf, username)
+    await dante_bot.send_message(bf, username)
     await asyncio.sleep(1)
-    isdone = (await ayra_bot.get_messages(bf, limit=1))[0].text
-    await ayra_bot.send_read_acknowledge("botfather")
+    isdone = (await dante_bot.get_messages(bf, limit=1))[0].text
+    await dante_bot.send_read_acknowledge("botfather")
     if isdone.startswith("Sorry,"):
         ran = randint(1, 100)
-        username = "reza_" + (str(who.id))[6:] + str(ran) + "_userbot"
-        await ayra_bot.send_message(bf, username)
+        username = "dante_" + (str(who.id))[6:] + str(ran) + "_userbot"
+        await dante_bot.send_message(bf, username)
         await asyncio.sleep(1)
-        isdone = (await ayra_bot.get_messages(bf, limit=1))[0].text
+        isdone = (await dante_bot.get_messages(bf, limit=1))[0].text
     if isdone.startswith("Done!"):
         token = isdone.split("`")[1]
         udB.set_key("BOT_TOKEN", token)
-        await enable_inline(ayra_bot, username)
+        await enable_inline(dante_bot, username)
         LOGS.info(
             f"Selesai. Berhasil membuat @{username} untuk digunakan sebagai bot asisten Anda!"
         )
@@ -222,13 +216,13 @@ async def autobot():
 
 
 async def autopilot():
-    from .. import asst, udB, ayra_bot
+    from .. import asst, udB, dante_bot
 
     channel = udB.get_key("LOG_CHANNEL")
     new_channel = None
     if channel:
         try:
-            chat = await ayra_bot.get_entity(channel)
+            chat = await dante_bot.get_entity(channel)
         except BaseException as err:
             LOGS.exception(err)
             udB.del_key("LOG_CHANNEL")
@@ -236,21 +230,21 @@ async def autopilot():
     if not channel:
 
         async def _save(exc):
-            udB._cache["LOG_CHANNEL"] = ayra_bot.me.id
+            udB._cache["LOG_CHANNEL"] = dante_bot.me.id
             await asst.send_message(
-                ayra_bot.me.id, f"Gagal Membuat Saluran Log karena {exc}.."
+                dante_bot.me.id, f"Gagal Membuat Saluran Log karena {exc}.."
             )
 
-        if ayra_bot._bot:
+        if dante_bot._bot:
             msg_ = "'LOG_CHANNEL' tidak ditemukan! Tambahkan untuk digunakan 'BOTMODE'"
             LOGS.error(msg_)
             return await _save(msg_)
         LOGS.info("Membuat Saluran Log untuk Anda!")
         try:
-            r = await ayra_bot(
+            r = await dante_bot(
                 CreateChannelRequest(
-                    title="ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ ʟᴏɢs",
-                    about="Ini adalah grup logs dari reza-userbot\nJangan keluar dari grup logs ini\n\n",
+                    title="ᴅᴀɴᴛᴇ ꭙ ᴜsᴇʀʙᴏᴛ ʟᴏɢs",
+                    about="Ini adalah grup logs dari dante-userbot\nJangan keluar dari grup logs ini\n\n",
                     megagroup=True,
                 ),
             )
@@ -272,10 +266,10 @@ async def autopilot():
         udB.set_key("LOG_CHANNEL", channel)
     assistant = True
     try:
-        await ayra_bot.get_permissions(int(channel), asst.me.username)
+        await dante_bot.get_permissions(int(channel), asst.me.username)
     except UserNotParticipantError:
         try:
-            await ayra_bot(InviteToChannelRequest(int(channel), [asst.me.username]))
+            await dante_bot(InviteToChannelRequest(int(channel), [asst.me.username]))
         except BaseException as er:
             LOGS.info("Kesalahan saat Menambahkan Asisten ke Saluran Log")
             LOGS.exception(er)
@@ -302,7 +296,7 @@ async def autopilot():
                 manage_call=True,
             )
             try:
-                await ayra_bot(
+                await dante_bot(
                     EditAdminRequest(
                         int(channel), asst.me.username, rights, "Assistant"
                     )
@@ -318,9 +312,9 @@ async def autopilot():
         photo = await download_file(
             "https://graph.org/file/b0ede17600df06f798774.jpg", "logo.jpg"
         )
-        ll = await ayra_bot.upload_file(photo)
+        ll = await dante_bot.upload_file(photo)
         try:
-            await ayra_bot(
+            await dante_bot(
                 EditPhotoRequest(int(channel), InputChatUploadedPhoto(ll))
             )
         except BaseException as er:
@@ -332,7 +326,7 @@ async def autopilot():
 
 
 async def customize():
-    from .. import asst, udB, ayra_bot
+    from .. import asst, udB, dante_bot
 
     rem = None
     try:
@@ -341,10 +335,10 @@ async def customize():
             return
         LOGS.info("Menyesuaikan Bot Asisten di @BOTFATHER")
         UL = f"@{asst.me.username}"
-        if not ayra_bot.me.username:
-            sir = ayra_bot.me.first_name
+        if not dante_bot.me.username:
+            sir = dante_bot.me.first_name
         else:
-            sir = f"@{ayra_bot.me.username}"
+            sir = f"@{dante_bot.me.username}"
         file = random.choice(
             [
                 "https://graph.org/file/b0ede17600df06f798774.jpg",
@@ -358,33 +352,33 @@ async def customize():
             chat_id, "**Penyesuaian Otomatis** Dimulai @Botfather"
         )
         await asyncio.sleep(1)
-        await ayra_bot.send_message("botfather", "/cancel")
+        await dante_bot.send_message("botfather", "/cancel")
         await asyncio.sleep(1)
-        await ayra_bot.send_message("botfather", "/setuserpic")
+        await dante_bot.send_message("botfather", "/setuserpic")
         await asyncio.sleep(1)
-        isdone = (await ayra_bot.get_messages("botfather", limit=1))[0].text
+        isdone = (await dante_bot.get_messages("botfather", limit=1))[0].text
         if isdone.startswith("Invalid bot"):
             LOGS.info("Error while trying to customise assistant, skipping...")
             return
-        await ayra_bot.send_message("botfather", UL)
+        await dante_bot.send_message("botfather", UL)
         await asyncio.sleep(1)
-        await ayra_bot.send_file("botfather", file)
+        await dante_bot.send_file("botfather", file)
         await asyncio.sleep(2)
-        await ayra_bot.send_message("botfather", "/setabouttext")
+        await dante_bot.send_message("botfather", "/setabouttext")
         await asyncio.sleep(1)
-        await ayra_bot.send_message("botfather", UL)
+        await dante_bot.send_message("botfather", UL)
         await asyncio.sleep(1)
-        await ayra_bot.send_message(
+        await dante_bot.send_message(
             "botfather", f"✨ Hello ✨!! I'm Assistant Bot of {sir}"
         )
         await asyncio.sleep(2)
-        await ayra_bot.send_message("botfather", "/setdescription")
+        await dante_bot.send_message("botfather", "/setdescription")
         await asyncio.sleep(1)
-        await ayra_bot.send_message("botfather", UL)
+        await dante_bot.send_message("botfather", UL)
         await asyncio.sleep(1)
-        await ayra_bot.send_message(
+        await dante_bot.send_message(
             "botfather",
-            f"✨ Powerful reza - userbot Assistant  ✨\n✨ Master ~ {sir} ✨\n\n✨ Powered By ~ @rezadgank✨",
+            f"✨ Powerful dante - userbot Assistant  ✨\n✨ Master ~ {sir} ✨\n\n✨ Powered By ~ @dantedgank✨",
         )
         await asyncio.sleep(2)
         await msg.edit("Completed **Auto Customisation** at @BotFather.")
@@ -396,10 +390,10 @@ async def customize():
 
 
 async def plug(plugin_channels):
-    from .. import ayra_bot
+    from .. import dante_bot
     from .utils import load_addons
 
-    if ayra_bot._bot:
+    if dante_bot._bot:
         LOGS.info("Plugin Channels can't be used in 'BOTMODE'")
         return
     if os.path.exists("addons") and not os.path.exists("addons/.git"):
@@ -408,12 +402,12 @@ async def plug(plugin_channels):
         os.mkdir("addons")
     if not os.path.exists("addons/__init__.py"):
         with open("addons/__init__.py", "w") as f:
-            f.write("from modules import *\n\nbot = ayra_bot")
+            f.write("from modules import *\n\nbot = dante_bot")
     LOGS.info("• Loading Plugins from Plugin Channel(s) •")
     for chat in plugin_channels:
         LOGS.info(f"{'•'*4} {chat}")
         try:
-            async for x in ayra_bot.iter_messages(
+            async for x in dante_bot.iter_messages(
                 chat, search=".py", filter=InputMessagesFilterDocument, wait_time=10
             ):
                 plugin = "addons/" + x.file.name.replace("_", "-").replace("|", "-")
@@ -425,7 +419,7 @@ async def plug(plugin_channels):
                 try:
                     load_addons(plugin)
                 except Exception as e:
-                    LOGS.info(f"Reza-userbot - PLUGIN_CHANNEL - ERROR - {plugin}")
+                    LOGS.info(f"dante-userbot - PLUGIN_CHANNEL - ERROR - {plugin}")
                     LOGS.exception(e)
                     os.remove(plugin)
         except Exception as er:
@@ -436,24 +430,24 @@ async def plug(plugin_channels):
 
 
 async def ready():
-    from .. import asst, udB, ayra_bot
+    from .. import asst, udB, dante_bot
     from ..fns.tools import async_searcher
 
     chat_id = udB.get_key("LOG_CHANNEL")
     spam_sent = None
     if not udB.get_key("INIT_DEPLOY"):  # Detailed Message at Initial Deploy
-        MSG = """ **Thanks for Deploying Reza-userbot!**
+        MSG = """ **Thanks for Deploying dante-userbot!**
 • Here, are the Some Basic stuff from, where you can Know, about its Usage."""
         PHOTO = "https://graph.org/file/b0ede17600df06f798774.jpg"
         BTTS = Button.inline("• Click to Start •", "initft_2")
         udB.set_key("INIT_DEPLOY", "Done")
     else:
-        MSG = f"**ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ ᴀᴋᴛɪғ!**\n\n**❖ ᴜsᴇʀ**: {inline_mention(ayra_bot.me)}\n**❖ ᴀssɪsᴛᴀɴᴛ**: @{asst.me.username}\n**❖ sᴜᴘᴘᴏʀᴛ**: @publikdarknes\n"
+        MSG = f"**ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ ᴀᴋᴛɪғ!**\n\n**❖ ᴜsᴇʀ**: {inline_mention(dante_bot.me)}\n**❖ ᴀssɪsᴛᴀɴᴛ**: @{asst.me.username}\n**❖ sᴜᴘᴘᴏʀᴛ**: @publikdarknes\n"
         BTTS, PHOTO = None, None
         prev_spam = udB.get_key("LAST_UPDATE_LOG_SPAM")
         if prev_spam:
             try:
-                await ayra_bot.delete_messages(chat_id, int(prev_spam))
+                await dante_bot.delete_messages(chat_id, int(prev_spam))
             except Exception as E:
                 LOGS.info("Kesalahan saat Menghapus Pesan Pembaruan Sebelumnya :" + str(E))
         if await updater():
@@ -463,14 +457,14 @@ async def ready():
         spam_sent = await asst.send_message(chat_id, MSG, file=PHOTO, buttons=BTTS)
     except ValueError as e:
         try:
-            await (await ayra_bot.send_message(chat_id, str(e))).delete()
+            await (await dante_bot.send_message(chat_id, str(e))).delete()
             spam_sent = await asst.send_message(chat_id, MSG, file=PHOTO, buttons=BTTS)
         except Exception as g:
             LOGS.info(g)
     except Exception as el:
         LOGS.info(el)
         try:
-            spam_sent = await ayra_bot.send_message(chat_id, MSG)
+            spam_sent = await dante_bot.send_message(chat_id, MSG)
         except Exception as ef:
             LOGS.info(ef)
     if spam_sent and not spam_sent.media:
@@ -506,11 +500,11 @@ async def WasItRestart(udb):
     key = udb.get_key("_RESTART")
     if not key:
         return
-    from .. import asst, ayra_bot
+    from .. import asst, dante_bot
 
     try:
         data = key.split("_")
-        who = asst if data[0] == "bot" else ayra_bot
+        who = asst if data[0] == "bot" else dante_bot
         await who.edit_message(
             int(data[1]), int(data[2]), "__Restarted Successfully.__"
         )
@@ -542,11 +536,11 @@ def _version_changes(udb):
             udb.set_key(_, new_)
 
 
-async def enable_inline(ayra_bot, username):
+async def enable_inline(dante_bot, username):
     bf = "BotFather"
-    await ayra_bot.send_message(bf, "/setinline")
+    await dante_bot.send_message(bf, "/setinline")
     await asyncio.sleep(1)
-    await ayra_bot.send_message(bf, f"@{username}")
+    await dante_bot.send_message(bf, f"@{username}")
     await asyncio.sleep(1)
-    await ayra_bot.send_message(bf, "Search")
-    await ayra_bot.send_read_acknowledge(bf)
+    await dante_bot.send_message(bf, "Search")
+    await dante_bot.send_read_acknowledge(bf)
