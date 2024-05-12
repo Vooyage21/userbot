@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 """
 ✘ **Bantuan Untuk Base64**
 
@@ -16,10 +11,10 @@
 
 import base64
 
-from . import ayra_cmd
+from . import dante_cmd
 
 
-@ayra_cmd(pattern="encode ?(.*)")
+@dante_cmd(pattern="encode ?(.*)")
 async def encod(e):
     match = e.pattern_match.group(1)
     if not match and e.is_reply:
@@ -34,7 +29,7 @@ async def encod(e):
     await e.eor(f"**=>> Encoded Text :** `{match}`\n\n**=>> OUTPUT :**\n`{atc}`")
 
 
-@ayra_cmd(pattern="decode ?(.*)")
+@dante_cmd(pattern="decode ?(.*)")
 async def encod(e):
     match = e.pattern_match.group(1)
     if not match and e.is_reply:
