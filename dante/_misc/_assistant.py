@@ -91,11 +91,11 @@ def in_pattern(pattern=None, owner=False, **kwargs):
                 res = [
                     await event.builder.article(
                         title="dante ꭙ ᴜꜱᴇʀʙᴏᴛ​",
-                        url="https://t.me/kynansupport​",
+                        url="https://t.me/StreamSupportMp3",
                         description="© dante",
                         text=MSG,
                         thumb=InputWebDocument(
-                            "https://graph.org/file/02f9ca4617cec58377b9d.jpg",
+                            "https://mallucampaign.in/images/img_1715419813.jpg",
                             0,
                             "image/jpeg",
                             [],
