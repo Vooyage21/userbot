@@ -5,7 +5,7 @@ from telegraph import upload_file as uf
 from telethon import Button
 from telethon.utils import pack_bot_file_id
 
-from . import HNDLR, ayra_cmd, get_string, mediainfo
+from . import HNDLR, dante_cmd, get_string, mediainfo
 from ._inline import something
 
 
@@ -53,7 +53,7 @@ def format_btn(buttons: list):
     return button
 
 
-@ayra_cmd(pattern="button")
+@dante_cmd(pattern="button")
 async def butt(event):
     media, wut, text = None, None, None
     if event.reply_to:
