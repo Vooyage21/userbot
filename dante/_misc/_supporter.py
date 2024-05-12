@@ -1,9 +1,3 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
 
 import inspect
 import os
@@ -12,19 +6,19 @@ from base64 import b64decode
 
 from telethon import events, types
 
-from Ayra._misc._decorators import compile_pattern, ayra_cmd
-from Ayra._misc._wrappers import eod, eor
+from dante._misc._decorators import compile_pattern, dante_cmd
+from dante._misc._wrappers import eod, eor
 
 from .. import *
 from ..dB._core import LIST
 from . import CMD_HELP, SUDO_M, CMD_LIST # ignore: pylint
 
-ALIVE_NAME = ayra_bot.me.first_name
+ALIVE_NAME = dante_bot.me.first_name
 BOTLOG_CHATID = BOTLOG = udB.get_key("LOG_CHANNEL")
 
 
-bot = borg = catub = friday = ayra_bot
-catub.cat_cmd = ayra_cmd
+bot = borg = catub = friday = dante_bot
+catub.cat_cmd = dante_cmd
 
 black_list_chats = udB.get_key("BLACKLIST_CHATS")
 
@@ -46,8 +40,8 @@ def admin_cmd(pattern=None, command=None, **args):
 
 
 friday_on_cmd = admin_cmd
-command = ayra_cmd
-register = ayra_cmd
+command = dante_cmd
+register = dante_cmd
 
 
 def sudo_cmd(allow_sudo=True, pattern=None, command=None, **args):
@@ -83,7 +77,7 @@ class Config((object)):
         )
         TEMP_DOWNLOAD_DIRECTORY = TMP_DOWNLOAD_DIRECTORY
         TEMP_DIR = TMP_DOWNLOAD_DIRECTORY
-        TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "Ayra")
+        TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "dante")
         OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
         TG_BOT_USER_NAME_BF_HER = asst.me.username
         UB_BLACK_LIST_CHAT = [
