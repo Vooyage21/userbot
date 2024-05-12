@@ -1,6 +1,4 @@
 
-
-
 def _fix_logging(handler):
     handler._builtin_open = open
 
