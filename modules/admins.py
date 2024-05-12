@@ -1,7 +1,7 @@
 
 
 """
-✘ **Bantuan Untuk Afk**
+**Bantuan Untuk Afk**
 
 ๏ **Perintah:** `promote` <balas ke pengguna/username>
 ◉ **Keterangan:** Jadikan pengguna sebagai admin.
