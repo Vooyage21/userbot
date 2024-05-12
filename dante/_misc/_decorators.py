@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 import asyncio
 import inspect
@@ -43,7 +43,7 @@ from ..fns.admins import admin_check
 from ..fns.helper import bash
 from ..fns.helper import time_formatter as tf
 from ..version import __version__ as pyver
-from ..version import ayra_version as ayra_ver
+from ..version import dante_version as dante_ver
 from . import SUDO_M, owner_and_sudos
 from ._wrappers import eod
 
@@ -64,8 +64,8 @@ def compile_pattern(data, hndlr):
     return re.compile("\\" + hndlr + data)
 
 
-def ayra_cmd(
-    pattern=None, manager=False, ayra_bot=ayra_bot, asst=asst, **kwargs
+def dante_cmd(
+    pattern=None, manager=False, dante_bot=dante_bot, asst=asst, **kwargs
 ):
     owner_only = kwargs.get("owner_only", False)
     groups_only = kwargs.get("groups_only", False)
@@ -116,9 +116,9 @@ def ayra_cmd(
                     udB.get_key("LOG_CHANNEL"),
                     f"`FloodWaitError:\n{str(fwerr)}\n\nSleeping for {tf((fwerr.seconds + 10)*1000)}`",
                 )
-                await ayra_bot.disconnect()
+                await dante_bot.disconnect()
                 await asyncio.sleep(fwerr.seconds + 10)
-                await ayra_bot.connect()
+                await dante_bot.connect()
                 await asst.send_message(
                     udB.get_key("LOG_CHANNEL"),
                     "`Bot is working again`",
@@ -161,12 +161,12 @@ def ayra_cmd(
                 LOGS.exception(e)
                 date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
                 naam = get_display_name(chat)
-                ftext = "**Ayra Client Error:** `Forward this to` @kynansupport\n\n"
-                ftext += "**Ayra Version:** `" + str(pyver)
-                ftext += "`\n**Userbot Version:** `" + str(ayra_ver)
+                ftext = "**dante Client Error:** `Forward this to` @kynansupport\n\n"
+                ftext += "**dante Version:** `" + str(pyver)
+                ftext += "`\n**Userbot Version:** `" + str(dante_ver)
                 ftext += "`\n**Telethon Version:** `" + str(telever)
                 ftext += f"`\n**Hosted At:** `{HOSTED_ON}`\n\n"
-                ftext += "--------START AYRA CRASH LOG--------"
+                ftext += "--------START dante CRASH LOG--------"
                 ftext += "\n**Date:** `" + date
                 ftext += "`\n**Group:** `" + str(ay.chat_id) + "` " + str(naam)
                 ftext += "\n**Sender ID:** `" + str(ay.sender_id)
@@ -177,7 +177,7 @@ def ayra_cmd(
                 ftext += str(format_exc())
                 ftext += "`\n\n**Error text:**`\n"
                 ftext += str(sys.exc_info()[1])
-                ftext += "`\n\n--------END AYRA CRASH LOG--------"
+                ftext += "`\n\n--------END dante CRASH LOG--------"
                 ftext += "\n\n\n**Last 5 commits:**`\n"
 
                 stdout, stderr = await bash('git log --pretty=format:"%an: %s" -5')
@@ -191,7 +191,7 @@ def ayra_cmd(
                         error_log = await asst.send_file(
                             udB.get_key("LOG_CHANNEL"),
                             file,
-                            caption="**Ayra Client Error:** `Forward this to` @kynansupport\n\n",
+                            caption="**dante Client Error:** `Forward this to` @kynansupport\n\n",
                         )
                 else:
                     error_log = await asst.send_message(
@@ -215,7 +215,7 @@ def ayra_cmd(
         if _add_new:
             if pattern:
                 cmd = compile_pattern(pattern, SUDO_HNDLR)
-            ayra_bot.add_event_handler(
+            dante_bot.add_event_handler(
                 wrapp,
                 NewMessage(
                     pattern=cmd,
@@ -228,7 +228,7 @@ def ayra_cmd(
             )
         if pattern:
             cmd = compile_pattern(pattern, HNDLR)
-        ayra_bot.add_event_handler(
+        dante_bot.add_event_handler(
             wrapp,
             NewMessage(
                 outgoing=True if _add_new else None,
@@ -244,7 +244,7 @@ def ayra_cmd(
             def func_(x):
                 return not x.via_bot_id and not (x.is_channel and x.chat.broadcast)
 
-            ayra_bot.add_event_handler(
+            dante_bot.add_event_handler(
                 wrapp,
                 MessageEdited(
                     pattern=cmd,
