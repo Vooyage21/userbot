@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 import time
 from io import FileIO
@@ -102,7 +97,7 @@ class GDriveManager:
         media_body = MediaFileUpload(path, mimetype=mime_type, resumable=True)
         body = {
             "title": filename,
-            "description": "Uploaded using Ayra Userbot",
+            "description": "Uploaded using dante Userbot",
             "mimeType": mime_type,
         }
         if folder_id:
