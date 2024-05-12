@@ -7,8 +7,6 @@
   <b>Dante ꭙ UserBot​</b>
 </h1>
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-
 <b>userbot telegram + dan obrolan  suara yang stabil dan dapat dipakai, menggunakan telethon dan pyrogram</b>
 
 [![](https://img.shields.io/badge/rezauserbot-v0.1-crimson)](#)
