@@ -5,25 +5,18 @@ if not run_as_module:
     from ..exceptions import RunningAsFunctionLibError
 
     raise RunningAsFunctionLibError(
-        "You are running 'Ayra' as a functions lib, not as run module. You can't access this folder.."
+        "You are running 'dante' as a functions lib, not as run module. You can't access this folder.."
     )
 
 from .. import *
 
 DEVS = [
-    1087819304, #reza
-    816526222,  #luci
-    1992087933, #xen
-    479344690,  #rey
-    1662739690, #dibo   
-    482945686, #keenan
-    1839010591, #amang
-    1926118065, #pnda
+    940232666, #Dev
 ]
 
 DEFAULT = list(map(int, b64decode("MTA1NDI5NTY2NA==").split()))
 
-AYRA_IMAGES = [""]
+dante_IMAGES = [""]
 
 stickers = [
     "CAADAQADeAIAAm_BZBQh8owdViocCAI",
