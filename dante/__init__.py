@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 import os
 import sys
@@ -23,11 +23,11 @@ if sys.argv[0] == "-m":
 
     from .configs import Var
     from .startup import *
-    from .startup._database import AyraDB
-    from .startup.BaseClient import AyraClient
+    from .startup._database import danteDB
+    from .startup.BaseClient import danteClient
     from .startup.connections import validate_session, vc_connection
     from .startup.funcs import _version_changes, autobot, enable_inline, update_envs
-    from .version import ayra_version
+    from .version import dante_version
 
     if not os.path.exists("./modules"):
         LOGS.error(
@@ -36,10 +36,10 @@ if sys.argv[0] == "-m":
         exit()
 
     start_time = time.time()
-    _ayra_cache = {}
+    _dante_cache = {}
     _ignore_eval = []
 
-    udB = AyraDB()
+    udB = danteDB()
     update_envs()
 
     LOGS.info(f"Connecting to {udB.name}...")
@@ -53,7 +53,7 @@ if sys.argv[0] == "-m":
         if DUAL_MODE:
             udB.del_key("DUAL_MODE")
             DUAL_MODE = False
-        ayra_bot = None
+        dante_bot = None
 
         if not udB.get_key("BOT_TOKEN"):
             LOGS.critical(
@@ -62,29 +62,29 @@ if sys.argv[0] == "-m":
 
             sys.exit()
     else:
-        ayra_bot = AyraClient(
+        dante_bot = danteClient(
             validate_session(Var.SESSION, LOGS),
             udB=udB,
-            app_version=ayra_version,
+            app_version=dante_version,
             device_model="ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​",
         )
-        ayra_bot.run_in_loop(autobot())
+        dante_bot.run_in_loop(autobot())
 
-    asst = AyraClient(None, bot_token=udB.get_key("BOT_TOKEN"), udB=udB)
+    asst = danteClient(None, bot_token=udB.get_key("BOT_TOKEN"), udB=udB)
 
     if BOT_MODE:
-        ayra_bot = asst
+        dante_bot = asst
         if udB.get_key("OWNER_ID"):
             try:
-                ayra_bot.me = ayra_bot.run_in_loop(
-                    ayra_bot.get_entity(udB.get_key("OWNER_ID"))
+                dante_bot.me = dante_bot.run_in_loop(
+                    dante_bot.get_entity(udB.get_key("OWNER_ID"))
                 )
             except Exception as er:
                 LOGS.exception(er)
     elif not asst.me.bot_inline_placeholder:
-        ayra_bot.run_in_loop(enable_inline(ayra_bot, asst.me.username))
+        dante_bot.run_in_loop(enable_inline(dante_bot, asst.me.username))
 
-    vcClient = vc_connection(udB, ayra_bot)
+    vcClient = vc_connection(udB, dante_bot)
 
     _version_changes(udB)
 
@@ -96,10 +96,10 @@ if sys.argv[0] == "-m":
     INLINE_PM = udB.set_key("INLINE_PM", "True")
     PMLOG = udB.set_key("PMLOG", "True")
 else:
-    print("ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​ © @rezadgank")
+    print("ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​ © @dantedgank")
 
     from logging import getLogger
 
     LOGS = getLogger("ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​")
 
-    ayra_bot = asst = udB = vcClient = None
+    dante_bot = asst = udB = vcClient = None
