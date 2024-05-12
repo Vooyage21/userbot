@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 """
 ✘ **Bantuan Untuk Calculator**
@@ -14,7 +9,7 @@
 
 import re
 
-from . import Button, asst, ayra_cmd, callback, get_string, in_pattern, udB
+from . import Button, asst, dante_cmd, callback, get_string, in_pattern, udB
 
 CALC = {}
 
@@ -40,12 +35,12 @@ m = [
     ".",
     "÷",
 ]
-tayrad = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
-lst = list(zip(tayrad[::4], tayrad[1::4], tayrad[2::4], tayrad[3::4]))
+tdanted = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
+lst = list(zip(tdanted[::4], tdanted[1::4], tdanted[2::4], tdanted[3::4]))
 lst.append([Button.inline("=", data="calc=")])
 
 
-@ayra_cmd(pattern="[cC][a][l][c]")
+@dante_cmd(pattern="[cC][a][l][c]")
 async def icalc(e):
     udB.del_key("calc")
     if e.client._bot:
@@ -149,7 +144,7 @@ async def _(e):
         ".",
         "÷",
     ]
-    tayrad = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
-    lst = list(zip(tayrad[::4], tayrad[1::4], tayrad[2::4], tayrad[3::4]))
+    tdanted = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
+    lst = list(zip(tdanted[::4], tdanted[1::4], tdanted[2::4], tdanted[3::4]))
     lst.append([Button.inline("=", data="calc=")])
     await e.edit(get_string("calc_1"), buttons=lst)
