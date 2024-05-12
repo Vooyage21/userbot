@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 
 """
 ✘ **Bantuan Untuk Blacklist**
@@ -19,13 +14,13 @@
 """
 
 
-from Ayra.dB.blacklist_db import (add_blacklist, get_blacklist, list_blacklist,
+from dante.dB.blacklist_db import (add_blacklist, get_blacklist, list_blacklist,
                                   rem_blacklist)
 
-from . import ayra_bot, ayra_cmd, events, get_string, udB
+from . import dante_bot, dante_cmd, events, get_string, udB
 
 
-@ayra_cmd(pattern="black( (.*)|$)", admins_only=True)
+@dante_cmd(pattern="black( (.*)|$)", admins_only=True)
 async def af(e):
     wrd = e.pattern_match.group(1).strip()
     chat = e.chat_id
@@ -35,11 +30,11 @@ async def af(e):
     heh = wrd.split(" ")
     for z in heh:
         add_blacklist(int(chat), z.lower())
-    ayra_bot.add_handler(blacklist, events.NewMessage(incoming=True))
+    dante_bot.add_handler(blacklist, events.NewMessage(incoming=True))
     await e.eor(get_string("blk_2").format(wrd))
 
 
-@ayra_cmd(pattern="white( (.*)|$)", admins_only=True)
+@dante_cmd(pattern="white( (.*)|$)", admins_only=True)
 async def rf(e):
     wrd = e.pattern_match.group(1).strip()
     chat = e.chat_id
@@ -52,7 +47,7 @@ async def rf(e):
     await e.eor(get_string("blk_4").format(wrd))
 
 
-@ayra_cmd(pattern="listblack", admins_only=True)
+@dante_cmd(pattern="listblack", admins_only=True)
 async def lsnote(e):
     if x := list_blacklist(e.chat_id):
         sd = get_string("blk_5")
@@ -73,4 +68,4 @@ async def blacklist(e):
 
 
 if udB.get_key("BLACKLIST_DB"):
-    ayra_bot.add_handler(blacklist, events.NewMessage(incoming=True))
+    dante_bot.add_handler(blacklist, events.NewMessage(incoming=True))
