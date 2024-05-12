@@ -3,15 +3,15 @@ import sys
 from glob import glob
 from typing import Any, Dict, List, Union
 
-from Ayra import *
-from Ayra.fns.tools import translate
+from dante import *
+from dante.fns.tools import translate
 
 try:
     from yaml import safe_load
 except ModuleNotFoundError:
-    from Ayra.fns.tools import safe_load
+    from dante.fns.tools import safe_load
 
-AyConfig.lang = udB.get_key("language") or os.getenv("LANGUAGE", "id")
+daConfig.lang = udB.get_key("language") or os.getenv("LANGUAGE", "id")
 
 languages = {}
 
@@ -28,7 +28,7 @@ for file in glob("strings/strings/*yml"):
 
 
 def get_string(key: str, _res: bool = True) -> Any:
-    lang = AyConfig.lang or "id"
+    lang = daConfig.lang or "id"
     try:
         return languages[lang][key]
     except KeyError:
