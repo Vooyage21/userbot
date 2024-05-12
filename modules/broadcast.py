@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ Bᴀɴᴛᴜᴀɴ Uɴᴛᴜᴋ Bʀᴏᴀᴅᴄᴀsᴛ
 
@@ -24,16 +24,16 @@
 """
 import asyncio
 
-from Ayra.dB import DEVS
-from Ayra.dB.gcast_blacklist_db import add_gblacklist, list_bl, rem_gblacklist
-from Ayra.fns.tools import create_tl_btn, format_btn, get_msg_button
+from dante.dB import DEVS
+from dante.dB.gcast_blacklist_db import add_gblacklist, list_bl, rem_gblacklist
+from dante.fns.tools import create_tl_btn, format_btn, get_msg_button
 from telethon.errors.rpcerrorlist import FloodWaitError
 
 from . import *
 from ._inline import something
 
 
-@ayra_cmd(pattern="[gG][c][a][s][t]( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="[gG][c][a][s][t]( (.*)|$)", fullsudo=False)
 async def gcast(event):
     if xx := event.pattern_match.group(1):
         msg = xx
@@ -73,7 +73,7 @@ async def gcast(event):
     await kk.edit(f"**sᴜᴄᴄᴇss sᴇɴᴛ :  {done} ɢʀᴏᴜᴘ ᴄʜᴀᴛ\nғᴀɪʟᴇᴅ : {er} ɢʀᴏᴜᴘ ᴄʜᴀᴛ**")
 
 
-@ayra_cmd(pattern="[gG][u][c][a][s][t]( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="[gG][u][c][a][s][t]( (.*)|$)", fullsudo=False)
 async def gucast(event):
     if xx := event.pattern_match.group(1):
         msg = xx
@@ -103,18 +103,18 @@ async def gucast(event):
     await kk.edit(f"Berhasil di {done} obrolan, kesalahan {er} obrolan")
 
 
-@ayra_cmd(pattern="addbl")
+@dante_cmd(pattern="addbl")
 @register(incoming=True, from_users=DEVS, pattern=r"^Addbl")
 async def blacklist_(event):
     await gblacker(event, "add")
 
 
-@ayra_cmd(pattern="delbl")
+@dante_cmd(pattern="delbl")
 async def ungblacker(event):
     await gblacker(event, "remove")
 
 
-@ayra_cmd(pattern="blchat")
+@dante_cmd(pattern="blchat")
 async def chatbl(event):
     id = event.chat_id
     if xx := list_bl(id):
