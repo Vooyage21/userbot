@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 import inspect
 import re
@@ -14,16 +14,16 @@ from telethon.errors import QueryIdInvalidError
 from telethon.events import CallbackQuery, InlineQuery, NewMessage
 from telethon.tl.types import InputWebDocument
 
-from .. import LOGS, asst, udB, ayra_bot
+from .. import LOGS, asst, udB, dante_bot
 from ..fns.admins import admin_check
 from . import append_or_update, owner_and_sudos
 
-OWNER = ayra_bot.full_name
+OWNER = dante_bot.full_name
 
 MSG = f"""
-**Reza-ubot**
+**dante-ubot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-**Owner**: [{OWNER}](tg://user?id={ayra_bot.uid})
+**Owner**: [{OWNER}](tg://user?id={dante_bot.uid})
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
@@ -46,7 +46,7 @@ def asst_cmd(pattern=None, load=None, owner=False, **kwargs):
     name = inspect.stack()[1].filename.split("/")[-1].replace(".py", "")
     kwargs["forwards"] = False
 
-    def ayra(func):
+    def dante(func):
         if pattern:
             kwargs["pattern"] = re.compile(f"^/{pattern}")
         if owner:
@@ -55,14 +55,14 @@ def asst_cmd(pattern=None, load=None, owner=False, **kwargs):
         if load is not None:
             append_or_update(load, func, name, kwargs)
 
-    return ayra
+    return dante
 
 
 def callback(data=None, from_users=[], admins=False, owner=False, **kwargs):
     """Assistant's callback decorator"""
     if "me" in from_users:
         from_users.remove("me")
-        from_users.append(ayra_bot.uid)
+        from_users.append(dante_bot.uid)
 
     def ay(func):
         async def wrapper(event):
@@ -90,9 +90,9 @@ def in_pattern(pattern=None, owner=False, **kwargs):
             if owner and event.sender_id not in owner_and_sudos():
                 res = [
                     await event.builder.article(
-                        title="reza ꭙ ᴜꜱᴇʀʙᴏᴛ​",
+                        title="dante ꭙ ᴜꜱᴇʀʙᴏᴛ​",
                         url="https://t.me/kynansupport​",
-                        description="© Reza",
+                        description="© dante",
                         text=MSG,
                         thumb=InputWebDocument(
                             "https://graph.org/file/02f9ca4617cec58377b9d.jpg",
