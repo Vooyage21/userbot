@@ -1,18 +1,18 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 
 import os
 import sys
 from datetime import datetime
 
-from Ayra._misc import SUDO_M, owner_and_sudos
-from Ayra.dB.asst_fns import *
-from Ayra.fns.helper import inline_mention
+from dante._misc import SUDO_M, owner_and_sudos
+from dante.dB.asst_fns import *
+from dante.fns.helper import inline_mention
 from dotenv import load_dotenv, set_key, unset_key
 from pytz import timezone as tz
 from telethon import Button, events
@@ -81,7 +81,7 @@ async def restart_callback(e):
         restart_counter += 1
     #        return await restart_callback(e)
     await bash("git pull && pip3 install -r requirements.txt")
-    os.execl(sys.executable, sys.executable, "-m", "Ayra")
+    os.execl(sys.executable, sys.executable, "-m", "dante")
 
 
 @asst_cmd(pattern=r"setvar (\S+)\s+(\S+)", owner=True)
@@ -128,10 +128,10 @@ async def del_env(event):
 @callback("ownerinfo")
 async def own(event):
     msg = Owner_info_msg.format(
-        mention=event.sender.mention, me=inline_mention(ayra_bot.me)
+        mention=event.sender.mention, me=inline_mention(dante_bot.me)
     )
     if custom_info:
-        msg += "\n\n• Powered by **@reza**"
+        msg += "\n\n• Powered by **Dante**"
     await event.edit(
         msg,
         buttons=[Button.inline("Tutup", data="closeit")],
@@ -148,7 +148,7 @@ async def closet(lol):
 
 
 @asst_cmd(pattern="start( (.*)|$)", forwards=False, func=lambda x: not x.is_group)
-async def ayra(event):
+async def dante(event):
     args = event.pattern_match.group(1).strip()
     if not is_added(event.sender_id) and event.sender_id not in owner_and_sudos():
         add_user(event.sender_id)
@@ -167,7 +167,7 @@ async def ayra(event):
             )
     if event.sender_id not in SUDO_M.fullsudos:
         ok = ""
-        me = inline_mention(ayra_bot.me)
+        me = inline_mention(dante_bot.me)
         mention = inline_mention(event.sender)
         if args and args != "set":
             await get_stored_file(event, args)
@@ -175,7 +175,7 @@ async def ayra(event):
             if udB.get_key("PMBOT"):
                 ok = "Anda dapat menghubungi Owner saya menggunakan bot ini!!\n\nKirim Pesan Anda, saya akan Kirim ke Owner."
             await event.reply(
-                f"Hey {mention}, Aku Adalah Ayra Asissten {me}!\n\n{ok}",
+                f"Hey {mention}, Aku Adalah dante Asissten {me}!\n\n{ok}",
                 file=udB.get_key("STARTMEDIA"),
                 buttons=[Button.inline("Info.", data="ownerinfo")]
                 if Owner_info_msg
@@ -212,7 +212,7 @@ async def ekekdhdb(e):
 
 
 @callback("mainmenu", owner=True, func=lambda x: not x.is_group)
-async def ayra(event):
+async def dante(event):
     await event.edit(
         get_string("ast_3").format(OWNER_NAME),
         buttons=_start,
