@@ -1,23 +1,23 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 from . import *
 
 START = """
 ◈ **Help Menu** ◈
 
-✘  /start : Check I am Alive or not.
-✘  /help : Get This Message.
-✘  /repo : Get Bot's Repo..
+ /start : Check I am Alive or not.
+ /help : Get This Message.
+ /repo : Get Bot's Repo..
 
-🧑‍💻 Join **@stufsupport**
+🧑‍💻 Join **@StreamSupportMp3**
 """
 
-ADMINTOOLS = """✘ **AdminTools** ✘
+ADMINTOOLS = """**AdminTools** 
 
 • /pin : Pins the Replied Message
 • /pinned : Get Pinned message in chat.
@@ -39,7 +39,7 @@ ADMINTOOLS = """✘ **AdminTools** ✘
 • /delgpic : remove current chat Photo."""
 
 UTILITIES = """
-✘ ** Utilities ** ✘
+** Utilities ** 
 
 • /info (reply/username/id) : get detailed info of user.
 • /id : get chat/user id.
@@ -54,7 +54,7 @@ UTILITIES = """
 """
 
 LOCKS = """
-✘ ** Locks ** ✘
+** Locks ** 
 
 • /lock (query) : lock particular content in chat.
 • /unlock (query) : Unlock some content.
@@ -72,12 +72,12 @@ LOCKS = """
 """
 
 MISC = """
-✘  **Misc**  ✘
+ **Misc**  
 
 • /joke : Get Random Jokes.
 • /decide : Decide Something..
 
-**✘ Stickertools ✘**
+**Stickertools **
 • /kang : add sticker to your pack.
 • /listpack : get all of yours pack..
 """
