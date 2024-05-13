@@ -310,7 +310,7 @@ async def autopilot():
                 LOGS.exception(er)
     if isinstance(chat.photo, ChatPhotoEmpty):
         photo = await download_file(
-            "https://graph.org/file/b0ede17600df06f798774.jpg", "logo.jpg"
+            "https://mallucampaign.in/images/img_1715419813.jpg", "logo.jpg"
         )
         ll = await dante_bot.upload_file(photo)
         try:
@@ -341,7 +341,7 @@ async def customize():
             sir = f"@{dante_bot.me.username}"
         file = random.choice(
             [
-                "https://graph.org/file/b0ede17600df06f798774.jpg",
+                "https://mallucampaign.in/images/img_1715419813.jpg",
                 "resources/extras/logo.jpg",
             ]
         )
@@ -369,7 +369,7 @@ async def customize():
         await dante_bot.send_message("botfather", UL)
         await asyncio.sleep(1)
         await dante_bot.send_message(
-            "botfather", f"✨ Hello ✨!! I'm Assistant Bot of {sir}"
+            "botfather", f"Hello ✨!! I'm Assistant Bot of {sir}"
         )
         await asyncio.sleep(2)
         await dante_bot.send_message("botfather", "/setdescription")
@@ -378,7 +378,7 @@ async def customize():
         await asyncio.sleep(1)
         await dante_bot.send_message(
             "botfather",
-            f"✨ Powerful dante - userbot Assistant  ✨\n✨ Master ~ {sir} ✨\n\n✨ Powered By ~ @dantedgank✨",
+            f"Powerful dante - userbot Assistant\nMaster ~ {sir} \n\nPowered By ~ @Usern4meDoesNotExist404✨",
         )
         await asyncio.sleep(2)
         await msg.edit("Completed **Auto Customisation** at @BotFather.")
@@ -438,11 +438,11 @@ async def ready():
     if not udB.get_key("INIT_DEPLOY"):  # Detailed Message at Initial Deploy
         MSG = """ **Thanks for Deploying dante-userbot!**
 • Here, are the Some Basic stuff from, where you can Know, about its Usage."""
-        PHOTO = "https://graph.org/file/b0ede17600df06f798774.jpg"
+        PHOTO = "https://mallucampaign.in/images/img_1715419813.jpg"
         BTTS = Button.inline("• Click to Start •", "initft_2")
         udB.set_key("INIT_DEPLOY", "Done")
     else:
-        MSG = f"**ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ ᴀᴋᴛɪғ!**\n\n**❖ ᴜsᴇʀ**: {inline_mention(dante_bot.me)}\n**❖ ᴀssɪsᴛᴀɴᴛ**: @{asst.me.username}\n**❖ sᴜᴘᴘᴏʀᴛ**: @publikdarknes\n"
+        MSG = f"**ᴅᴀɴᴛᴇ ꭙ ᴜsᴇʀʙᴏᴛ ᴀᴋᴛɪғ!**\n\n**❖ ᴜsᴇʀ**: {inline_mention(dante_bot.me)}\n**❖ ᴀssɪsᴛᴀɴᴛ**: @{asst.me.username} "
         BTTS, PHOTO = None, None
         prev_spam = udB.get_key("LAST_UPDATE_LOG_SPAM")
         if prev_spam:
