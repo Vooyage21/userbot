@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-REPO="https://github.com/pinxRobtik/reza-userbot.git"
-DIR="/root/pinxRobtik"
+REPO="https://github.com/Vooyage21/userbot.git"
+DIR="/root/Vooyage21"
 
 spinner(){
     local pid=$!
@@ -31,7 +31,7 @@ clone_repo(){
             fi
             return
     fi
-    echo -e "Cloning reza-userbot ${BRANCH}... "
+    echo -e "Cloning dante-userbot ${BRANCH}... "
     git clone -b $BRANCH $REPO $DIR
 }
 
