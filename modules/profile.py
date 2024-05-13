@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Profile**
 
@@ -25,19 +25,19 @@ from telethon.tl.functions.account import UpdateProfileRequest
 from telethon.tl.functions.photos import (DeletePhotosRequest,
                                           UploadProfilePhotoRequest)
 
-from . import ayra_cmd, eod, eor, get_string, mediainfo
+from . import dante_cmd, eod, eor, get_string, mediainfo
 
 TMP_DOWNLOAD_DIRECTORY = "resources/downloads/"
 
 # bio changer
 
 
-@ayra_cmd(pattern="(S|s)etbio( (.*)|$)", fullsudo=False)
-async def _(ayra):
-    ok = await ayra.eor("...")
-    set = ayra.pattern_match.group(1).strip()
+@dante_cmd(pattern="(S|s)etbio( (.*)|$)", fullsudo=False)
+async def _(dante):
+    ok = await dante.eor("...")
+    set = dante.pattern_match.group(1).strip()
     try:
-        await ayra.client(UpdateProfileRequest(about=set))
+        await dante.client(UpdateProfileRequest(about=set))
         await eod(ok, f"Bio profil diubah menjadi\n`{set}`")
     except Exception as ex:
         await eod(ok, f"Terjadi kesalahan.\n`{str(ex)}`")
@@ -46,16 +46,16 @@ async def _(ayra):
 # name changer
 
 
-@ayra_cmd(pattern="(S|s)etname ?((.|//)*)", fullsudo=False)
-async def _(ayra):
-    ok = await ayra.eor("...")
-    names = ayra.pattern_match.group(1).strip()
+@dante_cmd(pattern="(S|s)etname ?((.|//)*)", fullsudo=False)
+async def _(dante):
+    ok = await dante.eor("...")
+    names = dante.pattern_match.group(1).strip()
     first_name = names
     last_name = ""
     if "//" in names:
         first_name, last_name = names.split("//", 1)
     try:
-        await ayra.client(
+        await dante.client(
             UpdateProfileRequest(
                 first_name=first_name,
                 last_name=last_name,
@@ -69,19 +69,19 @@ async def _(ayra):
 # profile pic
 
 
-@ayra_cmd(pattern="(s|S)etfp$", fullsudo=False)
-async def _(ayra):
-    if not ayra.is_reply:
-        return await ayra.eor("`Balas ke Media..`", time=5)
-    reply_message = await ayra.get_reply_message()
-    ok = await ayra.eor(get_string("com_1"))
+@dante_cmd(pattern="(s|S)etfp$", fullsudo=False)
+async def _(dante):
+    if not dante.is_reply:
+        return await dante.eor("`Balas ke Media..`", time=5)
+    reply_message = await dante.get_reply_message()
+    ok = await dante.eor(get_string("com_1"))
     replfile = await reply_message.download_media()
-    file = await ayra.client.upload_file(replfile)
+    file = await dante.client.upload_file(replfile)
     try:
         if "pic" in mediainfo(reply_message.media):
-            await ayra.client(UploadProfilePhotoRequest(file))
+            await dante.client(UploadProfilePhotoRequest(file))
         else:
-            await ayra.client(UploadProfilePhotoRequest(video=file))
+            await dante.client(UploadProfilePhotoRequest(video=file))
         await eod(ok, "`Foto Profil Berhasil Diubah !`")
     except Exception as ex:
         await eod(ok, f"Terjadi kesalahan.\n`{str(ex)}`")
@@ -91,7 +91,7 @@ async def _(ayra):
 # delete profile pic(s)
 
 
-@ayra_cmd(pattern="(D|d)elfp( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="(D|d)elfp( (.*)|$)", fullsudo=False)
 async def remove_profilepic(delpfp):
     ok = await eor(delpfp, "`...`")
     group = delpfp.text[8:]
@@ -106,20 +106,20 @@ async def remove_profilepic(delpfp):
     await eod(ok, f"`Berhasil dihapus {len(pfplist)} gambar profil(s).`")
 
 
-@ayra_cmd(pattern="(p|P)oto( (.*)|$)")
+@dante_cmd(pattern="(p|P)oto( (.*)|$)")
 async def gpoto(e):
-    ayra = e.pattern_match.group(1).strip()
+    dante = e.pattern_match.group(1).strip()
     a = await e.eor(get_string("com_1"))
-    just_dl = ayra in ["-dl", "--dl"]
+    just_dl = dante in ["-dl", "--dl"]
     if just_dl:
-        ayra = None
-    if not ayra:
+        dante = None
+    if not dante:
         if e.is_reply:
             gs = await e.get_reply_message()
-            ayra = gs.sender_id
+            dante = gs.sender_id
         else:
-            ayra = e.chat_id
-    okla = await e.client.download_profile_photo(ayra)
+            dante = e.chat_id
+    okla = await e.client.download_profile_photo(dante)
     if not okla:
         return await eor(a, "`Foto Profil Tidak Ditemukan...`")
     if not just_dl:
