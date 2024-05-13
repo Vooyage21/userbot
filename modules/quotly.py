@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Qoutly**
 
@@ -19,13 +19,13 @@
 import os
 from random import choice
 
-from . import ayra_cmd, get_string, quotly
+from . import dante_cmd, get_string, quotly
 from .carbon import all_col
 
 File = []
 
 
-@ayra_cmd(pattern="[qQ]( (.*)|$)", manager=True, allow_pm=True)
+@dante_cmd(pattern="[qQ]( (.*)|$)", manager=True, allow_pm=True)
 async def quott_(event):
     match = event.pattern_match.group(1).strip()
     if not event.is_reply:
@@ -82,7 +82,7 @@ async def quott_(event):
         )
     except Exception as er:
         return await msg.edit(str(er))
-    message = await reply.reply("Quotly by Ayra", file=file)
+    message = await reply.reply("Quotly by dante", file=file)
     os.remove(file)
     await msg.delete()
     return message
