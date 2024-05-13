@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 
 import inspect
@@ -13,7 +13,7 @@ from io import BytesIO, StringIO
 from os import remove
 from pprint import pprint
 
-from Ayra import _ignore_eval
+from dante import _ignore_eval
 from telethon.utils import get_display_name
 
 from . import *
@@ -28,7 +28,7 @@ except ImportError:
 try:
     from yaml import safe_load
 except ImportError:
-    from Ayra.fns.tools import safe_load
+    from dante.fns.tools import safe_load
 try:
     from telegraph import upload_file as uf
 except ImportError:
@@ -38,7 +38,7 @@ from telethon.tl import functions
 fn = functions
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(S|s)ysinfo$",
 )
 async def _(e):
@@ -54,7 +54,7 @@ async def _(e):
     remove("neo.txt")
 
 
-@ayra_cmd(pattern="(B|b)ash", fullsudo=False, only_devs=False)
+@dante_cmd(pattern="(B|b)ash", fullsudo=False, only_devs=False)
 async def _(event):
     carb, yamlf = None, False
     try:
@@ -104,8 +104,8 @@ async def _(event):
         out = "**• OUTPUT:**\n`Success`"
     OUT += err + out
     if len(OUT) > 4096:
-        ayra = err + out
-        with BytesIO(str.encode(ayra)) as out_file:
+        dante = err + out
+        with BytesIO(str.encode(dante)) as out_file:
             out_file.name = "bash.txt"
             await event.client.send_file(
                 event.chat_id,
@@ -123,7 +123,7 @@ async def _(event):
 
 
 pp = pprint  # ignore: pylint
-bot = ayra = ayra_bot
+bot = dante = dante_bot
 
 
 class u:
@@ -146,7 +146,7 @@ def _parse_eval(value=None):
     return str(value)
 
 
-@ayra_cmd(pattern="(Eval|eval|ev)", fullsudo=False, only_devs=False)
+@dante_cmd(pattern="(Eval|eval|ev)", fullsudo=False, only_devs=False)
 @register(incoming=True, from_users=DEVS, pattern=r"^Eval(?: |$)(.*)")
 async def _(event):
     try:
@@ -278,7 +278,7 @@ int main(){
 """
 
 
-@ayra_cmd(pattern="cpp", only_devs=False)
+@dante_cmd(pattern="cpp", only_devs=False)
 async def doie(e):
     match = e.text.split(" ", maxsplit=1)
     try:
@@ -289,20 +289,20 @@ async def doie(e):
     if "main(" not in match:
         new_m = "".join(" " * 4 + i + "\n" for i in match.split("\n"))
         match = DUMMY_CPP.replace("!code", new_m)
-    open("cpp-ayra.cpp", "w").write(match)
-    m = await bash("g++ -o CppAyra cpp-ayra.cpp")
+    open("cpp-dante.cpp", "w").write(match)
+    m = await bash("g++ -o Cppdante cpp-dante.cpp")
     o_cpp = f"• **Eval-Cpp**\n`{match}`"
     if m[1]:
         o_cpp += f"\n\n**• Error :**\n`{m[1]}`"
         if len(o_cpp) > 3000:
-            os.remove("cpp-ayra.cpp")
-            if os.path.exists("CppAyra"):
-                os.remove("CppAyra")
+            os.remove("cpp-dante.cpp")
+            if os.path.exists("Cppdante"):
+                os.remove("Cppdante")
             with BytesIO(str.encode(o_cpp)) as out_file:
                 out_file.name = "error.txt"
                 return await msg.reply(f"`{match}`", file=out_file)
         return await eor(msg, o_cpp)
-    m = await bash("./CppAyra")
+    m = await bash("./Cppdante")
     if m[0] != "":
         o_cpp += f"\n\n**• Output :**\n`{m[0]}`"
     if m[1]:
@@ -313,5 +313,5 @@ async def doie(e):
             await msg.reply(f"`{match}`", file=out_file)
     else:
         await eor(msg, o_cpp)
-    os.remove("CppAyra")
-    os.remove("cpp-ayra.cpp")
+    os.remove("Cppdante")
+    os.remove("cpp-dante.cpp")
