@@ -23,46 +23,46 @@
 
 from time import sleep
 
-from . import ayra_cmd
+from . import dante_cmd
 
 
-@ayra_cmd(pattern="[aA][sS][sS]")
+@dante_cmd(pattern="[aA][sS][sS]")
 async def _(event):
     await event.eor("**Assalamu'alaikum Warohmatulohi Wabarokatu**")
 
 
-@ayra_cmd(pattern="[aA][sS]")
+@dante_cmd(pattern="[aA][sS]")
 async def _(event):
     await event.eor("**Assalamu'alaikum**")
 
 
-@ayra_cmd(pattern="[wW][sS]")
+@dante_cmd(pattern="[wW][sS]")
 async def _(event):
     await event.eor("**Wa'alaikumussalam**")
 
 
-@ayra_cmd(pattern="[kK][sS]")
+@dante_cmd(pattern="[kK][sS]")
 async def _(event):
     xx = await event.eor("**Hy kaa 🥺**")
     sleep(2)
     await xx.edit("**Assalamualaikum...**")
 
 
-@ayra_cmd(pattern="[jJ][wW][sS]")
+@dante_cmd(pattern="[jJ][wW][sS]")
 async def _(event):
     xx = await event.eor(event, "**Astaghfirullah, Jawab salam dong**")
     sleep(2)
     await xx.edit("**Assalamu'alaikum**")
 
 
-@ayra_cmd(pattern="3x")
+@dante_cmd(pattern="3x")
 async def _(event):
     xx = await event.eor("**Bismillah, 3x**")
     sleep(2)
     await xx.edit("**Assalamu'alaikum Bisa Kali**")
 
 
-@ayra_cmd(pattern="[kK][gG]")
+@dante_cmd(pattern="[kK][gG]")
 async def _(event):
     xx = await event.eor("**Lu Ngapah Begitu ?**")
     sleep(2)
