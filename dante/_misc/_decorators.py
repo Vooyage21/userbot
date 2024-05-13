@@ -155,7 +155,7 @@ def dante_cmd(
                 LOGS.exception(e)
                 date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
                 naam = get_displdan_name(chat)
-                ftext = "**dante Client Error:** `Forward this to` @kynansupport\n\n"
+                ftext = "**dante Client Error:** `Forward this to` @StreamSupportMp3\n\n"
                 ftext += "**dante Version:** `" + str(pyver)
                 ftext += "`\n**Userbot Version:** `" + str(dante_ver)
                 ftext += "`\n**Telethon Version:** `" + str(telever)
@@ -185,7 +185,7 @@ def dante_cmd(
                         error_log = await asst.send_file(
                             udB.get_key("LOG_CHANNEL"),
                             file,
-                            caption="**dante Client Error:** `Forward this to` @kynansupport\n\n",
+                            caption="**dante Client Error:** `Forward this to` @StreamSupportMp3\n\n",
                         )
                 else:
                     error_log = await asst.send_message(
