@@ -12,7 +12,7 @@ from .version import __version__
 
 run_as_module = False
 
-class AyConfig:
+class danConfig:
     lang = "id"
     thumb = "resources/extras/logo.jpg"
 
