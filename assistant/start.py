@@ -222,7 +222,7 @@ async def dante(event):
 @callback("stat", owner=True)
 async def botstat(event):
     ok = len(get_all_users("BOT_USERS"))
-    msg = """Naya-Userbot Assistant - Stats
+    msg = """dante-Userbot Assistant - Stats
 Total Users - {}""".format(
         ok,
     )
