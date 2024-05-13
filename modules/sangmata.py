@@ -1,9 +1,4 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
-#
-# This file is a part of < https://github.com/senpai80/Ayra/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+
 """
 ✘ **Bantuan Untuk Sangmata**
 
@@ -26,15 +21,15 @@ except ImportError:
     WebShot = None
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from . import ayra_cmd, get_string
+from . import dante_cmd, get_string
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="id( (.*)|$)",
     manager=True,
 )
 async def _(event):
-    ayra = event
+    dante = event
     if match := event.pattern_match.group(1).strip():
         try:
             ids = await event.client.parse_id(match)
@@ -51,10 +46,10 @@ async def _(event):
         bot_api_file_id = event.file.id
         data += f"\n**Bot API File ID:**  `{bot_api_file_id}`"
     data += f"\n**Msg ID:**  `{event.id}`"
-    await ayra.eor(data)
+    await dante.eor(data)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="sg( (.*)|$)",
 )
 async def lastname(steal):
