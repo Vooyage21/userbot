@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Voice Tools**
 
@@ -26,7 +26,7 @@ from . import *
 reco = sr.Recognizer()
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern=r"^[tT][tT][sS](?: |$)(.*)",
 )
 async def _(event):
@@ -83,7 +83,7 @@ async def _(event):
         await event.eor(str(e))
 
 
-@ayra_cmd(pattern=r"^[sS][tT][tT](?: |$)(.*)")
+@dante_cmd(pattern=r"^[sS][tT][tT](?: |$)(.*)")
 async def speec_(e):
     reply = await e.get_reply_message()
     if not (reply and reply.media):
