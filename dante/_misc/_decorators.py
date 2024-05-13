@@ -27,7 +27,7 @@ from telethon.errors.rpcerrorlist import (
     UserIsBotError,
 )
 from telethon.events import MessageEdited, NewMessage
-from telethon.utils import get_display_name
+from telethon.utils import get_displdan_name
 
 from .. import *
 from .. import _ignore_eval
@@ -69,42 +69,42 @@ def dante_cmd(
     func = kwargs.get("func", lambda e: not e.via_bot_id)
 
     def decor(dec):
-        async def wrapp(ay):
-            if not ay.out:
+        async def wrapp(dan):
+            if not dan.out:
                 if owner_only:
                     return
-                if ay.sender_id not in owner_and_sudos():
+                if dan.sender_id not in owner_and_sudos():
                     return
-                if ay.sender_id in _ignore_eval:
+                if dan.sender_id in _ignore_eval:
                     return await eod(
-                        ay,
+                        dan,
                         get_string("py_d1"),
                     )
-                if fullsudo and ay.sender_id not in SUDO_M.fullsudos:
-                    return await eod(ay, get_string("py_d2"), time=15)
-            chat = ay.chat
+                if fullsudo and dan.sender_id not in SUDO_M.fullsudos:
+                    return await eod(dan, get_string("py_d2"), time=15)
+            chat = dan.chat
             if hasattr(chat, "title"):
                 if (
                     "#noub" in chat.title.lower()
                     and not (chat.admin_rights or chat.creator)
-                    and not (ay.sender_id in DEVS)
+                    and not (dan.sender_id in DEVS)
                 ):
                     return
             if admins_only:
-                if ay.is_private:
-                    return await eod(ay, get_string("py_d3"))
+                if dan.is_private:
+                    return await eod(dan, get_string("py_d3"))
                 if not (chat.admin_rights or chat.creator):
-                    return await eod(ay, get_string("py_d5"))
+                    return await eod(dan, get_string("py_d5"))
             if only_devs and not udB.get_key("I_DEV"):
                 return await eod(
-                    ay,
+                    dan,
                     get_string("py_d4").format(HNDLR),
                     time=10,
                 )
-            if groups_only and ay.is_private:
-                return await eod(ay, get_string("py_d5"))
+            if groups_only and dan.is_private:
+                return await eod(dan, get_string("py_d5"))
             try:
-                await dec(ay)
+                await dec(dan)
             except FloodWaitError as fwerr:
                 await asst.send_message(
                     udB.get_key("LOG_CHANNEL"),
@@ -119,18 +119,18 @@ def dante_cmd(
                 )
                 return
             except ChatSendInlineForbiddenError:
-                return await eod(ay, "`Inline Locked In This Chat.`")
+                return await eod(dan, "`Inline Locked In This Chat.`")
             except (ChatSendMediaForbiddenError, ChatSendStickersForbiddenError):
-                return await eod(ay, get_string("py_d8"))
+                return await eod(dan, get_string("py_d8"))
             except (BotMethodInvalidError, UserIsBotError):
-                return await eod(ay, get_string("py_d6"))
+                return await eod(dan, get_string("py_d6"))
             except AlreadyInConversationError:
                 return await eod(
-                    ay,
+                    dan,
                     get_string("py_d7"),
                 )
             except (BotInlineDisabledError) as er:
-                return await eod(ay, f"`{er}`")
+                return await eod(dan, f"`{er}`")
             except (
                 MessageIdInvalidError,
                 MessageNotModifiedError,
@@ -143,7 +143,7 @@ def dante_cmd(
                     udB.get_key("LOG_CHANNEL"),
                     "Session String expired, create new session from 👇",
                     buttons=[
-                        Button.url("Bot", "t.me/NayaStringBot?start="),
+                        Button.url("Bot", "t.me/NdanaStringBot?start="),
                     ],
                 )
                 sys.exit()
@@ -154,7 +154,7 @@ def dante_cmd(
             except Exception as e:
                 LOGS.exception(e)
                 date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-                naam = get_display_name(chat)
+                naam = get_displdan_name(chat)
                 ftext = "**dante Client Error:** `Forward this to` @kynansupport\n\n"
                 ftext += "**dante Version:** `" + str(pyver)
                 ftext += "`\n**Userbot Version:** `" + str(dante_ver)
@@ -162,11 +162,11 @@ def dante_cmd(
                 ftext += f"`\n**Hosted At:** `{HOSTED_ON}`\n\n"
                 ftext += "--------START dante CRASH LOG--------"
                 ftext += "\n**Date:** `" + date
-                ftext += "`\n**Group:** `" + str(ay.chat_id) + "` " + str(naam)
-                ftext += "\n**Sender ID:** `" + str(ay.sender_id)
-                ftext += "`\n**Replied:** `" + str(ay.is_reply)
+                ftext += "`\n**Group:** `" + str(dan.chat_id) + "` " + str(naam)
+                ftext += "\n**Sender ID:** `" + str(dan.sender_id)
+                ftext += "`\n**Replied:** `" + str(dan.is_reply)
                 ftext += "`\n\n**Event Trigger:**`\n"
-                ftext += str(ay.text)
+                ftext += str(dan.text)
                 ftext += "`\n\n**Traceback info:**`\n"
                 ftext += str(format_exc())
                 ftext += "`\n\n**Error text:**`\n"
@@ -192,8 +192,8 @@ def dante_cmd(
                         udB.get_key("LOG_CHANNEL"),
                         ftext,
                     )
-                if ay.out:
-                    await ay.edit(
+                if dan.out:
+                    await dan.edit(
                         f"<b><a href={error_log.message_link}>[An error occurred]</a></b>",
                         link_preview=False,
                         parse_mode="html",
@@ -253,24 +253,24 @@ def dante_cmd(
             allow_pm = kwargs.get("allow_pm", False)
             require = kwargs.get("require", None)
 
-            async def manager_cmd(ay):
-                if not allow_all and not (await admin_check(ay, require=require)):
+            async def manager_cmd(dan):
+                if not allow_all and not (await admin_check(dan, require=require)):
                     return
-                if not allow_pm and ay.is_private:
+                if not allow_pm and dan.is_private:
                     return
                 try:
-                    await dec(ay)
+                    await dec(dan)
                 except Exception as er:
                     if chat := udB.get_key("MANAGER_LOG"):
-                        text = f"**#MANAGER_LOG\n\nChat:** `{get_display_name(ay.chat)}` `{ay.chat_id}`"
-                        text += f"\n**Replied :** `{ay.is_reply}`\n**Command :** {ay.text}\n\n**Error :** `{er}`"
+                        text = f"**#MANAGER_LOG\n\nChat:** `{get_displdan_name(dan.chat)}` `{dan.chat_id}`"
+                        text += f"\n**Replied :** `{dan.is_reply}`\n**Command :** {dan.text}\n\n**Error :** `{er}`"
                         try:
                             return await asst.send_message(
                                 chat, text, link_preview=False
                             )
                         except Exception as er:
                             LOGS.exception(er)
-                    LOGS.info(f"• MANAGER [{ay.chat_id}]:")
+                    LOGS.info(f"• MANAGER [{dan.chat_id}]:")
                     LOGS.exception(er)
 
             if pattern:
