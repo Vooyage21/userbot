@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 """
 ✘ **Bantuan Untuk Music**
@@ -61,11 +61,11 @@
 import os
 import re
 
-from Ayra.dB.vc_sudos import *
-from Ayra.fns.helper import *
-from Ayra.fns.info import *
-from Ayra.fns.misc import *
-from Ayra.fns.tools import *
+from dante.dB.vc_sudos import *
+from dante.fns.helper import *
+from dante.fns.info import *
+from dante.fns.misc import *
+from dante.fns.tools import *
 from pytgcalls.exceptions import NotConnectedError
 from telethon.errors.rpcerrorlist import (ChatSendMediaForbiddenError,
                                           MessageIdInvalidError)
