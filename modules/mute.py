@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Mute**
 
@@ -19,16 +19,16 @@
 ๏ **Perintah:** `undmute` <balas pesan/berikan username>
 ◉ **Keterangan:** Suarakan pengguna yang dibisukan dalam obrolan saat ini.
 """
-from Ayra.dB.mute_db import is_muted, mute, unmute
-from Ayra.fns.admins import ban_time
+from dante.dB.mute_db import is_muted, mute, unmute
+from dante.fns.admins import ban_time
 from telethon import events
 from telethon.utils import get_display_name
 
-from . import asst, ayra_bot, ayra_cmd, eod, get_string, inline_mention, DEVS
-from Ayra.kynan import register
+from . import asst, dante_bot, dante_cmd, eod, get_string, inline_mention, DEVS
+from dante.kynan import register
 
 
-@ayra_bot.on(events.NewMessage(incoming=True))
+@dante_bot.on(events.NewMessage(incoming=True))
 async def watcher(event):
     if is_muted(event.chat_id, event.sender_id):
         await event.delete()
@@ -36,7 +36,7 @@ async def watcher(event):
         await event.delete()
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[Dd][m][u][t][e]( (.*)|$)",
 )
 @register(incoming=True, pattern=r"^\[Dd][m][u][t][e]( (.*)|$)", from_users=DEVS)
@@ -50,7 +50,7 @@ async def startmute(event):
     elif event.reply_to_msg_id:
         reply = await event.get_reply_message()
         userid = reply.sender_id
-        if reply.out or userid in [ayra_bot.me.id, asst.me.id]:
+        if reply.out or userid in [dante_bot.me.id, asst.me.id]:
             return await xx.eor(
                 "`Anda tidak dapat membisukan diri sendiri atau bot asisten Anda.`"
             )
@@ -70,7 +70,7 @@ async def startmute(event):
     await xx.eor("`Berhasil dibisukan...`", time=3)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[uU][n][d][m][u][t][e]( (.*)|$)",
 )
 @register(incoming=True, pattern=r"^\[uU][n][d][m][u][t][e]( (.*)|$)", from_users=DEVS)
@@ -93,7 +93,7 @@ async def endmute(event):
     await xx.eor("`Berhasil disuarakan...`", time=3)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="tmute",
     groups_only=True,
     manager=True,
@@ -119,7 +119,7 @@ async def _(e):
         name = (await e.client.get_entity(userid)).first_name
     else:
         return await xx.eor(get_string("tban_1"), time=3)
-    if userid == ayra_bot.uid:
+    if userid == dante_bot.uid:
         return await xx.eor("`Aku tidak bisa membungkam diriku sendiri.`", time=3)
     try:
         bun = ban_time(tme)
@@ -138,7 +138,7 @@ async def _(e):
         await xx.eor(f"`{m}`", time=5)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[Uu][n][m][u][t][e]( (.*)|$)",
     admins_only=True,
     manager=True,
@@ -172,7 +172,7 @@ async def _(e):
         await xx.eor(f"`{m}`", time=5)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[mM][u][t][e]( (.*)|$)",
     admins_only=True,
     manager=True,
@@ -193,7 +193,7 @@ async def _(e):
             return await xx.edit(str(x))
     else:
         return await xx.eor(get_string("tban_1"), time=3)
-    if userid == ayra_bot.uid:
+    if userid == dante_bot.uid:
         return await xx.eor("`Aku tidak bisa membungkam diriku sendiri.`", time=3)
     try:
         await e.client.edit_permissions(
