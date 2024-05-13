@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Tag All**
 
@@ -23,7 +23,7 @@ class FlagContainer:
     is_active = False
 
 
-@ayra_cmd(pattern="mention(?: |$)(.*)")
+@dante_cmd(pattern="mention(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -38,13 +38,13 @@ async def _(event):
     )
 
 
-@ayra_cmd(pattern="(b|B)atal(?: |$)")
+@dante_cmd(pattern="(b|B)atal(?: |$)")
 async def cancel_all(event):
     FlagContainer.is_active = False
     await event.reply("✅ Berhasil membatalkan tagall.")
 
 
-@ayra_cmd(pattern="[aA][lL][lL](?: |$)(.*)")
+@dante_cmd(pattern="[aA][lL][lL](?: |$)(.*)")
 async def _(event):
     if event.fwd_from or FlagContainer.is_active:
         return
