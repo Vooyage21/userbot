@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Info**
 
@@ -25,7 +25,7 @@ try:
 except ImportError:
     Image = None
 
-from Ayra.dB.gban_mute_db import is_gbanned
+from dante.dB.gban_mute_db import is_gbanned
 
 try:
     from telegraph import upload_file as uf
@@ -40,7 +40,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import Channel, Chat, User
 from telethon.utils import get_peer_id
 
-from . import (async_searcher, ayra_cmd, eor, get_chat_info, get_string,
+from . import (async_searcher, dante_cmd, eor, get_chat_info, get_string,
                inline_mention)
 
 # =================================================================#
@@ -50,7 +50,7 @@ TMP_DOWNLOAD_DIRECTORY = "resources/downloads/"
 _copied_msg = {}
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(S|s)tats$",
 )
 async def stats(
@@ -125,7 +125,7 @@ async def stats(
     await ok.edit(response)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[iI][n][f][o]( (.*)|$)",
     manager=True,
 )
@@ -226,7 +226,7 @@ async def _(event):
     await xx.delete()
 
 
-@ayra_cmd(pattern="[iI][p][i][n][f][o]( (.*)|$)")
+@dante_cmd(pattern="[iI][p][i][n][f][o]( (.*)|$)")
 async def ipinfo(event):
     ip = event.text.split()
     ipaddr = ""
