@@ -20,10 +20,10 @@
 
 from time import sleep
 
-from . import ayra_cmd
+from . import dante_cmd
 
 
-@ayra_cmd(outgoing=True, pattern=r"^(n|N)gentot(?: |$)(.*)")
+@dante_cmd(outgoing=True, pattern=r"^(n|N)gentot(?: |$)(.*)")
 async def _(event):
     await event.eor("**WOYY NGENTOD!!**")
     sleep(1)
@@ -49,7 +49,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(outgoing=True, pattern=r"^[gG][oO][bB][lL[oO][kK](g|G)blk(?: |$)(.*)")
+@dante_cmd(outgoing=True, pattern=r"^[gG][oO][bB][lL[oO][kK](g|G)blk(?: |$)(.*)")
 async def _(event):
     await event.eor("**WOYY GOBLOK!!**")
     sleep(1)
@@ -75,7 +75,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(outgoing=True, pattern=r"^(n|N)gatain(?: |$)(.*)")
+@dante_cmd(outgoing=True, pattern=r"^(n|N)gatain(?: |$)(.*)")
 async def _(event):
     await event.eor("**BABI!!**")
     sleep(1)
@@ -101,7 +101,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(outgoing=True, pattern=r"^(y|Y)atim(?: |$)(.*)")
+@dante_cmd(outgoing=True, pattern=r"^(y|Y)atim(?: |$)(.*)")
 async def _(event):
     await event.eor("`Hai Anak Kontol 🙈, Jangan Lupa Makan Yaa`")
     sleep(1)
@@ -127,7 +127,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(outgoing=True, pattern=r"^[kK][nN][tT][lL](?: |$)(.*)")
+@dante_cmd(outgoing=True, pattern=r"^[kK][nN][tT][lL](?: |$)(.*)")
 async def _(event):
     await event.eor("**KONTOLL**")
     sleep(1.5)
