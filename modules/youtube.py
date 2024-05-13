@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Youtube**
 
@@ -28,7 +28,7 @@ def run_sync(func, *args, **kwargs):
     return get_event_loop().run_in_executor(None, partial(func, *args, **kwargs))
 
 
-@ayra_cmd(pattern="(v|V)ideo( (.*)|$)")
+@dante_cmd(pattern="(v|V)ideo( (.*)|$)")
 async def yt_video(e):
     infomsg = await e.eor("`Processing...`")
     try:
@@ -73,7 +73,7 @@ async def yt_video(e):
         file_name=title,
         duration=duration,
         supports_streaming=True,
-        caption=f'**💡 Informasi** {"video"}\n\n**🏷 Nama:** {title}\n**🧭 Durasi:** {duration}\n**👀 Dilihat:** {views}\n**📢 Channel:** {channel}\n**Upload By: {ayra_bot.full_name}**',
+        caption=f'**💡 Informasi** {"video"}\n\n**🏷 Nama:** {title}\n**🧭 Durasi:** {duration}\n**👀 Dilihat:** {views}\n**📢 Channel:** {channel}\n**Upload By: {dante_bot.full_name}**',
         reply_to=e.reply_to_msg_id,
     )
     await infomsg.delete()
@@ -82,7 +82,7 @@ async def yt_video(e):
             os.remove(files)
 
 
-@ayra_cmd(pattern="(s|S)ong( (.*)|$)")
+@dante_cmd(pattern="(s|S)ong( (.*)|$)")
 async def yt_audio(e):
     infomsg = await e.eor("`Processing...`")
     try:
@@ -126,7 +126,7 @@ async def yt_audio(e):
         thumb=thumbnail,
         file_name=title,
         duration=duration,
-        caption=f'**💡 Informasi** {"Audio"}\n\n**🏷 Nama:** {title}\n**🧭 Durasi:** {duration}\n**👀 Dilihat:** {views}\n**📢 Channel:** {channel}\n**Upload By: {ayra_bot.full_name}**',
+        caption=f'**💡 Informasi** {"Audio"}\n\n**🏷 Nama:** {title}\n**🧭 Durasi:** {duration}\n**👀 Dilihat:** {views}\n**📢 Channel:** {channel}\n**Upload By: {dante_bot.full_name}**',
         reply_to=e.reply_to_msg_id,
     )
     await infomsg.delete()
