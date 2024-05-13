@@ -11,7 +11,7 @@ import requests
 from . import *
 
 
-@ayra_cmd(pattern="adzan(?:\\s|$)([\\s\\S]*)")
+@dante_cmd(pattern="adzan(?:\\s|$)([\\s\\S]*)")
 async def cek(event):
     LOKASI = event.pattern_match.group(1)
     if not LOKASI:
