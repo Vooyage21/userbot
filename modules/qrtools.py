@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk QR Tools**
 
@@ -19,7 +19,7 @@
 """
 import os
 
-from Ayra import AyConfig
+from dante import danConfig
 
 try:
     import cv2
@@ -31,10 +31,10 @@ from PIL import Image
 from telethon.tl.types import MessageMediaDocument as doc
 from telethon.tl.types import MessageMediaPhoto as photu
 
-from . import ayra_bot, ayra_cmd, check_filename, get_string
+from . import dante_bot, dante_cmd, check_filename, get_string
 
 
-@ayra_cmd(pattern="(q|Q)rcode( (.*)|$)")
+@dante_cmd(pattern="(q|Q)rcode( (.*)|$)")
 async def cd(e):
     reply = await e.get_reply_message()
     msg = e.pattern_match.group(1).strip()
@@ -45,8 +45,8 @@ async def cd(e):
     default, cimg = AyConfig.thumb, None
     if reply and (reply.sticker or reply.photo):
         cimg = await reply.download_media()
-    elif ayra_bot.me.photo and not ayra_bot.me.photo.has_video:
-        cimg = await e.client.get_profile_photos(ayra_bot.uid, limit=1)[0]
+    elif dante_bot.me.photo and not dante_bot.me.photo.has_video:
+        cimg = await e.client.get_profile_photos(dante_bot.uid, limit=1)[0]
 
     kk = await e.eor(get_string("com_1"))
     img = cimg or default
@@ -67,7 +67,7 @@ async def cd(e):
         os.remove(cimg)
 
 
-@ayra_cmd(pattern="(A|a)ddqr( (.*)|$)")
+@dante_cmd(pattern="(A|a)ddqr( (.*)|$)")
 async def qrwater(e):
     msg = e.pattern_match.group(1).strip()
     r = await e.get_reply_message()
@@ -91,7 +91,7 @@ async def qrwater(e):
     os.remove(dl)
 
 
-@ayra_cmd(pattern="(q|Q)rdecode$")
+@dante_cmd(pattern="(q|Q)rdecode$")
 async def decod(e):
     r = await e.get_reply_message()
     if not (r and r.media):
