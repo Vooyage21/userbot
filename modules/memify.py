@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Memify**
 
@@ -21,7 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 from . import *
 
 
-@ayra_cmd(pattern=r"mmf ?(.*)")
+@dante_cmd(pattern=r"mmf ?(.*)")
 async def handler(event):
     if event.fwd_from:
         return
