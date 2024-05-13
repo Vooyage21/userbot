@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Search**
 
@@ -34,7 +34,7 @@ from telethon.tl.types import DocumentAttributeAudio
 from . import *
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="github (.*)",
 )
 async def gitsearch(event):
@@ -75,7 +75,7 @@ async def gitsearch(event):
     await event.delete()
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="google( (.*)|$)",
     manager=True,
 )
@@ -97,7 +97,7 @@ async def google(event):
     await x.eor(omk, link_preview=False)
 
 
-@ayra_cmd(pattern="gimg( (.*)|$)")
+@dante_cmd(pattern="gimg( (.*)|$)")
 async def goimg(event):
     query = event.pattern_match.group(1).strip()
     if not query:
@@ -119,7 +119,7 @@ async def goimg(event):
     await nn.delete()
 
 
-@ayra_cmd(pattern="reverse$")
+@dante_cmd(pattern="reverse$")
 async def reverse(event):
     reply = await event.get_reply_message()
     if not reply:
@@ -161,7 +161,7 @@ async def reverse(event):
     os.remove(file)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="saavn( (.*)|$)",
 )
 async def siesace(e):
