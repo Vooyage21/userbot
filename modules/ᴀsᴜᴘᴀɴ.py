@@ -35,7 +35,7 @@ from telethon.tl.functions.messages import *
 from . import *
 
 
-@ayra_cmd(pattern="[Aa][s][u][p][a][n]$")
+@dante_cmd(pattern="[Aa][s][u][p][a][n]$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
@@ -56,7 +56,7 @@ async def _(event):
         await xx.edit("**Tidak bisa menemukan video asupan.**")
 
 
-@ayra_cmd(pattern="[Bb][o][k][e][p]$")
+@dante_cmd(pattern="[Bb][o][k][e][p]$")
 async def _(event):
     if event.chat_id in NOSPAM_CHAT:
         return await eor(event, "**Perintah ini Dilarang digunakan di Group ini**")
@@ -79,13 +79,13 @@ async def _(event):
     except Exception:
         await xx.edit("**Tidak bisa menemukan bokep.**")
     #try:
-        #await ayra_bot(LeaveChannelRequest(-1001867672427))
+        #await dante_bot(LeaveChannelRequest(-1001867672427))
     #except BaseException:
         #pass
     
 
 
-@ayra_cmd(pattern="[Aa][y][a][n][g]$")
+@dante_cmd(pattern="[Aa][y][a][n][g]$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
@@ -106,7 +106,7 @@ async def _(event):
         await xx.edit("**Tidak bisa menemukan ayang.**")
 
 
-@ayra_cmd(pattern="(ppcp|Ppcp)$")
+@dante_cmd(pattern="(ppcp|Ppcp)$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
@@ -127,7 +127,7 @@ async def _(event):
         await xx.edit("**Tidak bisa menemukan ppcp.**")
 
 
-@ayra_cmd(pattern="(Ppcp2|ppcp2)$")
+@dante_cmd(pattern="(Ppcp2|ppcp2)$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
@@ -148,7 +148,7 @@ async def _(event):
         await xx.edit("**Tidak bisa menemukan ppcp2.**")
 
 
-@ayra_cmd(pattern="(Anime|anime)$")
+@dante_cmd(pattern="(Anime|anime)$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
@@ -169,7 +169,7 @@ async def _(event):
         await xx.edit("**Tidak bisa menemukan anime.**")
 
 
-@ayra_cmd(pattern="(anime2|Anime2)$")
+@dante_cmd(pattern="(anime2|Anime2)$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
@@ -190,7 +190,7 @@ async def _(event):
         await xx.edit("**Tidak bisa menemukan anime2.**")
 
 
-@ayra_cmd(pattern="(pap|Pap)$")
+@dante_cmd(pattern="(pap|Pap)$")
 async def _(event):
     xx = await eor(event, "`Tunggu Sebentar...`")
     try:
