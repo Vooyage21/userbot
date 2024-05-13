@@ -7,7 +7,7 @@
 
 import re
 
-from . import (AyConfig, Button, callback, get_back_button, get_languages,
+from . import (danConfig, Button, callback, get_back_button, get_languages,
                get_string, udB)
 
 
@@ -32,7 +32,7 @@ async def setlang(event):
 async def settt(event):
     lang = event.data_match.group(1).decode("UTF-8")
     languages = get_languages()
-    AyConfig.lang = lang
+    danConfig.lang = lang
     udB.del_key("language") if lang == "id" else udB.set_key("language", lang)
     await event.edit(
         f"Bahasa Anda telah disetel ke {languages[lang]['natively']} [{lang}].",
