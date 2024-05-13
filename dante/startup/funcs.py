@@ -35,7 +35,7 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_peer_id
 
-from .. import LOGS, AyConfig
+from .. import LOGS, danConfig
 from ..fns.helper import download_file, inline_mention, updater
 
 db_url = 0
@@ -110,13 +110,13 @@ async def startup_stuff():
     CT = udB.get_key("CUSTOM_THUMBNAIL")
     if CT:
         path = "resources/extras/thumbnail.jpg"
-        AyConfig.thumb = path
+        danConfig.thumb = path
         try:
             await download_file(CT, path)
         except Exception as er:
             LOGS.exception(er)
     elif CT is False:
-        AyConfig.thumb = None
+        danConfig.thumb = None
     GT = udB.get_key("GDRIVE_AUTH_TOKEN")
     if GT:
         with open("resources/auth/gdrive_creds.json", "w") as t_file:
