@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk System**
 
@@ -44,7 +44,7 @@ import math
 import shutil
 from random import choice
 
-from Ayra.fns import some_random_headers
+from dante.fns import some_random_headers
 
 from . import *
 from . import humanbytes as hb
@@ -80,7 +80,7 @@ FilesEMOJI = {
 }
 
 
-@ayra_cmd(pattern="(u|U)sage")
+@dante_cmd(pattern="(u|U)sage")
 async def usage_finder(event):
     x = await event.eor(get_string("com_1"))
     try:
@@ -217,7 +217,7 @@ async def get_full_usage():
     return her + "\n\n" + rd
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[lL][sS]( (.*)|$)",
 )
 async def _(e):
