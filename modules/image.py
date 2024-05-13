@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Image**
 
@@ -69,7 +69,7 @@ from telethon.errors.rpcerrorlist import (ChatSendMediaForbiddenError,
 from . import *
 
 
-@ayra_cmd(pattern="(C|c)olor$")
+@dante_cmd(pattern="(C|c)olor$")
 async def _(event):
     reply = await event.get_reply_message()
     if not (reply and reply.media):
@@ -78,17 +78,17 @@ async def _(event):
     image = await reply.download_media()
     img = cv2.VideoCapture(image)
     ret, frame = img.read()
-    cv2.imwrite("ayra.jpg", frame)
+    cv2.imwrite("dante.jpg", frame)
     if udB.get_key("DEEP_API"):
         key = Redis("DEEP_API")
     else:
         key = "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
     r = requests.post(
         "https://api.deepai.org/api/colorizer",
-        files={"image": open("ayra.jpg", "rb")},
+        files={"image": open("dante.jpg", "rb")},
         headers={"api-key": key},
     )
-    os.remove("ayra.jpg")
+    os.remove("dante.jpg")
     os.remove(image)
     if "status" in r.json():
         return await event.edit(
@@ -99,55 +99,55 @@ async def _(event):
     await xx.delete()
 
 
-@ayra_cmd(pattern="(grey|blur|negative|danger|mirror|quad|sketch|flip|toon)$")
-async def ayra_tools(event):
+@dante_cmd(pattern="(grey|blur|negative|danger|mirror|quad|sketch|flip|toon)$")
+async def dante_tools(event):
     match = event.pattern_match.group(1)
     ureply = await event.get_reply_message()
     if not (ureply and (ureply.media)):
         await event.eor(get_string("cvt_3"))
         return
-    ayra = await ureply.download_media()
+    dante = await ureply.download_media()
     xx = await event.eor(get_string("com_1"))
-    if ayra.endswith(".tgs"):
+    if dante.endswith(".tgs"):
         xx = await xx.edit(get_string("sts_9"))
-    file = await con.convert(ayra, convert_to="png", outname="ayra")
-    ayra = cv2.imread(file)
+    file = await con.convert(dante, convert_to="png", outname="dante")
+    dante = cv2.imread(file)
     if match == "grey":
-        ayra = cv2.cvtColor(ayra, cv2.COLOR_BGR2GRAY)
+        dante = cv2.cvtColor(dante, cv2.COLOR_BGR2GRAY)
     elif match == "blur":
-        ayra = cv2.GaussianBlur(ayra, (35, 35), 0)
+        dante = cv2.GaussianBlur(dante, (35, 35), 0)
     elif match == "negative":
-        ayra = cv2.bitwise_not(ayra)
+        dante = cv2.bitwise_not(dante)
     elif match == "danger":
-        dan = cv2.cvtColor(ayra, cv2.COLOR_BGR2RGB)
-        ayra = cv2.cvtColor(dan, cv2.COLOR_HSV2BGR)
+        dan = cv2.cvtColor(dante, cv2.COLOR_BGR2RGB)
+        dante = cv2.cvtColor(dan, cv2.COLOR_HSV2BGR)
     elif match == "mirror":
-        ish = cv2.flip(ayra, 1)
-        ayra = cv2.hconcat([ayra, ish])
+        ish = cv2.flip(dante, 1)
+        dante = cv2.hconcat([dante, ish])
     elif match == "flip":
-        trn = cv2.flip(ayra, 1)
+        trn = cv2.flip(dante, 1)
         ish = cv2.rotate(trn, cv2.ROTATE_180)
-        ayra = cv2.vconcat([ayra, ish])
+        dante = cv2.vconcat([dante, ish])
     elif match == "quad":
-        ayra = cv2.imread(file)
-        roid = cv2.flip(ayra, 1)
-        mici = cv2.hconcat([ayra, roid])
+        dante = cv2.imread(file)
+        roid = cv2.flip(dante, 1)
+        mici = cv2.hconcat([dante, roid])
         fr = cv2.flip(mici, 1)
         trn = cv2.rotate(fr, cv2.ROTATE_180)
-        ayra = cv2.vconcat([mici, trn])
+        dante = cv2.vconcat([mici, trn])
     elif match == "sketch":
-        gray_image = cv2.cvtColor(ayra, cv2.COLOR_BGR2GRAY)
+        gray_image = cv2.cvtColor(dante, cv2.COLOR_BGR2GRAY)
         inverted_gray_image = 255 - gray_image
         blurred_img = cv2.GaussianBlur(inverted_gray_image, (21, 21), 0)
         inverted_blurred_img = 255 - blurred_img
-        ayra = cv2.divide(gray_image, inverted_blurred_img, scale=256.0)
+        dante = cv2.divide(gray_image, inverted_blurred_img, scale=256.0)
     elif match == "toon":
-        height, width, _ = ayra.shape
+        height, width, _ = dante.shape
         samples = np.zeros([height * width, 3], dtype=np.float32)
         count = 0
         for x in range(height):
             for y in range(width):
-                samples[count] = ayra[x][y]
+                samples[count] = dante[x][y]
                 count += 1
         _, labels, centers = cv2.kmeans(
             samples,
@@ -159,52 +159,52 @@ async def ayra_tools(event):
         )
         centers = np.uint8(centers)
         ish = centers[labels.flatten()]
-        ayra = ish.reshape(ayra.shape)
-    cv2.imwrite("ayra.jpg", ayra)
+        dante = ish.reshape(dante.shape)
+    cv2.imwrite("dante.jpg", dante)
     await event.client.send_file(
         event.chat_id,
-        "ayra.jpg",
+        "dante.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ayra.jpg")
+    os.remove("dante.jpg")
     os.remove(file)
 
 
-@ayra_cmd(pattern="csample (.*)")
-async def sampl(ayra):
-    if color := ayra.pattern_match.group(1).strip():
+@dante_cmd(pattern="csample (.*)")
+async def sampl(dante):
+    if color := dante.pattern_match.group(1).strip():
         img = Image.new("RGB", (200, 100), f"{color}")
         img.save("csample.png")
         try:
             try:
-                await ayra.delete()
-                await ayra.client.send_message(
-                    ayra.chat_id, f"Contoh Warna untuk `{color}` !", file="csample.png"
+                await dante.delete()
+                await dante.client.send_message(
+                    dante.chat_id, f"Contoh Warna untuk `{color}` !", file="csample.png"
                 )
             except MessageDeleteForbiddenError:
-                await ayra.reply(f"Contoh Warna untuk `{color}` !", file="csample.png")
+                await dante.reply(f"Contoh Warna untuk `{color}` !", file="csample.png")
         except ChatSendMediaForbiddenError:
-            await ayra.eor("Hmm! Mengirim Media dinonaktifkan di sini!")
+            await dante.eor("Hmm! Mengirim Media dinonaktifkan di sini!")
 
     else:
-        await ayra.eor("Nama Warna/Kode Hex salah!")
+        await dante.eor("Nama Warna/Kode Hex salah!")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="blue$",
 )
-async def ayra(event):
+async def dante(event):
     ureply = await event.get_reply_message()
     xx = await event.eor("`...`")
     if not (ureply and (ureply.media)):
         await xx.edit(get_string("cvt_3"))
         return
-    ayra = await ureply.download_media()
-    if ayra.endswith(".tgs"):
+    dante = await ureply.download_media()
+    if dante.endswith(".tgs"):
         await xx.edit(get_string("sts_9"))
-    file = await con.convert(ayra, convert_to="png", outname="ayra")
+    file = await con.convert(dante, convert_to="png", outname="dante")
     got = upf(file)
     lnk = f"https://graph.org{got[0]}"
     r = await async_searcher(
@@ -213,22 +213,22 @@ async def ayra(event):
     ms = r.get("message")
     if not r["success"]:
         return await xx.edit(ms)
-    await download_file(ms, "ayra.png")
-    img = Image.open("ayra.png").convert("RGB")
-    img.save("ayra.webp", "webp")
+    await download_file(ms, "dante.png")
+    img = Image.open("dante.png").convert("RGB")
+    img.save("dante.webp", "webp")
     await event.client.send_file(
         event.chat_id,
-        "ayra.webp",
+        "dante.webp",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ayra.png")
-    os.remove("ayra.webp")
-    os.remove(ayra)
+    os.remove("dante.png")
+    os.remove("dante.webp")
+    os.remove(dante)
 
 
-@ayra_cmd(pattern="(b|B)order( (.*)|$)")
+@dante_cmd(pattern="(b|B)order( (.*)|$)")
 async def ok(event):
     hm = await event.get_reply_message()
     if not (hm and (hm.photo or hm.sticker)):
@@ -256,7 +256,7 @@ async def ok(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="(P|p)ixelator( (.*)|$)")
+@dante_cmd(pattern="(P|p)ixelator( (.*)|$)")
 async def pixelator(event):
     reply_message = await event.get_reply_message()
     if not (reply_message and reply_message.photo):
@@ -274,13 +274,13 @@ async def pixelator(event):
     temp = cv2.resize(input_, (w, h), interpolation=cv2.INTER_LINEAR)
     output = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
     cv2.imwrite("output.jpg", output)
-    await msg.respond("Pixelated by Ayra", file="output.jpg")
+    await msg.respond("Pixelated by dante", file="output.jpg")
     await msg.delete()
     os.remove("output.jpg")
     os.remove(image)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(R|r)mbg($| (.*))",
 )
 async def abs_rmbg(event):
@@ -320,7 +320,7 @@ async def abs_rmbg(event):
     zz = Image.open(out)
     if zz.mode != "RGB":
         zz.convert("RGB")
-    wbn = check_filename("ayra-rmbg.webp")
+    wbn = check_filename("dante-rmbg.webp")
     zz.save(wbn, "webp")
     await event.client.send_file(
         event.chat_id,
