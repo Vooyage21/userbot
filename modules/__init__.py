@@ -31,7 +31,7 @@ from dante.fns.info import *
 from dante.fns.misc import *
 from dante.fns.tools import *
 from dante.fns.ytdl import get_videos_link
-from dante.kynan import *
+from dante.dante import *
 from dante.version import __version__ as danteVer
 from dante.version import dante_version
 from pytgcalls import GroupCallFactory
