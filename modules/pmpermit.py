@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk PM Permit**
 
@@ -33,9 +33,9 @@ import asyncio
 import re
 from os import remove
 
-from Ayra.dB import DEVS
-from Ayra.dB.logusers_db import *
-from Ayra.dB.pmpermit_db import *
+from dante.dB import DEVS
+from dante.dB.logusers_db import *
+from dante.dB.pmpermit_db import *
 
 try:
     from tabulate import tabulate
@@ -112,7 +112,7 @@ async def delete_pm_warn_msgs(chat: int):
 
 if udB.get_key("PMLOG"):
 
-    @ayra_cmd(
+    @dante_cmd(
         pattern="(l|L)ogpm$",
     )
     async def _(e):
@@ -124,7 +124,7 @@ if udB.get_key("PMLOG"):
         nolog_user(e.chat_id)
         return await e.eor("`Now I Will log msgs from here.`", time=3)
 
-    @ayra_cmd(
+    @dante_cmd(
         pattern="(n|N)ologpm$",
     )
     async def _(e):
@@ -136,7 +136,7 @@ if udB.get_key("PMLOG"):
         log_user(e.chat_id)
         return await e.eor("`Now I Won't log msgs from here.`", time=3)
 
-    @ayra_bot.on(
+    @dante_bot.on(
         events.NewMessage(
             incoming=True,
             func=lambda e: e.is_private,
@@ -152,7 +152,7 @@ if udB.get_key("PMLOG"):
 if udB.get_key("PMSETTING"):
     if udB.get_key("AUTOAPPROVE"):
 
-        @ayra_bot.on(
+        @dante_bot.on(
             events.NewMessage(
                 outgoing=True,
                 func=lambda e: e.is_private and e.out and not e.text.startswith(HNDLR),
@@ -167,7 +167,7 @@ if udB.get_key("PMSETTING"):
             approve_user(miss.id)
             await delete_pm_warn_msgs(miss.id)
             try:
-                await ayra_bot.edit_folder(miss.id, folder=0)
+                await dante_bot.edit_folder(miss.id, folder=0)
             except BaseException:
                 pass
             try:
@@ -186,7 +186,7 @@ if udB.get_key("PMSETTING"):
             except MessageNotModifiedError:
                 pass
 
-    @ayra_bot.on(
+    @dante_bot.on(
         events.NewMessage(
             incoming=True,
             func=lambda e: e.is_private
@@ -203,7 +203,7 @@ if udB.get_key("PMSETTING"):
         if not is_approved(user.id) and event.text != UND:
             if Redis("MOVE_ARCHIVE"):
                 try:
-                    await ayra_bot.edit_folder(user.id, folder=1)
+                    await dante_bot.edit_folder(user.id, folder=1)
                 except BaseException as er:
                     LOGS.info(er)
             if event.media and not udB.get_key("DISABLE_PMDEL"):
@@ -255,7 +255,7 @@ if udB.get_key("PMSETTING"):
                     )
                     update_pm(user.id, message_, wrn)
                     if inline_pm:
-                        results = await ayra_bot.inline_query(my_bot, f"ip_{user.id}")
+                        results = await dante_bot.inline_query(my_bot, f"ip_{user.id}")
                         try:
                             _to_delete[user.id] = await results[0].click(
                                 user.id, reply_to=event.id, hide_via=True
@@ -263,13 +263,13 @@ if udB.get_key("PMSETTING"):
                         except Exception as e:
                             LOGS.info(str(e))
                     elif PMPIC:
-                        _to_delete[user.id] = await ayra_bot.send_file(
+                        _to_delete[user.id] = await dante_bot.send_file(
                             user.id,
                             PMPIC,
                             caption=message_,
                         )
                     else:
-                        _to_delete[user.id] = await ayra_bot.send_message(
+                        _to_delete[user.id] = await dante_bot.send_message(
                             user.id, message_
                         )
 
@@ -289,7 +289,7 @@ if udB.get_key("PMSETTING"):
                     update_pm(user.id, message_, wrn)
                     if inline_pm:
                         try:
-                            results = await ayra_bot.inline_query(
+                            results = await dante_bot.inline_query(
                                 my_bot, f"ip_{user.id}"
                             )
                             _to_delete[user.id] = await results[0].click(
@@ -298,13 +298,13 @@ if udB.get_key("PMSETTING"):
                         except Exception as e:
                             LOGS.info(str(e))
                     elif PMPIC:
-                        _to_delete[user.id] = await ayra_bot.send_file(
+                        _to_delete[user.id] = await dante_bot.send_file(
                             user.id,
                             PMPIC,
                             caption=message_,
                         )
                     else:
-                        _to_delete[user.id] = await ayra_bot.send_message(
+                        _to_delete[user.id] = await dante_bot.send_message(
                             user.id, message_
                         )
                 LASTMSG.update({user.id: event.text})
@@ -324,20 +324,20 @@ if udB.get_key("PMSETTING"):
                 update_pm(user.id, message_, wrn)
                 if inline_pm:
                     try:
-                        results = await ayra_bot.inline_query(my_bot, f"ip_{user.id}")
+                        results = await dante_bot.inline_query(my_bot, f"ip_{user.id}")
                         _to_delete[user.id] = await results[0].click(
                             user.id, reply_to=event.id, hide_via=True
                         )
                     except Exception as e:
                         LOGS.info(str(e))
                 elif PMPIC:
-                    _to_delete[user.id] = await ayra_bot.send_file(
+                    _to_delete[user.id] = await dante_bot.send_file(
                         user.id,
                         PMPIC,
                         caption=message_,
                     )
                 else:
-                    _to_delete[user.id] = await ayra_bot.send_message(user.id, message_)
+                    _to_delete[user.id] = await dante_bot.send_message(user.id, message_)
             LASTMSG.update({user.id: event.text})
             if user.id not in COUNT_PM:
                 COUNT_PM.update({user.id: 1})
@@ -355,15 +355,15 @@ if udB.get_key("PMSETTING"):
                         "PMPermit eror, tolong restart bot !!",
                     )
                     return LOGS.info("COUNT_PM is messed.")
-                await ayra_bot(BlockRequest(user.id))
-                await ayra_bot(ReportSpamRequest(peer=user.id))
+                await dante_bot(BlockRequest(user.id))
+                await dante_bot(ReportSpamRequest(peer=user.id))
                 await asst.edit_message(
                     int(udB.get_key("LOG_CHANNEL")),
                     _not_approved[user.id],
                     f"**{mention}** [`{user.id}`] Diblokir karena spamming.",
                 )
 
-    @ayra_cmd(pattern="(start|stop|clear)archive$", fullsudo=False)
+    @dante_cmd(pattern="(start|stop|clear)archive$", fullsudo=False)
     async def _(e):
         x = e.pattern_match.group(1).strip()
         if x == "start":
@@ -379,7 +379,7 @@ if udB.get_key("PMSETTING"):
             except Exception as mm:
                 await e.eor(str(mm), time=5)
 
-    @ayra_cmd(pattern="[oO][kK](?: |$)", fullsudo=False)
+    @dante_cmd(pattern="[oO][kK](?: |$)", fullsudo=False)
     async def approvepm(apprvpm):
         if apprvpm.reply_to_msg_id:
             user = (await apprvpm.get_reply_message()).sender
@@ -430,7 +430,7 @@ if udB.get_key("PMSETTING"):
         else:
             await apprvpm.eor("`Pengguna sudah Disetujui.`", time=5)
 
-    @ayra_cmd(pattern="[nN][oO](?: |$)", fullsudo=False)
+    @dante_cmd(pattern="[nN][oO](?: |$)", fullsudo=False)
     async def disapprovepm(e):
         if e.reply_to_msg_id:
             user = (await e.get_reply_message()).sender
@@ -481,7 +481,7 @@ if udB.get_key("PMSETTING"):
             )
 
 
-@ayra_cmd(pattern="(B|b)lock( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="(B|b)lock( (.*)|$)", fullsudo=False)
 async def blockpm(block):
     match = block.pattern_match.group(1).strip()
     if block.reply_to_msg_id:
@@ -524,7 +524,7 @@ async def blockpm(block):
         pass
 
 
-@ayra_cmd(pattern="unblock( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="unblock( (.*)|$)", fullsudo=False)
 async def unblockpm(event):
     match = event.pattern_match.group(1).strip()
     reply = await event.get_reply_message()
@@ -586,7 +586,7 @@ async def unblockpm(event):
         pass
 
 
-@ayra_cmd(pattern="(L|l)istok", owner=True)
+@dante_cmd(pattern="(L|l)istok", owner=True)
 async def list_approved(event):
     xx = await event.eor(get_string("com_1"))
     all = get_approved()
@@ -595,7 +595,7 @@ async def list_approved(event):
     users = []
     for i in all:
         try:
-            name = get_display_name(await ayra_bot.get_entity(i))
+            name = get_display_name(await dante_bot.get_entity(i))
         except BaseException:
             name = ""
         users.append([name.strip(), str(i)])
@@ -620,7 +620,7 @@ async def list_approved(event):
     re.compile(
         b"approve_(.*)",
     ),
-    from_users=[ayra_bot.uid],
+    from_users=[dante_bot.uid],
 )
 async def apr_in(event):
     uid = int(event.data_match.group(1).decode("UTF-8"))
@@ -629,11 +629,11 @@ async def apr_in(event):
     if not is_approved(uid):
         approve_user(uid)
         try:
-            await ayra_bot.edit_folder(uid, folder=0)
+            await dante_bot.edit_folder(uid, folder=0)
         except BaseException:
             pass
         try:
-            user = await ayra_bot.get_entity(uid)
+            user = await dante_bot.get_entity(uid)
         except BaseException:
             return await event.delete()
         await event.edit(
@@ -664,14 +664,14 @@ async def apr_in(event):
     re.compile(
         b"disapprove_(.*)",
     ),
-    from_users=[ayra_bot.uid],
+    from_users=[dante_bot.uid],
 )
 async def disapr_in(event):
     uid = int(event.data_match.group(1).decode("UTF-8"))
     if is_approved(uid):
         disapprove_user(uid)
         try:
-            user = await ayra_bot.get_entity(uid)
+            user = await dante_bot.get_entity(uid)
         except BaseException:
             return await event.delete()
         await event.edit(
@@ -701,16 +701,16 @@ async def disapr_in(event):
     re.compile(
         b"block_(.*)",
     ),
-    from_users=[ayra_bot.uid],
+    from_users=[dante_bot.uid],
 )
 async def blck_in(event):
     uid = int(event.data_match.group(1).decode("UTF-8"))
     try:
-        await ayra_bot(BlockRequest(uid))
+        await dante_bot(BlockRequest(uid))
     except BaseException:
         pass
     try:
-        user = await ayra_bot.get_entity(uid)
+        user = await dante_bot.get_entity(uid)
     except BaseException:
         return await event.delete()
     await event.edit(
@@ -725,16 +725,16 @@ async def blck_in(event):
     re.compile(
         b"unblock_(.*)",
     ),
-    from_users=[ayra_bot.uid],
+    from_users=[dante_bot.uid],
 )
 async def unblck_in(event):
     uid = int(event.data_match.group(1).decode("UTF-8"))
     try:
-        await ayra_bot(UnblockRequest(uid))
+        await dante_bot(UnblockRequest(uid))
     except BaseException:
         pass
     try:
-        user = await ayra_bot.get_entity(uid)
+        user = await dante_bot.get_entity(uid)
     except BaseException:
         return await event.delete()
     await event.edit(
@@ -751,7 +751,7 @@ async def ytfuxist(e):
         await e.answer("Deleted.")
         await e.delete()
     except BaseException:
-        await ayra_bot.delete_messages(e.chat_id, e.id)
+        await dante_bot.delete_messages(e.chat_id, e.id)
 
 
 @in_pattern(re.compile("ip_(.*)"), owner=True)
@@ -820,10 +820,10 @@ async def in_pm_ans(event):
                 content=cont,
             )
         ]
-    await event.answer(res, switch_pm="• Ayra •", switch_pm_param="start")
+    await event.answer(res, switch_pm="• dante •", switch_pm_param="start")
 
 
-@callback(re.compile("admin_only(.*)"), from_users=[ayra_bot.uid])
+@callback(re.compile("admin_only(.*)"), from_users=[dante_bot.uid])
 async def _admin_tools(event):
     chat = int(event.pattern_match.group(1).strip())
     await event.edit(
