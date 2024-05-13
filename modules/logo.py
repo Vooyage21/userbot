@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Logo**
 
@@ -20,13 +20,13 @@ try:
     from PIL import Image
 except ImportError:
     Image = None
-from Ayra.fns.misc import unsplashsearch
-from Ayra.fns.tools import LogoHelper
+from dante.fns.misc import unsplashsearch
+from dante.fns.tools import LogoHelper
 
 from . import *
 
 
-@ayra_cmd(pattern="[lL][o][g][o]( (.*)|$)")
+@dante_cmd(pattern="[lL][o][g][o]( (.*)|$)")
 async def logo_gen(event):
     xx = await event.eor(get_string("com_1"))
     name = event.pattern_match.group(1).strip()
