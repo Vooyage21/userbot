@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Translate**
 
@@ -24,12 +24,12 @@ try:
 except ImportError:
     WebShot = None
 
-from Ayra.fns.tools import translate
+from dante.fns.tools import translate
 
-from . import HNDLR, LOGS, ayra_cmd, eor
+from . import HNDLR, LOGS, dante_cmd, eor
 
 
-@ayra_cmd(pattern=r"^[tT][rR](?: |$)(.*)", manager=False)
+@dante_cmd(pattern=r"^[tT][rR](?: |$)(.*)", manager=False)
 async def _(event):
     input = event.pattern_match.group(1).strip().split(maxsplit=1)
     txt = input[1] if len(input) > 1 else None
