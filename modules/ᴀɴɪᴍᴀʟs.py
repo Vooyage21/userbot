@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Animals**
 
@@ -19,7 +19,7 @@ import requests
 from . import *
 
 
-@ayra_cmd(pattern="shibe$")
+@dante_cmd(pattern="shibe$")
 async def shibe(event):
     xx = await event.eor("`Processing...`")
     response = requests.get("https://shibe.online/api/shibes").json()
@@ -30,7 +30,7 @@ async def shibe(event):
     await xx.delete()
 
 
-@ayra_cmd(pattern="cat$")
+@dante_cmd(pattern="cat$")
 async def cats(event):
     xx = await event.eor("`Processing...`")
     response = requests.get("https://shibe.online/api/cats").json()
