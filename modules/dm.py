@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk DM**
 
@@ -14,10 +14,10 @@
 ◉ **Keterangan:** Teruskan pesan tersebut ke pengguna.
 """
 
-from . import ayra_cmd
+from . import dante_cmd
 
 
-@ayra_cmd(pattern="[dD][mM]( (.*)|$)", fullsudo=True)
+@dante_cmd(pattern="[dD][mM]( (.*)|$)", fullsudo=True)
 async def dm(e):
     if len(e.text.split()) <= 1:
         return await e.eor(
@@ -44,7 +44,7 @@ async def dm(e):
         await e.eor("Silakan ketik `help dm` untuk bantuan.", time=5)
 
 
-@ayra_cmd(pattern="send( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="send( (.*)|$)", fullsudo=False)
 async def _(e):
     message = e.pattern_match.group(1).strip()
     if not e.reply_to_msg_id:
