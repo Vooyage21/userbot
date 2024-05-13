@@ -475,8 +475,7 @@ def register(**args):
                     stdout, stderr = await process.communicate()
 
                     result = str(stdout.decode().strip()) + \
-
-                        str(stderr.decode().strip())
+                    str(stderr.decode().strip())
 
 
 
