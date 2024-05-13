@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Notes**
 
@@ -27,7 +27,7 @@ Kirim ke
 """
 import os
 
-from Ayra.dB.notes_db import *
+from dante.dB.notes_db import *
 from telegraph import upload_file as uf
 from telethon.utils import pack_bot_file_id
 
@@ -35,7 +35,7 @@ from . import *
 from ._inline import something
 
 
-@ayra_cmd(pattern="[sS][a][v][e]( (.*)|$)")
+@dante_cmd(pattern="[sS][a][v][e]( (.*)|$)")
 async def an(e):
     wrd = (e.pattern_match.group(1).strip()).lower()
     wt = await e.get_reply_message()
@@ -72,10 +72,10 @@ async def an(e):
             txt, btn = get_msg_button(wt.text)
         add_note(user, wrd, txt, None, btn)
     await e.eor(get_string("notes_2").format(wrd))
-    ayra_bot.add_handler(notes, events.NewMessage())
+    dante_bot.add_handler(notes, events.NewMessage())
 
 
-@ayra_cmd(pattern="[Rr][m]( (.*)|$)")
+@dante_cmd(pattern="[Rr][m]( (.*)|$)")
 async def rn(e):
     wrd = (e.pattern_match.group(1).strip()).lower()
     user = e.sender_id
@@ -85,7 +85,7 @@ async def rn(e):
     await e.eor(f"Selesai Catatan: `{wrd}` Dihapus.")
 
 
-@ayra_cmd(pattern="[Nn][o][t][e][s]")
+@dante_cmd(pattern="[Nn][o][t][e][s]")
 async def lsnote(e):
     user = e.sender_id
     if x := list_note(user):
@@ -94,7 +94,7 @@ async def lsnote(e):
     await e.eor("**Belum ada catatan**")
 
 
-@ayra_cmd(pattern="[Gg][e][t]( (.*)|$)")
+@dante_cmd(pattern="[Gg][e][t]( (.*)|$)")
 async def notes(e):
     user = e.sender_id
     wrd = (e.pattern_match.group(1).strip()).lower()
@@ -110,4 +110,4 @@ async def notes(e):
 
 
 if udB.get_key("NOTE"):
-    ayra_bot.add_handler(notes, events.NewMessage())
+    dante_bot.add_handler(notes, events.NewMessage())
