@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Variable**
 
@@ -35,7 +35,7 @@ from . import *
 load_dotenv(".env")
 
 
-@ayra_cmd(pattern="setdb( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="setdb( (.*)|$)", fullsudo=False)
 @register(incoming=True, from_users=DEVS, pattern=r"^setdb( (.*)|$)")
 async def _(event):
     match = event.pattern_match.group(1).strip()
@@ -56,7 +56,7 @@ async def _(event):
         await event.eor(get_string("com_7"))
 
 
-@ayra_cmd(pattern=r"setvar (\S+)\s+(\S+)")
+@dante_cmd(pattern=r"setvar (\S+)\s+(\S+)")
 async def setset(event):
     var_name = event.pattern_match.group(1)
     var_value = event.pattern_match.group(2).replace("'", "")
@@ -84,7 +84,7 @@ async def setset(event):
     await event.eor(f"Variabel {var_name} berhasil ditambahkan.")
 
 
-@ayra_cmd(pattern=r"delvar (\S+)")
+@dante_cmd(pattern=r"delvar (\S+)")
 
 async def deldel(event):
     var_name = event.pattern_match.group(1)
@@ -98,7 +98,7 @@ async def deldel(event):
     await event.eor(f"Variabel {var_name} berhasil dihapus.")
 
 
-@ayra_cmd(pattern="deldb( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="deldb( (.*)|$)", fullsudo=False)
 @register(incoming=True, from_users=DEVS, pattern=r"^deldb( (.*)|$)")
 async def _(event):
     key = event.pattern_match.group(1).strip()
@@ -119,7 +119,7 @@ async def _(event):
         await event.eor(get_string("com_7"))
 
 
-@ayra_cmd(pattern="[vV][a][r]($| (.*))", fullsudo=False)
+@dante_cmd(pattern="[vV][a][r]($| (.*))", fullsudo=False)
 @register(incoming=True, from_users=DEVS, pattern=r"^[vV][a][r]($| (.*))")
 async def get_var(event):
     try:
