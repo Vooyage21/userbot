@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Group**
 
@@ -32,10 +32,10 @@ from telethon.tl.types import (ChannelParticipantsKicked, User,
                                UserStatusLastWeek, UserStatusOffline,
                                UserStatusOnline, UserStatusRecently)
 
-from . import LOGS, asst, ayra_cmd, types
+from . import LOGS, asst, dante_cmd, types
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="getlink( (.*)|$)",
     groups_only=True,
     manager=True,
@@ -53,7 +53,7 @@ async def _(e):
     if match:
         split = match.split(maxsplit=1)
         request = split[0] in ["r", "request"]
-        title = "Created by Ayra"
+        title = "Created by dante"
         if len(split) > 1:
             match = split[1]
             spli = match.split(maxsplit=1)
@@ -96,7 +96,7 @@ async def _(e):
     await e.eor("`Gagal mendapatkan link...`")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="buat (g|c)(?: |$)(.*)",
 )
 async def _(e):
@@ -158,7 +158,7 @@ async def _(e):
             await xx.edit(str(ex))
 
 
-@ayra_cmd(pattern="unbanall$", manager=True, admins_only=True, require="ban_users")
+@dante_cmd(pattern="unbanall$", manager=True, admins_only=True, require="ban_users")
 async def _(event):
     xx = await event.eor("`Mengumpulkan akun gak guna.`")
     p = 0
@@ -178,7 +178,7 @@ async def _(event):
     await xx.eor(f"{title}: {p} DiUnbanned", time=5)
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="rmusers( (.*)|$)",
     groups_only=True,
     admins_only=True,
