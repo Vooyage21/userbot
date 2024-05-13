@@ -65,7 +65,7 @@
 
 from time import sleep
 
-from dante.kynan import *
+from dante.dante import *
 
 from . import *
 
