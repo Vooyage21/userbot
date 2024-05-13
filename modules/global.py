@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Global**
 
@@ -22,19 +22,19 @@
 import asyncio
 import os
 
-from Ayra.dB import DEVS
-from Ayra.dB.gban_mute_db import (gban, gmute, is_gbanned, is_gmuted,
+from dante.dB import DEVS
+from dante.dB.gban_mute_db import (gban, gmute, is_gbanned, is_gmuted,
                                   list_gbanned, ungban, ungmute)
-from Ayra.kynan import register
+from dante.kynan import register
 from telethon.errors.rpcerrorlist import ChatAdminRequiredError, FloodWaitError
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import User
 
-from . import (LOGS, OWNER_NAME, ayra_bot, ayra_cmd, eod, get_string,
+from . import (LOGS, OWNER_NAME, dante_bot, dante_cmd, eod, get_string,
                inline_mention)
 
 
-@ayra_cmd(pattern="[uU][n][g][b][a][n]( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="[uU][n][g][b][a][n]( (.*)|$)", fullsudo=False)
 @register(incoming=True, pattern=r"^\.cungban( (.*)|$)", from_users=DEVS)
 async def _(e):
     xx = await e.eor("`Proses...`")
@@ -99,7 +99,7 @@ async def _(e):
     )
 
 
-@ayra_cmd(pattern="[gG][b][a][n]( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="[gG][b][a][n]( (.*)|$)", fullsudo=False)
 @register(incoming=True, pattern=r"^\.cgban( (.*)|$)", from_users=DEVS)
 async def _(e):
     xx = await e.eor("`Proses...`")
@@ -136,7 +136,7 @@ async def _(e):
         userid = int(userid)
         name = str(userid)
     chats = 0
-    if userid == ayra_bot.uid:
+    if userid == dante_bot.uid:
         return await xx.eor("`Tidak Dapat Gban Diri Sendiri.`", time=3)
     elif userid in DEVS:
         return await xx.eor("`Tidak Dapat Gban DEVS.`", time=3)
@@ -181,7 +181,7 @@ async def _(e):
     await xx.edit(gb_msg)
 
 
-@ayra_cmd(pattern="gmute( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="gmute( (.*)|$)", fullsudo=False)
 async def _(e):
     xx = await e.eor("`Gmuting...`")
     if e.reply_to_msg_id:
@@ -196,7 +196,7 @@ async def _(e):
         )
     name = await e.client.get_entity(userid)
     chats = 0
-    if userid == ayra_bot.uid:
+    if userid == dante_bot.uid:
         return await xx.eor("`I can't gmute myself.`", time=3)
     if userid in DEVS:
         return await xx.eor("`I can't gmute my Developers.`", time=3)
@@ -218,7 +218,7 @@ async def _(e):
     await xx.edit(f"`Gmuted` {inline_mention(name)} `in {chats} chats.`")
 
 
-@ayra_cmd(pattern="ungmute( (.*)|$)", fullsudo=False)
+@dante_cmd(pattern="ungmute( (.*)|$)", fullsudo=False)
 async def _(e):
     xx = await e.eor("`UnGmuting...`")
     if e.reply_to_msg_id:
@@ -249,7 +249,7 @@ async def _(e):
     await xx.edit(f"`Ungmuted` {inline_mention(name)} `in {chats} chats.`")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(L|l)istgban$",
 )
 async def list_gengbanned(event):
@@ -277,7 +277,7 @@ async def list_gengbanned(event):
             )
         await x.reply(
             file="gbanned.txt",
-            message=f"List of users GBanned by {inline_mention(ayra_bot.me)}",
+            message=f"List of users GBanned by {inline_mention(dante_bot.me)}",
         )
         os.remove("gbanned.txt")
         await x.delete()
@@ -285,7 +285,7 @@ async def list_gengbanned(event):
         await x.edit(gbanned_users, parse_mode="html")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[gG][s][t][a][t]( (.*)|$)",
 )
 async def gstat_(e):
