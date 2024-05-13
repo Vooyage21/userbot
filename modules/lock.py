@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Lock**
 
@@ -13,13 +13,13 @@
 ๏ **Perintah:** `unlock` <msgs/media/sticker/gif/games/inline/polls/invites/pin/changeinfo>
 ◉ **Keterangan:** Unlock Pengaturan gunakan di Grup .
 """
-from Ayra.fns.admins import lock_unlock
+from dante.fns.admins import lock_unlock
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 
-from . import ayra_cmd
+from . import dante_cmd
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(un|)lock( (.*)|$)", admins_only=True, manager=True, require="change_info"
 )
 async def un_lock(e):
