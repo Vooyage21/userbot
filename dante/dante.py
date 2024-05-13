@@ -36,7 +36,7 @@ from dante._misc._supporter import CMD_HNDLR, CMD_LIST
 
 
 
-def kynan_cmd(pattern=None, command=None, **args):
+def dante_cmd(pattern=None, command=None, **args):
 
     args["func"] = lambda e: e.via_bot_id is None
 
