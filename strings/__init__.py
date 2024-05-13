@@ -11,7 +11,7 @@ try:
 except ModuleNotFoundError:
     from dante.fns.tools import safe_load
 
-daConfig.lang = udB.get_key("language") or os.getenv("LANGUAGE", "id")
+danConfig.lang = udB.get_key("language") or os.getenv("LANGUAGE", "id")
 
 languages = {}
 
@@ -28,7 +28,7 @@ for file in glob("strings/strings/*yml"):
 
 
 def get_string(key: str, _res: bool = True) -> Any:
-    lang = daConfig.lang or "id"
+    lang = danConfig.lang or "id"
     try:
         return languages[lang][key]
     except KeyError:
