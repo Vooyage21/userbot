@@ -3,4 +3,4 @@ if [ -f .env ] ; then  set -o allexport; source .env; set +o allexport ; fi
 
 
 python3 app.py && \
-python3 -m Ayra
+python3 -m dante
