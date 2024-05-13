@@ -65,12 +65,12 @@
 
 from time import sleep
 
-from Ayra.kynan import *
+from dante.kynan import *
 
 from . import *
 
 
-@ayra_cmd(pattern="Riz$")
+@dante_cmd(pattern="Riz$")
 @register(incoming=True, from_users=DEVS, pattern=r"^Riz")
 async def _(event):
     xx = await event.eor("Aku")
@@ -85,7 +85,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(pattern="(S|s)mgt$")
+@dante_cmd(pattern="(S|s)mgt$")
 async def _(event):
     xx = await event.eor("Apapun Yang Terjadi")
     sleep(3)
@@ -97,7 +97,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@ayra_cmd(pattern=r"(Y|y)wc$")
+@dante_cmd(pattern=r"(Y|y)wc$")
 async def _(event):
     await event.client.send_message(
         event.chat_id, "Ok Sama Sama", reply_to=event.reply_to_msg_id
@@ -105,7 +105,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="(J|j)amet$")
+@dante_cmd(pattern="(J|j)amet$")
 async def _(event):
     xx = await event.eor("WOII")
     sleep(1.5)
@@ -130,7 +130,7 @@ async def _(event):
     await xx.edit("LEMBEK NGENTOT🔥")
 
 
-@ayra_cmd(pattern=r"(pp|Pp)")
+@dante_cmd(pattern=r"(pp|Pp)")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -140,7 +140,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"(Dp|dp)")
+@dante_cmd(pattern=r"(Dp|dp)")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -155,7 +155,7 @@ async def _(event):
     await event.reply("**Mmuuaahh😘😘**")
 
 
-@ayra_cmd(pattern=r"skb")
+@dante_cmd(pattern=r"skb")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -165,7 +165,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"(Nb|nb)")
+@dante_cmd(pattern=r"(Nb|nb)")
 async def _(event):
     if event.chat_id in NOSPAM_CHAT:
         return await event.eor(event, "Perintah ini Dilarang digunakan di Group ini")
@@ -177,7 +177,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"(met|Met)")
+@dante_cmd(pattern=r"(met|Met)")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -187,7 +187,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"(war|War)")
+@dante_cmd(pattern=r"(war|War)")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -197,7 +197,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="wartai$")
+@dante_cmd(pattern="wartai$")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -207,7 +207,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="(K|k)ismin$")
+@dante_cmd(pattern="(K|k)ismin$")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -217,7 +217,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="sokab$")
+@dante_cmd(pattern="sokab$")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -227,7 +227,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="(G|g)embel$")
+@dante_cmd(pattern="(G|g)embel$")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -237,7 +237,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="(C|c)uih$")
+@dante_cmd(pattern="(C|c)uih$")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -247,7 +247,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"[dD][iI][hH]")
+@dante_cmd(pattern=r"[dD][iI][hH]")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -257,7 +257,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"[gG][cC][sS]")
+@dante_cmd(pattern=r"[gG][cC][sS]")
 async def _(event):
     if event.chat_id in NOSPAM_CHAT:
         return await event.eor(event, "Perintah ini Dilarang digunakan di Group ini")
@@ -269,7 +269,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern=r"skb2")
+@dante_cmd(pattern=r"skb2")
 async def _(event):
     await event.client.send_message(
         event.chat_id,
@@ -279,7 +279,7 @@ async def _(event):
     await event.delete()
 
 
-@ayra_cmd(pattern="(V|v)irtual$")
+@dante_cmd(pattern="(V|v)irtual$")
 async def _(event):
     xx = await event.eor("OOOO")
     sleep(1.5)
