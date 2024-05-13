@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Pastebin**
 
@@ -26,7 +26,7 @@ except ImportError:
     uf = None
 
 
-from . import LOGS, asst, ayra_cmd, get_paste
+from . import LOGS, asst, dante_cmd, get_paste
 
 # =================================================================#
 
@@ -35,7 +35,7 @@ TMP_DOWNLOAD_DIRECTORY = "resources/downloads/"
 _copied_msg = {}
 
 
-@ayra_cmd(pattern="(p|P)aste( (.*)|$)", manager=False, allow_all=True)
+@dante_cmd(pattern="(p|P)aste( (.*)|$)", manager=False, allow_all=True)
 async def _(event):
     try:
         input_str = event.text.split(maxsplit=1)[1]
