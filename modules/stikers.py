@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Stikers**
 
@@ -50,12 +50,12 @@ from telethon.utils import get_input_document
 from . import *
 
 
-@ayra_cmd(pattern="(p|P)ackkang")
+@dante_cmd(pattern="(p|P)ackkang")
 async def pack_kangish(_):
     _e = await _.get_reply_message()
-    ayra_bot = _.client
+    dante_bot = _.client
     local = None
-    user = ayra_bot.me
+    user = dante_bot.me
     username = user.username
     username = f"@{username}" if username else user.first_name
     try:
@@ -107,7 +107,7 @@ async def pack_kangish(_):
             )
         )
     try:
-        short_name = "ayra_" + _packname.replace(" ", "_") + str(_.id)
+        short_name = "dante_" + _packname.replace(" ", "_") + str(_.id)
         _r_e_s = await asst(
             functions.stickers.CreateStickerSetRequest(
                 user_id=_.sender_id,
@@ -130,13 +130,13 @@ async def pack_kangish(_):
     )
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(K|k)ang",
 )
 async def hehe(args):
-    ayra_bot = args.client
+    dante_bot = args.client
     xx = await args.eor(get_string("com_1"))
-    user = ayra_bot.me
+    user = dante_bot.me
     username = user.username
     username = f"@{username}" if username else user.first_name
     message = await args.get_reply_message()
@@ -147,10 +147,10 @@ async def hehe(args):
         return await xx.eor(get_string("sts_6"))
     if message.photo:
         photo = io.BytesIO()
-        photo = await ayra_bot.download_media(message.photo, photo)
+        photo = await dante_bot.download_media(message.photo, photo)
     elif message.file and "image" in message.file.mime_type.split("/"):
         photo = io.BytesIO()
-        await ayra_bot.download_file(message.media.document, photo)
+        await dante_bot.download_file(message.media.document, photo)
         if (
             DocumentAttributeFilename(file_name="sticker.webp")
             in message.media.document.attributes
@@ -165,10 +165,10 @@ async def hehe(args):
         else:
             y = cv2.VideoCapture(xy)
             heh, lol = y.read()
-            cv2.imwrite("ayra.webp", lol)
-            photo = "ayra.webp"
+            cv2.imwrite("dante.webp", lol)
+            photo = "dante.webp"
     elif message.file and "tgsticker" in message.file.mime_type:
-        await ayra_bot.download_file(
+        await dante_bot.download_file(
             message.media.document,
             "AnimatedSticker.tgs",
         )
@@ -193,7 +193,7 @@ async def hehe(args):
         if not emoji:
             emoji = "🗿"
         if len(splat) == 3:
-            pack = splat[2]  # User sent ayra_both
+            pack = splat[2]  # User sent dante_both
             emoji = splat[1]
         elif len(splat) == 2:
             if splat[1].isnumeric():
@@ -226,12 +226,12 @@ async def hehe(args):
             "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
             not in htmlstr
         ):
-            async with ayra_bot.conversation("@Stickers") as conv:
+            async with dante_bot.conversation("@Stickers") as conv:
                 try:
                     await conv.send_message("/addsticker")
                 except YouBlockedUserError:
                     LOGS.info("Unblocking @Stickers for kang...")
-                    await ayra_bot(functions.contacts.UnblockRequest("stickers"))
+                    await dante_bot(functions.contacts.UnblockRequest("stickers"))
                     await conv.send_message("/addsticker")
                 await conv.get_response()
                 await conv.send_message(packname)
@@ -308,10 +308,10 @@ async def hehe(args):
                 await conv.get_response()
                 await conv.send_message("/done")
                 await conv.get_response()
-                await ayra_bot.send_read_acknowledge(conv.chat_id)
+                await dante_bot.send_read_acknowledge(conv.chat_id)
         else:
             await xx.edit("`Brewing a new Pack...`")
-            async with ayra_bot.conversation("Stickers") as conv:
+            async with dante_bot.conversation("Stickers") as conv:
                 await conv.send_message(cmd)
                 await conv.get_response()
                 await conv.send_message(packnick)
@@ -343,7 +343,7 @@ async def hehe(args):
                 await conv.get_response()
                 await conv.send_message(packname)
                 await conv.get_response()
-                await ayra_bot.send_read_acknowledge(conv.chat_id)
+                await dante_bot.send_read_acknowledge(conv.chat_id)
         await xx.edit(
             get_string("sts_12").format(emoji, packname),
             parse_mode="md",
@@ -354,18 +354,18 @@ async def hehe(args):
             pass
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(R|r)ound$",
 )
-async def ayraround(event):
+async def danteround(event):
     ureply = await event.get_reply_message()
     xx = await event.eor(get_string("com_1"))
     if not (ureply and (ureply.media)):
         await xx.edit(get_string("sts_10"))
         return
-    ayra = await ureply.download_media()
+    dante = await ureply.download_media()
     file = await con.convert(
-        ayra,
+        dante,
         convert_to="png",
         allowed_formats=["jpg", "jpeg", "png"],
         outname="round",
@@ -379,28 +379,28 @@ async def ayraround(event):
     draw.pieslice([0, 0, h, w], 0, 360, fill=255)
     npAlpha = np.array(alpha)
     npImage = np.dstack((npImage, npAlpha))
-    Image.fromarray(npImage).save("ayra.webp")
+    Image.fromarray(npImage).save("dante.webp")
     await event.client.send_file(
         event.chat_id,
-        "ayra.webp",
+        "dante.webp",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
     os.remove(file)
-    os.remove("ayra.webp")
+    os.remove("dante.webp")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(D|d)estroy$",
 )
-async def ayradestroy(event):
-    ayra = await event.get_reply_message()
-    if not (ayra and ayra.media and "animated" in mediainfo(ayra.media)):
+async def dantedestroy(event):
+    dante = await event.get_reply_message()
+    if not (dante and dante.media and "animated" in mediainfo(dante.media)):
         return await event.eor(get_string("sts_2"))
-    await event.client.download_media(ayra, "ayra.tgs")
+    await event.client.download_media(dante, "dante.tgs")
     xx = await event.eor(get_string("com_1"))
-    await bash("lottie_convert.py ayra.tgs json.json")
+    await bash("lottie_convert.py dante.tgs json.json")
     with open("json.json") as json:
         jsn = json.read()
     jsn = (
@@ -419,11 +419,11 @@ async def ayradestroy(event):
         .replace("[9]", "[110]")
     )
     open("json.json", "w").write(jsn)
-    file = await con.animated_sticker("json.json", "ayra.tgs")
+    file = await con.animated_sticker("json.json", "dante.tgs")
     if file:
         await event.client.send_file(
             event.chat_id,
-            file="ayra.tgs",
+            file="dante.tgs",
             force_document=False,
             reply_to=event.reply_to_msg_id,
         )
@@ -431,10 +431,10 @@ async def ayradestroy(event):
     os.remove("json.json")
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="(T|t)iny$",
 )
-async def ayratiny(event):
+async def dantetiny(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
         await event.eor(get_string("sts_10"))
@@ -448,8 +448,8 @@ async def ayratiny(event):
             jsn = json.read()
         jsn = jsn.replace("512", "2000")
         open("json.json", "w").write(jsn)
-        await con.animated_sticker("json.json", "ayra.tgs")
-        file = "ayra.tgs"
+        await con.animated_sticker("json.json", "dante.tgs")
+        file = "dante.tgs"
         os.remove("json.json")
     elif ik.endswith((".gif", ".webm", ".mp4")):
         iik = cv2.VideoCapture(ik)
