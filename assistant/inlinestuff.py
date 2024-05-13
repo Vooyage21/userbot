@@ -13,7 +13,7 @@ from . import *
 
 SUP_BUTTONS = [
     [
-        Button.url("• Repo •", url="https://github.com/naya1503/Assistant-Key"),
+        Button.url("• Repo •", url="https://github.com/dante1503/Assistant-Key"),
         Button.url("• Support •", url="t.me/publikdarkness"),
     ],
 ]
@@ -33,7 +33,7 @@ apis = [
 async def repo(e):
     res = [
         await e.builder.article(
-            title="Naya Userbot",
+            title="dante Userbot",
             description="Userbot | Telethon",
             thumb=wb(aypic, 0, "image/jpeg", []),
             text="**◈ ᴀʏʀᴀ ꭙ ᴜꜱᴇʀʙᴏᴛ​ ◈**",
