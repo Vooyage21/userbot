@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Nulis**
 
@@ -17,7 +17,7 @@ from telethon.errors import ChatSendMediaForbiddenError
 from . import *
 
 
-@ayra_cmd(pattern=r"(N|n)ulis( (.*)|$)")
+@dante_cmd(pattern=r"(N|n)ulis( (.*)|$)")
 async def handwrite(event):
     reply_msg = await event.get_reply_message()
     text = reply_msg.text if reply_msg else event.pattern_match.group(3)
