@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Pinterest**
 
@@ -49,7 +49,7 @@ from . import *
 LOG_CHANNEL = udB.get_key("LOG_CHANNEL")
 
 
-@ayra_cmd(pattern="copy(?: |$)(.*)")
+@dante_cmd(pattern="copy(?: |$)(.*)")
 async def get_restriced_msg(event):
     match = event.pattern_match.group(1).strip()
     if not match:
@@ -100,7 +100,7 @@ async def get_restriced_msg(event):
         if thumb:
             os.remove(thumb)
 
-@ayra_cmd(pattern=r"curi(?: |$)(.*)")
+@dante_cmd(pattern=r"curi(?: |$)(.*)")
 async def pencuri(event):
     dia = await event.get_reply_message()
     botlog = LOG_CHANNEL
