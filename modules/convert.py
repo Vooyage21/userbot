@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 """
 ✘ **Bantuan Untuk DM**
@@ -78,7 +78,7 @@ conv_keys = {
 }
 
 """
-@ayra_cmd(
+@dante_cmd(
     pattern="(C|c)onvert( (.*)|$)",
 )
 async def uconverter(event):
@@ -96,7 +96,7 @@ async def uconverter(event):
         convert = conv_keys[input_]
     except KeyError:
         return await xx.edit(get_string("sts_3").format("gif/img/sticker/webm/webp"))
-    file = await con.convert(b, outname="ayra", convert_to=convert)
+    file = await con.convert(b, outname="dante", convert_to=convert)
     if file:
         await event.client.send_file(
             event.chat_id, file, reply_to=event.reply_to_msg_id or event.id
@@ -106,7 +106,7 @@ async def uconverter(event):
 """
 
 
-@ayra_cmd(pattern="convert ?(foto|audio|gif|voice|photo|mp3)? ?(.*)")
+@dante_cmd(pattern="convert ?(foto|audio|gif|voice|photo|mp3)? ?(.*)")
 async def cevir(event):
     ajg = event.pattern_match.group(1)
     try:
@@ -214,7 +214,7 @@ async def cevir(event):
         return
 
 
-@ayra_cmd(pattern="toaudio$")
+@dante_cmd(pattern="toaudio$")
 async def makevoice(event):
     if not event.reply_to:
         return await eod(event, "**Mohon Balas Ke Audio atau video**")
@@ -226,17 +226,17 @@ async def makevoice(event):
     file = await msg.download_media(dl)
     await xxnx.edit("`Tunggu Sebentar...`")
     await runcmd(
-        f"ffmpeg -i '{file}' -map 0:a -codec:a libopus -b:a 100k -vbr on ayra.opus"
+        f"ffmpeg -i '{file}' -map 0:a -codec:a libopus -b:a 100k -vbr on dante.opus"
     )
     await event.client.send_file(
-        event.chat_id, file="ayra.opus", force_document=False, reply_to=msg
+        event.chat_id, file="dante.opus", force_document=False, reply_to=msg
     )
     await xxnx.delete()
     os.remove(file)
-    os.remove("ayra.opus")
+    os.remove("dante.opus")
 
 
-@ayra_cmd(pattern="(G|g)litch$")
+@dante_cmd(pattern="(G|g)litch$")
 async def _(e):
     try:
         import glitch_me  # ignore :pylint
@@ -255,15 +255,15 @@ async def _(e):
         ok = await reply.download_media(thumb=-1)
     else:
         return await xx.eor(get_string("com_4"))
-    cmd = f"glitch_me gif --line_count 200 -f 10 -d 50 '{ok}' ayra.gif"
+    cmd = f"glitch_me gif --line_count 200 -f 10 -d 50 '{ok}' dante.gif"
     stdout, stderr = await bash(cmd)
-    await e.reply(file="ayra.gif", force_document=False)
+    await e.reply(file="dante.gif", force_document=False)
     await xx.delete()
     os.remove(ok)
-    os.remove("ayra.gif")
+    os.remove("dante.gif")
 
 
-@ayra_cmd(pattern="(bw|Bw|Invert|invert)$")
+@dante_cmd(pattern="(bw|Bw|Invert|invert)$")
 async def igif(e):
     match = e.pattern_match.group(1).strip()
     a = await e.get_reply_message()
@@ -275,20 +275,20 @@ async def igif(e):
     xx = await e.eor(get_string("com_1"))
     z = await a.download_media()
     if match == "bw":
-        cmd = f'ffmpeg -i "{z}" -vf format=gray ayra.gif -y'
+        cmd = f'ffmpeg -i "{z}" -vf format=gray dante.gif -y'
     else:
-        cmd = f'ffmpeg -i "{z}" -vf lutyuv="y=negval:u=negval:v=negval" ayra.gif -y'
+        cmd = f'ffmpeg -i "{z}" -vf lutyuv="y=negval:u=negval:v=negval" dante.gif -y'
     try:
         await bash(cmd)
-        await e.client.send_file(e.chat_id, "ayra.gif", supports_streaming=True)
+        await e.client.send_file(e.chat_id, "dante.gif", supports_streaming=True)
         os.remove(z)
-        os.remove("ayra.gif")
+        os.remove("dante.gif")
         await xx.delete()
     except Exception as er:
         LOGS.info(er)
 
 
-@ayra_cmd(pattern="(R|r)vgif$")
+@dante_cmd(pattern="(R|r)vgif$")
 async def reverse_gif(event):
     a = await event.get_reply_message()
     if not (a and a.media) and "video" not in mediainfo(a.media):
@@ -302,9 +302,9 @@ async def reverse_gif(event):
     os.remove("reversed.mp4")
 
 
-@ayra_cmd(pattern="(Gif|gif)( (.*)|$)")
-async def gifs(ayra):
-    get = ayra.pattern_match.group(1).strip()
+@dante_cmd(pattern="(Gif|gif)( (.*)|$)")
+async def gifs(dante):
+    get = dante.pattern_match.group(1).strip()
     xx = random.randint(0, 5)
     n = 0
     if ";" in get:
@@ -313,22 +313,22 @@ async def gifs(ayra):
         except IndexError:
             pass
     if not get:
-        return await ayra.eor("`gif <query>`")
-    m = await ayra.eor(get_string("com_2"))
-    gifs = await ayra.client.inline_query("gif", get)
+        return await dante.eor("`gif <query>`")
+    m = await dante.eor(get_string("com_2"))
+    gifs = await dante.client.inline_query("gif", get)
     if not n:
         await gifs[xx].click(
-            ayra.chat_id, reply_to=ayra.reply_to_msg_id, silent=True, hide_via=True
+            dante.chat_id, reply_to=dante.reply_to_msg_id, silent=True, hide_via=True
         )
     else:
         for x in range(n):
             await gifs[x].click(
-                ayra.chat_id, reply_to=ayra.reply_to_msg_id, silent=True, hide_via=True
+                dante.chat_id, reply_to=dante.reply_to_msg_id, silent=True, hide_via=True
             )
     await m.delete()
 
 
-@ayra_cmd(pattern="(V|v)tog$")
+@dante_cmd(pattern="(V|v)tog$")
 async def vtogif(e):
     a = await e.get_reply_message()
     if not (a and a.media):
@@ -342,7 +342,7 @@ async def vtogif(e):
     if int(dur) < 120:
         z = await a.download_media()
         await bash(
-            f'ffmpeg -i {z} -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 ayra.gif -y'
+            f'ffmpeg -i {z} -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 dante.gif -y'
         )
     else:
         filename = a.file.name
@@ -351,16 +351,16 @@ async def vtogif(e):
         vid = await downloader(filename, a.media.document, xx, tt, get_string("com_5"))
         z = vid.name
         await bash(
-            f'ffmpeg -ss 3 -t 100 -i {z} -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 ayra.gif'
+            f'ffmpeg -ss 3 -t 100 -i {z} -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 dante.gif'
         )
 
-    await e.client.send_file(e.chat_id, "ayra.gif", support_stream=True)
+    await e.client.send_file(e.chat_id, "dante.gif", support_stream=True)
     os.remove(z)
-    os.remove("ayra.gif")
+    os.remove("dante.gif")
     await xx.delete()
 
 
-@ayra_cmd(pattern="(size|Size)")
+@dante_cmd(pattern="(size|Size)")
 async def size(e):
     r = await e.get_reply_message()
     if not (r and r.media):
@@ -376,7 +376,7 @@ async def size(e):
     os.remove(img)
 
 
-@ayra_cmd(pattern="(resize|Resize)( (.*)|$)")
+@dante_cmd(pattern="(resize|Resize)( (.*)|$)")
 async def size(e):
     r = await e.get_reply_message()
     if not (r and r.media):
