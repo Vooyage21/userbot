@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Telegraph**
 
@@ -26,7 +26,7 @@ except ImportError:
     uf = None
 
 
-from . import Image, Telegraph, ayra_cmd, bash, get_string, mediainfo
+from . import Image, Telegraph, dante_cmd, bash, get_string, mediainfo
 
 # =================================================================#
 
@@ -35,12 +35,12 @@ TMP_DOWNLOAD_DIRECTORY = "resources/downloads/"
 _copied_msg = {}
 
 
-@ayra_cmd(
+@dante_cmd(
     pattern="[tT][gG]( (.*)|$)",
 )
 async def telegraphcmd(event):
     xx = await event.eor(get_string("com_1"))
-    match = event.pattern_match.group(1).strip() or "Ayra"
+    match = event.pattern_match.group(1).strip() or "dante"
     reply = await event.get_reply_message()
     if not reply:
         return await xx.eor("`Balas Ke Pesan.`")
