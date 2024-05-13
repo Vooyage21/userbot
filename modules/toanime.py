@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk To Anime**
 
@@ -22,7 +22,7 @@ from telethon.tl.types import *
 from . import *
 
 
-@ayra_cmd(pattern="toanime")
+@dante_cmd(pattern="toanime")
 async def convert_image(event):
     if not event.reply_to_msg_id:
         return await event.eor("**Mohon Balas Ke Foto**")
