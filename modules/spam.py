@@ -1,9 +1,9 @@
-# Ayra - UserBot
+# dante - UserBot
 # Copyright (C) 2021-2022 senpai80
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/senpai80/dante/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 """
 ✘ **Bantuan Untuk Spam**
 
@@ -25,7 +25,7 @@ import asyncio
 from . import *
 
 
-@ayra_cmd(pattern="(t|T)spam", fullsudo=False)
+@dante_cmd(pattern="(t|T)spam", fullsudo=False)
 async def tmeme(e):
     tspam = str(e.text[7:])
     message = tspam.replace(" ", "")
@@ -34,7 +34,7 @@ async def tmeme(e):
     await e.delete()
 
 
-@ayra_cmd(pattern="(s|S)pam", fullsudo=False)
+@dante_cmd(pattern="(s|S)pam", fullsudo=False)
 async def spammer(e):
     message = e.text
     if e.reply_to:
@@ -59,7 +59,7 @@ async def spammer(e):
 
 
 
-@ayra_cmd(pattern="(b|B)spam", fullsudo=True)
+@dante_cmd(pattern="(b|B)spam", fullsudo=True)
 async def bigspam(e):
     message = e.text
     if e.reply_to:
@@ -79,7 +79,7 @@ async def bigspam(e):
     await e.delete()
 
 
-@ayra_cmd(pattern="(d|D)spam?(.*)", fullsudo=False)
+@dante_cmd(pattern="(d|D)spam?(.*)", fullsudo=False)
 async def delayspammer(e):
     try:
         args = e.text.split(" ", 3)
