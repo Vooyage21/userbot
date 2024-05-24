@@ -5,7 +5,7 @@ COPY installer.sh .
 RUN bash installer.sh
 
 # changing workdir
-WORKDIR "/root/pinxRobtik"
+WORKDIR "/root/Vooyage21"
 
 # start the bot.
 CMD ["bash", "start"]
