@@ -57,7 +57,7 @@ def load_other_plugins(addons=None, pmbot=None, manager=None, vcbot=None):
     # for addons
     if addons:
         if url := udB.get_key("ADDONS_URL"):
-            subprocess.run(f"git clone -q {url} addons", shell=True)
+            subprocess.run(f"git clone -q {url} Addons", shell=True)
         if os.path.exists("Addons") and not os.path.exists("Addons/.git"):
             rmtree("Addons")
         if not os.path.exists("addons"):
