@@ -128,10 +128,6 @@ def dante_cmd(pattern=None, command=None, **args):
 
     return events.NewMessage(**args)
 
-
-
-
-
 def command(**args):
 
     args["func"] = lambda e: e.via_bot_id is None
