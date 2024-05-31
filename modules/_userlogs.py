@@ -1,7 +1,7 @@
 
 import os
 import re
-
+from telethon.events import NewMessage
 from dante.dB.botchat_db import tag_add, who_tag
 from telethon.errors.rpcerrorlist import (ChannelPrivateError,
                                           ChatWriteForbiddenError,
