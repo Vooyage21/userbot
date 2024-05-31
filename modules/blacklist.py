@@ -13,7 +13,7 @@
 ◉ **Keterangan:** Lihat Semua Daftar Kata Terlarang .
 """
 
-
+from telethon.events import NewMessage
 from dante.dB.blacklist_db import (add_blacklist, get_blacklist, list_blacklist,
                                   rem_blacklist)
 
