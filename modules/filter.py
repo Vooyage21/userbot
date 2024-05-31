@@ -26,7 +26,7 @@ from dante.fns.tools import create_tl_btn, format_btn, get_msg_button
 from telegraph import upload_file as uf
 from telethon.tl.types import User
 from telethon.utils import pack_bot_file_id
-
+from telethon.events import NewMessage
 from . import dante_bot, dante_cmd, events, get_string, mediainfo, udB
 from ._inline import something
 
