@@ -188,7 +188,7 @@ async def DummyHandler(dante):
         else:
             await dante.reply(file=med)
 
-
+"""
 @dante_bot.on(events.NewMessage(incoming=True))
 async def chatBot_replies(e):
     sender = await e.get_sender()
@@ -212,7 +212,7 @@ async def chatBot_replies(e):
         x, y = detector(e.text)
         if y:
             await e.delete()
-
+"""
 
 @dante_bot.on(events.Raw(types.UpdateUserName))
 async def uname_change(e):
