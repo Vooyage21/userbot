@@ -23,11 +23,11 @@ except ImportError:
 
 from telethon.utils import resolve_bot_file_id
 
-piic = "https://graph.org/file/b0ede17600df06f798774.jpg"
+piic = "https://mallucampaign.in/images/img_1708914936.jpg"
 
 buttons = [
     [
-        Button.url(get_string("bot_4"), "t.me/publikdarknes"),
+        Button.url(get_string("bot_4"), "t.me/TemanDemus_Id"),
     ]
 ]
 
@@ -45,14 +45,14 @@ BLACK = [1898065191, 1054295664, 1889573907, 2133148961, 2076745088]
 
 # Will move to strings
 alive_txt = """
-◈ ʀᴇᴢᴀ ꭙ ᴜsᴇʀʙᴏᴛ
+◈ Dante Userbot
 
   ◈ Version - {}
   ◈ dante - {}
   ◈ Telethon - {}
 """
 
-in_alive = "<b>ʀᴇᴢᴀ-ᴜsᴇʀʙᴏᴛ</b>\n<b>     sᴛᴀᴛᴜs :</b> <code>{}</code>{}\n<b>       ᴇxᴘɪʀᴇᴅ_ᴏɴ :</b> <code>{}</code>\n<b>       ᴅᴄ_ɪᴅ :</b> <code>{}</code>\n<b>       ᴘɪɴɢ_ᴅᴄ :</b> <code>{} ᴍs</code>\n<b>       ᴀssɪsᴛᴀɴᴛ :</b> <code>{}</code>\n<b>      ᴠᴇʀsɪᴏɴ :</b> <code>{}</code>"
+in_alive = "<b>Dante UserBot</b>\n<b>     sᴛᴀᴛᴜs :</b> <code>{}</code>{}\n<b>       ᴇxᴘɪʀᴇᴅ_ᴏɴ :</b> <code>{}</code>\n<b>       ᴅᴄ_ɪᴅ :</b> <code>{}</code>\n<b>       ᴘɪɴɢ_ᴅᴄ :</b> <code>{} ᴍs</code>\n<b>       ᴀssɪsᴛᴀɴᴛ :</b> <code>{}</code>\n<b>      ᴠᴇʀsɪᴏɴ :</b> <code>{}</code>"
 
 absen = [
     "**nande?**",
