@@ -13,14 +13,14 @@ from . import *
 
 SUP_BUTTONS = [
     [
-        Button.url("• Repo •", url="https://github.com/dante1503/Assistant-Key"),
-        Button.url("• Support •", url="t.me/publikdarkness"),
+        Button.url("• Developer •", url="https://t.me/Usern4meDoesNotExist404"),
+        Button.url("• Support •", url="t.me/TemanDemus_Id"),
     ],
 ]
 
 ofox = "https://graph.org/file/231f0049fcd722824f13b.jpg"
 gugirl = "https://graph.org/file/0df54ae4541abca96aa11.jpg"
-aypic = "https://graph.org/file/b0ede17600df06f798774.jpg"
+dantepic = "https://mallucampaign.in/images/img_1708914936.jpg"
 
 apis = [
     "QUl6YVN5QXlEQnNZM1dSdEI1WVBDNmFCX3c4SkF5NlpkWE5jNkZV",
@@ -36,7 +36,7 @@ async def repo(e):
             title="dante Userbot",
             description="Userbot | Telethon",
             thumb=wb(aypic, 0, "image/jpeg", []),
-            text="**◈ ᴀʏʀᴀ ꭙ ᴜꜱᴇʀʙᴏᴛ​ ◈**",
+            text="**◈ Dante UserBot**",
             buttons=SUP_BUTTONS,
         ),
     ]
