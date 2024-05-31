@@ -46,10 +46,10 @@ async def ajg():
     from telethon.errors import rpcerrorlist
     try:
         await dante_bot(JoinChannelRequest("MusicStreamMp3"))
-        await dante_bot(JoinChannelRequest("StreamSupportMp3"))
+        await dante_bot(JoinChannelRequest("TemanDemus_Id"))
         
     except rpcerrorlist.ChannelPrivateError:
-        print("Lu Di Ban Di @StreamSupportMp3 Jadi Ga Bisa Pake Bot Ini ! Minta Unban Dulu .")
+        print("Lu Di Ban Di @TemanDemus_Id Jadi Ga Bisa Pake Bot Ini ! Minta Unban Dulu .")
         sys.exit(1)
       
 async def autoupdate_local_database():
