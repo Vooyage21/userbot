@@ -27,7 +27,7 @@ from telethon.errors.rpcerrorlist import (
     UserIsBotError,
 )
 from telethon.events import MessageEdited, NewMessage
-from telethon.utils import get_displdan_name
+from telethon.utils import get_display_name
 
 from .. import *
 from .. import _ignore_eval
