@@ -37,6 +37,7 @@ from dante.version import dante_version
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 from requests import get
+from telethon.events import NewMessage
 from telethon import Button, events
 from telethon.tl import functions, types  # pylint:ignore
 from telethon.utils import get_display_name
