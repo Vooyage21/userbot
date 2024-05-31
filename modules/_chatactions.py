@@ -6,7 +6,7 @@
 # <https://www.github.com/senpai80/dante/blob/main/LICENSE/>.
 
 import asyncio
-
+from telethon.events import NewMessage
 from dante.dB import stickers
 from dante.dB.forcesub_db import get_forcesetting
 from dante.dB.gban_mute_db import is_gbanned
