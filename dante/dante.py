@@ -2,8 +2,6 @@
 
 """Userbot module for managing events. One of the main components of the userdante_bot."""
 
-
-
 import inspect
 
 import re
@@ -20,11 +18,7 @@ from time import gmtime, strftime
 
 from traceback import format_exc
 
-
-
 from telethon import events
-
-
 
 from dante import dante_bot
 
