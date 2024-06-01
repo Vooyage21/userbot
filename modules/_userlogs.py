@@ -19,12 +19,6 @@ CACHE_SPAM = {}
 TAG_EDITS = {}
 
 
-@dante_bot.on(
-    events.NewMessage(
-        incoming=True,
-        func=lambda e: (e.mentioned),
-    ),
-)
 async def all_messages_catcher(e):
     x = await e.get_sender()
     if isinstance(x, User) and (x.bot or x.verified):
@@ -165,13 +159,6 @@ if udB.get_key("TAG_LOG"):
         except Exception as er:
             LOGS.exception(er)
 
-    @dante_bot.on(
-        events.NewMessage(
-            outgoing=True,
-            chats=[udB.get_key("TAG_LOG")],
-            func=lambda e: e.reply_to,
-        )
-    )
     async def idk(e):
         id = e.reply_to_msg_id
         chat, msg = who_tag(id)
