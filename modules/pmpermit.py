@@ -137,7 +137,6 @@ if udB.get_key("PMLOG"):
         return await e.eor("`Now I Won't log msgs from here.`", time=3)
 
     @dante_bot.on(
-        events.NewMessage(
             incoming=True,
             func=lambda e: e.is_private,
         ),
@@ -153,7 +152,6 @@ if udB.get_key("PMSETTING"):
     if udB.get_key("AUTOAPPROVE"):
 
         @dante_bot.on(
-            events.NewMessage(
                 outgoing=True,
                 func=lambda e: e.is_private and e.out and not e.text.startswith(HNDLR),
             ),
@@ -187,7 +185,6 @@ if udB.get_key("PMSETTING"):
                 pass
 
     @dante_bot.on(
-        events.NewMessage(
             incoming=True,
             func=lambda e: e.is_private
             and e.sender_id not in DEVS
