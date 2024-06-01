@@ -187,31 +187,6 @@ async def DummyHandler(dante):
         else:
             await dante.reply(file=med)
 
-"""
-@dante_bot.on(events.NewMessage(incoming=True))
-async def chatBot_replies(e):
-    sender = await e.get_sender()
-    if not isinstance(sender, types.User):
-        return
-    key = udB.get_key("CHATBOT_USERS") or {}
-    if e.text and key.get(e.chat_id) and sender.id in key[e.chat_id]:
-        msg = await get_chatbot_reply(e.message.message)
-        if msg:
-            sleep = udB.get_key("CHATBOT_SLEEP") or 1.5
-            await asyncio.sleep(sleep)
-            await e.reply(msg)
-    chat = await e.get_chat()
-    if e.is_group and not sender.bot:
-        if sender.username:
-            await uname_stuff(e.sender_id, sender.username, sender.first_name)
-    elif e.is_private and not sender.bot:
-        if chat.username:
-            await uname_stuff(e.sender_id, chat.username, chat.first_name)
-    if detector and is_profan(e.chat_id) and e.text:
-        x, y = detector(e.text)
-        if y:
-            await e.delete()
-"""
 
 @dante_bot.on(events.Raw(types.UpdateUserName))
 async def uname_change(e):
