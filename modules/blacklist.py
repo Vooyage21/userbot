@@ -13,7 +13,6 @@
 ◉ **Keterangan:** Lihat Semua Daftar Kata Terlarang .
 """
 
-from telethon.events import NewMessage
 from dante.dB.blacklist_db import (add_blacklist, get_blacklist, list_blacklist,
                                   rem_blacklist)
 
@@ -30,7 +29,7 @@ async def af(e):
     heh = wrd.split(" ")
     for z in heh:
         add_blacklist(int(chat), z.lower())
-    dante_bot.add_handler(blacklist, events.NewMessage(incoming=True))
+    dante_bot.add_handler(blacklist, (incoming=True))
     await e.eor(get_string("blk_2").format(wrd))
 
 
@@ -68,4 +67,4 @@ async def blacklist(e):
 
 
 if udB.get_key("BLACKLIST_DB"):
-    dante_bot.add_handler(blacklist, events.NewMessage(incoming=True))
+    dante_bot.add_handler(blacklist, (incoming=True))
