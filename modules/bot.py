@@ -8,7 +8,6 @@ from random import choice
 from telethon import __version__
 from telethon.errors.rpcerrorlist import (BotMethodInvalidError,
                                           ChatSendMediaForbiddenError)
-from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.functions import PingRequest
 from telethon.tl.types import Channel, Chat, User
@@ -71,9 +70,7 @@ async def dante(dante):
 
 
 @dante_cmd(pattern=r"^[aA][lL][iI][vV][eE](?: |$)(.*)")
-async def lol(
-    dante: NewMessage.Event,
-):
+async def lol(Event):
     match = dante.pattern_match.group(1).strip()
     inline = True
     private_chats = 0
@@ -266,9 +263,7 @@ async def _(event):
 
 
 @in_pattern("alive")
-async def inline_alive(
-    event: NewMessage.Event,
-):
+async def inline_alive(Event):
     pic = udB.get_key("ALIVE_PIC")
     remaining_days = None
     status1 = "<b>[founder]</b>" if event.sender_id in DEVS else "<b>[owner]</b>"
