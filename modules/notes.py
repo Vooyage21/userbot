@@ -72,7 +72,7 @@ async def an(e):
             txt, btn = get_msg_button(wt.text)
         add_note(user, wrd, txt, None, btn)
     await e.eor(get_string("notes_2").format(wrd))
-    dante_bot.add_handler(notes, events.NewMessage())
+    dante_bot.add_handler(notes())
 
 
 @dante_cmd(pattern="[Rr][m]( (.*)|$)")
@@ -110,4 +110,4 @@ async def notes(e):
 
 
 if udB.get_key("NOTE"):
-    dante_bot.add_handler(notes, events.NewMessage())
+    dante_bot.add_handler(notes())
