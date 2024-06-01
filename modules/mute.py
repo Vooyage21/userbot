@@ -28,7 +28,7 @@ from . import asst, dante_bot, dante_cmd, eod, get_string, inline_mention, DEVS
 from dante.kynan import register
 
 
-@dante_bot.on(events.NewMessage(incoming=True))
+@dante_bot.on(incoming=True))
 async def watcher(event):
     if is_muted(event.chat_id, event.sender_id):
         await event.delete()
