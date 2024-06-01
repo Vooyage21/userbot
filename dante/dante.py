@@ -20,8 +20,6 @@ from traceback import format_exc
 
 from telethon import events
 
-from telethon.events import NewMessage
-
 from dante import dante_bot
 
 from dante.dB import DEVS, DEFAULT
