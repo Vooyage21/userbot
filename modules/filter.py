@@ -26,7 +26,6 @@ from dante.fns.tools import create_tl_btn, format_btn, get_msg_button
 from telegraph import upload_file as uf
 from telethon.tl.types import User
 from telethon.utils import pack_bot_file_id
-from telethon.events import NewMessage
 from . import dante_bot, dante_cmd, events, get_string, mediainfo, udB
 from ._inline import something
 
@@ -67,7 +66,7 @@ async def af(e):
             txt, btn = get_msg_button(wt.text)
         add_filter(chat, wrd, txt, None, btn)
     await e.eor(get_string("flr_4").format(wrd))
-    dante_bot.add_handler(filter_func, events.NewMessage())
+    dante_bot.add_handler(filter_func())
 
 
 @dante_cmd(pattern="delfil( (.*)|$)")
@@ -107,4 +106,4 @@ async def filter_func(e):
 
 
 if udB.get_key("FILTERS"):
-    dante_bot.add_handler(filter_func, events.NewMessage())
+    dante_bot.add_handler(filter_func())
