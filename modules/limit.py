@@ -23,8 +23,7 @@ async def demn(dante):
     msg = await dante.eor("Memeriksa Jika Anda Terbatas...")
     async with dante.client.conversation(chat) as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=178220800)
+            response = conv.wait_event(incoming=True, from_users=178220800)
             )
             await conv.send_message("/start")
             response = await response
