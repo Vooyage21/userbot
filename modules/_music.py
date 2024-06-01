@@ -218,11 +218,6 @@ def vc_asst(dec, **kwargs):
                     parse_mode="html",
                 )
 
-        vcClient.add_event_handler(
-            vc_handler,
-            events.NewMessage(**kwargs),
-        )
-
     return ult
 
 
