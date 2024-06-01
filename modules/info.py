@@ -32,7 +32,6 @@ try:
 except ImportError:
     uf = None
 
-from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.functions.contacts import GetBlockedRequest
 from telethon.tl.functions.messages import GetAllStickersRequest
@@ -53,9 +52,7 @@ _copied_msg = {}
 @dante_cmd(
     pattern="(S|s)tats$",
 )
-async def stats(
-    event: NewMessage.Event,
-):
+async def stats(Event):
     ok = await event.eor("`Collecting stats...`")
     start_time = time.time()
     private_chats = 0
