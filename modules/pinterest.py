@@ -41,8 +41,7 @@ async def pntr(event):
     chat = "@SaveAsbot"
     async with event.client.conversation(chat) as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=523131145)
+            response = conv.wait_event(incoming=True, from_users=523131145)
             )
             await event.client.send_message(chat, link)
             response = await response
